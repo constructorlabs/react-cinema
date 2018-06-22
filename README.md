@@ -2,14 +2,11 @@
 
 Let's revisit our first project where we built a movie search engine using the Open Movie Database. This time we want to implement it using React. It should be a Single Page App, that is all the functionality should be on a single page, rather switch between multiple pages.
 
-Before starting draw a plan of your application. What are some of the components you are going to need? Which components will fetch data and how will that data be displayed? Which components should be re-used? Rather than re-implementing your previous solution again have a think about what you have learned in the past month and how you can apply it here.
+Before starting draw a plan of your application. What are some of the components you are going to need? Which components will fetch data and how will that data be displayed? Which components should be re-used? Rather than re-implementing your previous solution again have a think about what you have learned in the past week and how you can apply it here.
 
 ## The brief
 
 We want to create a movie search engine. To power it we will use the [Open Movie Database](http://www.omdbapi.com). It provides access to a huge database of films via an **API**, which stands for **Application Programming Interface**. In short, it is a set of rules and procedures you need to follow to use a remote system.
-
-> Check out this video for some background info on APIs  
-> [https://www.youtube.com/watch?v=s7wmiS2mSXY](https://www.youtube.com/watch?v=s7wmiS2mSXY)
 
 To start using the OMDB API you will first need to sign up with them to receive and API key. The key issued to you will allow you 1000 requests per day and you will need to include this key as part of every request.
 
@@ -39,13 +36,6 @@ You should complete as many of the following tasks as you can. You can use Boots
 - [ ] Make the favourites list sortable. Add up and down buttons to your favourites which on click will move the result in relevant in your list
 
 - [ ] Save favourites locally using either `cookies` or `localStorage` so that favourites persist in browser after refresh
-
-## Support
-
-* Ask lots of questions on Slack
-* Don't spend more than 20 mins stuck on any part
-* Help your classmates if you know the answers to their questions
-* Katia and myself will be available if you a more detailed explanation of any material
 
 ## Objectives
 
