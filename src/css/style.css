@@ -155,6 +155,19 @@ h1.main-heading {
     margin-bottom: 40px;
   }
 }
+@media (min-width: 768px) {
+  .movie-details {
+    padding-right: 35px;
+  }
+  .movie-list-wrapper {
+    grid-template-columns: 50% 50%;
+  }
+  
+  .movie-details {
+    grid-template-columns: 170px auto;
+    margin-bottom: 40px;
+  }
+}
 
 .movie-info__moreinfo {
   display: block;
