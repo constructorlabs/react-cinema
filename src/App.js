@@ -3,6 +3,8 @@ import React from 'react';
 import Header from './Header';
 import Search from './Search';
 import Movies from './Movies';
+import Loading from './elements/Loading';
+import BackToTop from './elements/BackToTop';
 
 
 class App extends React.Component {
@@ -69,10 +71,6 @@ class App extends React.Component {
     }
   }
 
-  handleBackToTop() {
-    window.scrollTo(0, 0);
-  }
-
   componentDidMount() {
     window.addEventListener("scroll", this.handleScroll);
   }
@@ -92,13 +90,8 @@ class App extends React.Component {
         <Search receiver={this.receiver} />
         {/* {Movies} */}
         <Movies movies={this.state.search} />
-
-        <div id="search-results__loading" className="search-results__loading">Loading...</div>
-        <button onClick={this.handleBackToTop} title="Back To Top" id="back-to-top" className="back-to-top">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-            <path d="M0 16.67l2.829 2.83 9.175-9.339 9.167 9.339 2.829-2.83-11.996-12.17z" />
-          </svg>
-        </button>
+        <Loading />
+        <BackToTop />
       </div>
     )
   }
