@@ -55,7 +55,7 @@ class Movie extends React.Component {
         return (
             <div id="movie-details" className="movie-details">
                 <div className='movie-poster'>
-                    <img src={this.props.poster === 'N/A'? (this.props.poster ='http://via.placeholder.com/150x220?text=Image'): this.props.poster} alt={this.props.title} className='movie-poster__image' />
+                    <img src={this.props.poster === 'N/A'? 'http://via.placeholder.com/150x220?text=Image': this.props.poster} alt={this.props.title} className='movie-poster__image' />
                     </div>
                     <div className='movie-info'>
                     <h2 className='movie-info__title'>{this.props.title}</h2>
