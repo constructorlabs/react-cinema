@@ -21,7 +21,7 @@ h1.main-heading {
   padding-left: 30px;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 960px) {
   h1.main-heading {
     padding-left: 0;
   }
@@ -35,7 +35,7 @@ h1.main-heading {
   margin-bottom: 50px;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 960px) {
   .container {
     width: 80%;
     max-width: 1200px;
@@ -142,13 +142,9 @@ h1.main-heading {
   margin-bottom: 20px;
   padding-bottom: 30px;
   border-bottom: 1px solid rgb(0, 0, 0, 0.1);
-  animation: movie-fade-in 4s 1;
+  animation: fade-in 4s 1;
 }
 
-@keyframes movie-fade-in {
-  0%   { opacity: 0; }
-  100% { opacity: 1; }
-}
 @media (min-width: 480px) {
   .movie-details {
     grid-template-columns: 200px auto;
@@ -177,8 +173,13 @@ h1.main-heading {
   height: 40px;
   border: none;
   background-color: var(--secondary-color);
-  color: #fff;
+  /* color: #fff; */
   font-size: 0.875rem;
+}
+
+.movie-info__moreinfo:hover {
+  cursor: pointer;
+  opacity: .8;
 }
 
 .movie-info__title {
@@ -217,6 +218,32 @@ ul.movie-info__moreinfo-details {
   display: block;
 }
 
+/* Back To Top */
+.back-to-top {
+  display: none;
+}
+
+.back-to-top.visible {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+  background-color: var(--secondary-color);
+  border-radius: 50%;
+  border: none;
+  width: 40px;
+  height: 40px;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  animation: fade-in 1s 1;
+}
+
+.back-to-top:hover {
+  cursor: pointer;
+  opacity: .8;
+}
+
 /* Errors */
 .error-box {
   display: none;
@@ -246,4 +273,12 @@ ul.movie-info__moreinfo-details {
 .pagination li:hover {
   cursor: pointer;
   opacity: 0.7;
+}
+
+
+/* ANIMATIONS */
+
+@keyframes fade-in {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
 }

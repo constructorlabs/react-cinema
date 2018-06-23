@@ -14,20 +14,29 @@ class App extends React.Component {
       page: 2
     }
     this.receiver = this.receiver.bind(this);
-    this.handleInfiniteScroll = this.handleInfiniteScroll.bind(this);
+    this.handleScroll = this.handleScroll.bind(this);
   }
 
-  handleInfiniteScroll() {
+  handleScroll() {
     const windowHeight = "innerHeight" in window ? window.innerHeight : document.documentElement.offsetHeight;
     const body = document.body;
     const html = document.documentElement;
     const docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
     const windowBottom = windowHeight + window.pageYOffset;
+    const backToTop = body.querySelector("#back-to-top");
 
     const loading = document.querySelector('#search-results__loading');
     const OMBbAPIKey = "aba7af8e";
     const query = 'http://www.omdbapi.com/?s=' + this.state.searchTerm + '&apikey=' + OMBbAPIKey + '&page=' + this.state.page;
 
+    // Back to top button
+    if (body.scrollTop > 300 || html.scrollTop > 300) {
+      backToTop.classList.add('visible');
+    } else {
+      backToTop.classList.remove('visible');
+    }
+
+    // Infinite scroll
     if (windowBottom >= docHeight) {
       fetch(query)
         .then(response => {
@@ -60,8 +69,12 @@ class App extends React.Component {
     }
   }
 
+  handleBackToTop() {
+    window.scrollTo(0, 0);
+  }
+
   componentDidMount() {
-    window.addEventListener("scroll", this.handleInfiniteScroll);
+    window.addEventListener("scroll", this.handleScroll);
   }
 
   receiver(movies, searchTerm) {
@@ -81,6 +94,11 @@ class App extends React.Component {
         <Movies movies={this.state.search} />
 
         <div id="search-results__loading" className="search-results__loading">Loading...</div>
+        <button onClick={this.handleBackToTop} title="Back To Top" id="back-to-top" className="back-to-top">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path d="M0 16.67l2.829 2.83 9.175-9.339 9.167 9.339 2.829-2.83-11.996-12.17z" />
+          </svg>
+        </button>
       </div>
     )
   }
