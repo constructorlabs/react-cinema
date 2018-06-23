@@ -5,19 +5,30 @@ class Search extends React.Component {
         super();
         this.state = {
             search: "",
-            // receiver: this.state
+            searchTerm: ""
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.fetchMovies = this.fetchMovies.bind(this);
     };
 
     fetchMovies() {
         const OMBbAPIKey = "aba7af8e";
-        fetch(`http://www.omdbapi.com/?s=${this.state.search}&apikey=${OMBbAPIKey}`)
-            .then(response => response.json())
+        const loading = document.querySelector('#search-results__loading');
+        fetch('http://www.omdbapi.com/?s=' + this.state.search + '&apikey=' + OMBbAPIKey)
+            .then(response => {
+                loading.textContent = "Loading..";
+                loading.classList.add('show');
+                return response.json();
+            })
             .then(result => {
-                console.log(result.Search)
-                this.props.receiver(result.Search);
+                loading.classList.remove('show');
+                this.props.receiver(result.Search, this.state.searchTerm);
+            })
+            .catch(error => {
+                loading.textContent = "There's been a problem fetching the results. Try again later...";
+                loading.classList.add('show');
+                console.log(error);
             });
     }
 
@@ -30,7 +41,8 @@ class Search extends React.Component {
         event.preventDefault();
 
         this.setState({
-            search: event.target.value
+            search: event.target.value,
+            searchTerm: event.target.value
         });
     }
 

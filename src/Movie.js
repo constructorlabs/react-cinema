@@ -1,7 +1,6 @@
 import React from 'react';
 
 function Movie({ poster, title, year, imdbID }) {
-    console.log('asd');
     return (
         <div className="movie-details">
             <div className='movie-poster'>

@@ -131,7 +131,7 @@ h1.main-heading {
   display: grid;
   grid-template-columns: 100%;
   padding: 30px;
-  margin-bottom: 30px;
+  margin-bottom: 50px;
   background-color: var(--primary-color);
 }
 
@@ -142,7 +142,7 @@ h1.main-heading {
   margin-bottom: 20px;
   padding-bottom: 30px;
   border-bottom: 1px solid rgb(0, 0, 0, 0.1);
-  animation: movie-fade-in 2s 1;
+  animation: movie-fade-in 4s 1;
 }
 
 @keyframes movie-fade-in {
@@ -192,6 +192,16 @@ h1.main-heading {
 ul.movie-info__moreinfo-details {
   list-style-type: none;
   padding-left: 0;
+}
+
+/* Infnitie scroll loading */
+.search-results__loading {
+  display: none;
+  text-align: center;
+  margin-bottom: 50px;
+}
+.search-results__loading.show {
+  display: block;
 }
 
 /* Errors */
