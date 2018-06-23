@@ -1,0 +1,26 @@
+
+body {
+  text-align: center;
+  font-family: Impact;
+  /* background-image:url(https://i.imgur.com/GLIs5QU.jpg); */
+
+};
+
+.header {
+    color: white;
+    text-transform: capitalize;
+  }
+
+  .container{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    color: white;
+  };
+
+  .content {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+  

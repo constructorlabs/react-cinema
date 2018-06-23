@@ -1,14 +1,33 @@
 import React from 'react';
+import Search from './Search';
+import MovieList from './MovieList';
+
+
 
 class App extends React.Component {
-  constructor(){
+  constructor(props){
     super();
-  }
+
+    this.state = {
+      movies: [],
+    }
+
+    this.receiver=this.receiver.bind(this);
+
+  };
+
+
+receiver (moviesArr){
+  this.setState({movies:moviesArr})
+
+}
 
   render(){
     return (
       <div>
-        React cinema app
+        <Search moviesReceiver={this.receiver} />
+        <MovieList moviesResults={this.state.movies} />
+    
       </div>
     )
   }
