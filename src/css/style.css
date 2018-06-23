@@ -12,9 +12,27 @@ body {
   padding: 0;
   font-size: 16px;
 }
+ 
+input[type=text]:focus {
+  box-shadow: 0 0 5px rgba(253, 184, 19, 1);
+  border: 1px solid rgba(253, 184, 19, 1);
+}
+
 .container {
   width: 100%;
   max-width: 100%;
+}
+
+header.main-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+header.main-header .watch-list__button{
+  max-height: 40px;
+  background-color: #000;
+  color: var(--secondary-color);
 }
 
 h1.main-heading {
@@ -191,6 +209,11 @@ h1.main-heading {
 .movie-info__moreinfo:hover {
   cursor: pointer;
   opacity: .8;
+}
+
+.movie-info__moreinfo.disabled {
+  cursor: default;
+  opacity: .2;
 }
 
 .movie-info__title {

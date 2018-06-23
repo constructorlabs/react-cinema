@@ -13,9 +13,13 @@ class App extends React.Component {
     this.state = {
       search: [],
       searchTerm: "",
-      page: 2
+      page: 2,
+      watchList: [],
+      watchListSection: false
     }
-    this.receiver = this.receiver.bind(this);
+    this.receiverSearch = this.receiverSearch.bind(this);
+    this.receiverWatchList = this.receiverWatchList.bind(this);
+    this.receiverDisplayWatchlist = this.receiverDisplayWatchlist.bind(this);
     this.handleScroll = this.handleScroll.bind(this);
   }
 
@@ -75,21 +79,47 @@ class App extends React.Component {
     window.addEventListener("scroll", this.handleScroll);
   }
 
-  receiver(movies, searchTerm) {
+  receiverSearch(movies, searchTerm) {
     this.setState({
       search: movies,
-      searchTerm: searchTerm
+      searchTerm: searchTerm,
+      watchListSection: false
     })
   }
 
+  receiverDisplayWatchlist() {
+    this.setState({
+      watchListSection: true
+    })
+  }
+
+  receiverWatchList(articleTitle) {
+    this.state.search.forEach(articleObj => {
+      return Object.keys(articleObj).find(articleKey => {
+        if (articleObj[articleKey] === articleTitle) {
+          this.setState({
+            watchList: [...this.state.watchList, articleObj]
+          })
+        }
+      });
+    });
+
+  }
+
+
   render() {
-    // const Movies = this.state.search !== undefined ? <Movies movies={this.state.search} /> : null;
+    const watchList = this.state.watchListSection;
+    let MoviesList;
+    if (watchList) {
+      MoviesList = <Movies movies={this.state.watchList} receiver={this.receiverWatchList} watchlistbutton={false} />;
+    } else {
+      MoviesList = <Movies movies={this.state.search} receiver={this.receiverWatchList} watchlistbutton={true} />;
+    }
     return (
       <div className="container">
-        <Header title="OMDb Movie search" />
-        <Search receiver={this.receiver} />
-        {/* {Movies} */}
-        <Movies movies={this.state.search} />
+        <Header title="OMDb Movie search" receiver={this.receiverDisplayWatchlist} />
+        <Search receiver={this.receiverSearch} />
+        {MoviesList}
         <Loading />
         <BackToTop />
       </div>
