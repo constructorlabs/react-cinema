@@ -66,8 +66,13 @@ h1.main-heading {
   padding: 20px;
   border: none;
   background-color: var(--secondary-color);
-  color: #fff;
+  /* color: #fff; */
   font-size: 0.875rem;
+}
+
+.movie-request__submit:hover {
+  cursor: pointer;
+  opacity: .8;
 }
 
 @media (min-width: 768px) {
@@ -145,10 +150,17 @@ h1.main-heading {
   animation: fade-in 4s 1;
 }
 
+.movie-info {
+  grid-column: 1/4;
+}
+
 @media (min-width: 480px) {
   .movie-details {
     grid-template-columns: 200px auto;
     margin-bottom: 40px;
+  }
+  .movie-info {
+    grid-column: 2/4;
   }
 }
 @media (min-width: 768px) {
@@ -169,8 +181,7 @@ h1.main-heading {
   display: block;
   margin-top: 10px;
   margin-bottom: 10px;
-  width: 100px;
-  height: 40px;
+  padding: 7px 16px;
   border: none;
   background-color: var(--secondary-color);
   /* color: #fff; */
@@ -204,6 +215,8 @@ h1.main-heading {
 
 /* Movie more info details */
 ul.movie-info__moreinfo-details {
+  grid-column: 1/4;
+
   list-style-type: none;
   padding-left: 0;
 }
