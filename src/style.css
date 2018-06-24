@@ -1,26 +1,70 @@
-
+html,
 body {
-  text-align: center;
+  height: 100%;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+.header{
+  padding: 5px 10px;
+  background-color: navy;
+}
+
+.title{
+  display: flex;
+  justify-content: center;
+  color: white;
+  text-transform: capitalize;
   font-family: Impact;
-  /* background-image:url(https://i.imgur.com/GLIs5QU.jpg); */
+}
 
-};
+.container {
+  padding: 5px 10px;
+  background: rgba(255, 255, 255, 0.25);
+}
 
-.header {
-    color: white;
-    text-transform: capitalize;
-  }
+.search {
+  display: flex;
 
-  .container{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    color: white;
-  };
+  justify-content: center;
+  padding: 2px 2px 2px 10px;
+  background:navy;
+  margin: auto;
+  font-size: 14px;
+}
 
-  .content {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-  }
-  
+.search__label {
+  align-self: center;
+
+}
+
+.search__input {
+  justify-content: center;
+
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.search__btn {
+  text-transform: uppercase;
+  background:lightblue;
+}
+
+.search,
+.search__input,
+.btn {
+  transition: 0.5s background-color, 0.5s color;
+
+  padding: 5px 10px;
+  border: none;
+  font: inherit;
+}
+
+.content__movie{
+display: flex;
+align-content: center;
+flex-direction: column;
+
+}

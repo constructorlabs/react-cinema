@@ -14,13 +14,12 @@ class Search extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleChange(event) {
-    
     this.setState({ type: event.target.value });
   }
 
   handleSubmit(event) {
     event.preventDefault();
-   
+
     fetch(`http://www.omdbapi.com/?s=${this.state.type}&apikey=40ce55c`)
       .then(function(response) {
         return response.json();
@@ -34,7 +33,7 @@ class Search extends React.Component {
     return (
       <div className="container">
         <form className="search" onSubmit={this.handleSubmit}>
-          <label className="search__label">Movie</label>
+          <label className="search__label" />
           <input
             className="search__input"
             name="movie"
@@ -43,7 +42,7 @@ class Search extends React.Component {
             placeholder="Enter a movie name"
             autoComplete="movie"
           />
-          <button className="btn search__btn"> Go </button>
+          <button className="search__btn"> Go </button>
         </form>
       </div>
     );

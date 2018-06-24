@@ -1,35 +1,29 @@
-import React from 'react';
-import Search from './Search';
-import MovieList from './MovieList';
-
-
+import React from "react";
+import Search from "./Search";
+import MovieList from "./MovieList";
 
 class App extends React.Component {
-  constructor(props){
+  constructor(props) {
     super();
 
     this.state = {
-      movies: [],
-    }
+      movies: []
+    };
 
-    this.receiver=this.receiver.bind(this);
+    this.receiver = this.receiver.bind(this);
+  }
 
-  };
+  receiver(moviesArr) {
+    this.setState({ movies: moviesArr });
+  }
 
-
-receiver (moviesArr){
-  this.setState({movies:moviesArr})
-
-}
-
-  render(){
+  render() {
     return (
       <div>
         <Search moviesReceiver={this.receiver} />
         <MovieList moviesResults={this.state.movies} />
-    
       </div>
-    )
+    );
   }
 }
 
