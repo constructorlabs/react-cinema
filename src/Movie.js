@@ -73,6 +73,11 @@ class Movie extends React.Component {
                         this.props.year
                     }</div>
                     <a className='movie-info__imdb-link' target='_blank' href={'https://www.imdb.com/title/' + this.props.imdbID} >IMDb &#8599;</a>
+                    <a id=''
+                        className='movie-info__imdb-link'
+                        target="_blank" href={'https://www.youtube.com/results?search_query=' + this.props.title + " " + this.props.year + " trailer"}>
+                        Watch trailer &#8599;
+                    </a>
                     {watchlistbutton
                         ? <button id='' onClick={(e) => this.handleWatchList(e)} className='movie-info__moreinfo' data-title={this.props.title}>Add to watch list</button>
                         : ""}

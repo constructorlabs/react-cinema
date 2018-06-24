@@ -18,10 +18,11 @@ class Movies extends React.Component {
                 ?
                 <section className="search-results" id="search-results">
                     <div className='movie-list-wrapper'>
-                        {this.props.movies.map((movie, index) => {
+                        {this.props.movies.map((movie) => {
                             return <Movie
                                 watchlistbutton={this.props.watchlistbutton}
-                                key={index} poster={movie.Poster}
+                                key={movie.imdbID}
+                                poster={movie.Poster}
                                 title={movie.Title}
                                 year={movie.Year}
                                 imdbID={movie.imdbID}

@@ -100,9 +100,12 @@ class App extends React.Component {
           this.setState({
             watchList: [...this.state.watchList, articleObj]
           })
+          localStorage.setItem("watchList", JSON.stringify([...this.state.watchList, articleObj]));
         }
       });
     });
+    // console.log("state", this.state.watchList);
+    // console.log("getItem", JSON.parse(localStorage.getItem("watchList")));
 
   }
 
@@ -110,8 +113,9 @@ class App extends React.Component {
   render() {
     const watchList = this.state.watchListSection;
     let MoviesList;
+    console.log(localStorage.getItem("watchList"))
     if (watchList) {
-      MoviesList = <Movies movies={this.state.watchList} receiver={this.receiverWatchList} watchlistbutton={false} />;
+      MoviesList = <Movies movies={localStorage.getItem("watchList") ? JSON.parse(localStorage.getItem("watchList")) : this.state.watchList} receiver={this.receiverWatchList} watchlistbutton={false} />;
     } else {
       MoviesList = <Movies movies={this.state.search} receiver={this.receiverWatchList} watchlistbutton={true} />;
     }
