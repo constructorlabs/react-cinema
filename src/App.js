@@ -10,17 +10,17 @@ class App extends React.Component {
       movies: []
     };
 
-    this.receiver = this.receiver.bind(this);
+    this.moviesReceiver = this.moviesReceiver.bind(this);
   }
 
-  receiver(moviesArr) {
+  moviesReceiver(moviesArr) {
     this.setState({ movies: moviesArr });
   }
 
   render() {
     return (
       <div>
-        <Search moviesReceiver={this.receiver} />
+        <Search moviesReceiver={this.moviesReceiver} />
         <MovieList moviesResults={this.state.movies} />
       </div>
     );

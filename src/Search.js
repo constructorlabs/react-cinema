@@ -5,9 +5,7 @@ class Search extends React.Component {
     super();
 
     this.state = {
-      type: "",
-
-      movies: []
+      type: ""
     };
 
     this.handleChange = this.handleChange.bind(this);
