@@ -19,14 +19,15 @@ class Search extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-
-    fetch(`http://www.omdbapi.com/?s=${this.state.type}&apikey=40ce55c`)
-      .then(function(response) {
-        return response.json();
-      })
-      .then(data => {
-        this.props.moviesReceiver(data.Search);
-      });
+    if (this.state.type.length > 0) {
+      fetch(`http://www.omdbapi.com/?s=${this.state.type}&apikey=40ce55c`)
+        .then(function(response) {
+          return response.json();
+        })
+        .then(data => {
+          this.props.moviesReceiver(data.Search);
+        });
+    }
   }
 
   render() {
