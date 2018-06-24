@@ -2,8 +2,11 @@ import React from "react";
 
 function MovieDetails(props) {
   return (
-    <div>
-      <h1>movie details{props.data.Actors}</h1>
+    <div className="movie__details">
+      <h1>Movie details</h1>
+      <p>Actors:{props.Actors}</p>
+      <p>Awards:{props.Awards}</p>
+      <p>Runtime:{props.Runtime}</p>
     </div>
   );
 }
@@ -26,21 +29,28 @@ class Movie extends React.Component {
   }
   render() {
     return (
-      <div className="content__movie">
-        <p> {this.props.title}</p>
-        <p> Release Year: {this.props.year}</p>
-        <img src={this.props.poster} />
-        <button
-          type="button"
-          className="btn-more"
-          // onClick={this.handleClick}
-          // onClick={(event) => this.handleClick(event)}
-          onClick={() => this.handleClick(this.props.imdbID)}
-        >
-          More details
-        </button>
+      <div className="movie">
+        <div className="movie__top">
+          <p> {this.props.title}</p>
+          <p> Release Year: {this.props.year}</p>
+        </div>
+        <div className="movie__middle">
+          <img className="movie__img" src={this.props.poster} />
+        </div>
+
+        <div className="movie__bottom">
+          <button
+            type="button"
+            className="btn-more"
+            // onClick={this.handleClick}
+            // onClick={(event) => this.handleClick(event)}
+            onClick={() => this.handleClick(this.props.imdbID)}
+          >
+            More details
+          </button>
+        </div>
         {this.state.showDetails ? (
-          <MovieDetails data={this.state.moreDetails} />
+          <MovieDetails {...this.state.moreDetails} />
         ) : null}
       </div>
     );

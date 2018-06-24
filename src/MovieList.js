@@ -3,7 +3,7 @@ import Movie from "./Movie";
 
 function MovieList(props) {
   return (
-    <div className="content">
+    <div className="movie__list">
       {props.moviesResults.map(movie => {
         return (
           <Movie

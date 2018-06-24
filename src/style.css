@@ -7,12 +7,12 @@ html {
   box-sizing: border-box;
 }
 
-.header{
+.header {
   padding: 5px 10px;
   background-color: navy;
 }
 
-.title{
+.title {
   display: flex;
   justify-content: center;
   color: white;
@@ -30,14 +30,13 @@ html {
 
   justify-content: center;
   padding: 2px 2px 2px 10px;
-  background:navy;
+  background: navy;
   margin: auto;
   font-size: 14px;
 }
 
 .search__label {
   align-self: center;
-
 }
 
 .search__input {
@@ -49,7 +48,7 @@ html {
 
 .search__btn {
   text-transform: uppercase;
-  background:lightblue;
+  background: lightblue;
 }
 
 .search,
@@ -62,9 +61,26 @@ html {
   font: inherit;
 }
 
-.content__movie{
-display: flex;
-align-content: center;
-flex-direction: column;
+.movie__list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
 
+.movie {
+  background-color: navy;
+  color:white;
+  width: 360px;
+  padding: 10px;
+  text-align: center;
+  border: solid 6px black;
+  margin-top: 10px;
+  margin-bottom: 10px'
+}
+
+.movie__details {
+  position: relative;
+  background-color: white;
+  color:black;
+  border: solid 6px black;
 }
