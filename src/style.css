@@ -1,6 +1,7 @@
 html,
 body {
   height: 100%;
+  background-color: silver;
 }
 
 html {
@@ -22,7 +23,7 @@ html {
 
 .container {
   padding: 5px 10px;
-  background: rgba(255, 255, 255, 0.25);
+  background: silver;
 }
 
 .search {

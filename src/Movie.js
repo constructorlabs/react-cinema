@@ -4,9 +4,26 @@ function MovieDetails(props) {
   return (
     <div className="movie__details">
       <h1>Movie details</h1>
-      <p>Actors:{props.Actors}</p>
-      <p>Awards:{props.Awards}</p>
-      <p>Runtime:{props.Runtime}</p>
+      <p>
+        <b>Director: </b>
+        {props.Director}
+      </p>
+      <p>
+        <b>Actors: </b>
+        {props.Actors}
+      </p>
+      <p>
+        <b>Awards: </b>
+        {props.Awards}
+      </p>
+      <p>
+        <b>Runtime: </b>
+        {props.Runtime}
+      </p>
+      <p>
+        <b>Plot: </b>
+        {props.Plot}
+      </p>
     </div>
   );
 }
@@ -17,22 +34,34 @@ class Movie extends React.Component {
 
     this.state = {
       showDetails: false,
-      moreDetails: {}
+      moreDetails: {},
+      buttonName: "more details"
     };
   }
 
   handleClick(movieIdToSearchFor) {
-    console.log("hey you clicked me");
-    fetch(`https://www.omdbapi.com/?i=${movieIdToSearchFor}&apikey=40ce55c`)
-      .then(response => response.json())
-      .then(data => this.setState({ moreDetails: data, showDetails: true }));
+    if (this.state.showDetails) {
+      this.setState({ showDetails: false, buttonName: "more details" });
+    } else {
+      fetch(`https://www.omdbapi.com/?i=${movieIdToSearchFor}&apikey=40ce55c`)
+        .then(response => response.json())
+        .then(data =>
+          this.setState({
+            moreDetails: data,
+            showDetails: true,
+            buttonName: "hide details"
+          })
+        );
+    }
   }
   render() {
     return (
       <div className="movie">
         <div className="movie__top">
-          <p> {this.props.title}</p>
-          <p> Release Year: {this.props.year}</p>
+          <h2>{this.props.title}</h2>
+          <p>
+            <b>Release Year: </b> {this.props.year}
+          </p>
         </div>
         <div className="movie__middle">
           <img className="movie__img" src={this.props.poster} />
@@ -46,7 +75,7 @@ class Movie extends React.Component {
             // onClick={(event) => this.handleClick(event)}
             onClick={() => this.handleClick(this.props.imdbID)}
           >
-            More details
+            {this.state.buttonName}
           </button>
         </div>
         {this.state.showDetails ? (
