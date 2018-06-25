@@ -1,0 +1,147 @@
+body {
+  margin: 0;
+  height: 100%;
+
+  background: url("./assets/james-pond.jpg") no-repeat center center fixed;
+  background-size: cover;
+
+  font-family: "Roboto Mono", monospace;
+}
+
+.header {
+  margin: auto;
+  padding: 20px;
+
+  text-align: center;
+  color: white;
+  background-color: transparent;
+}
+
+.form {
+  display: flex;
+
+  margin: auto;
+  padding: 20px;
+
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: transparent;
+}
+
+#movie_input {
+  display: flex;
+
+  align-items: center;
+  border-color: darkgreen;
+}
+
+.submit {
+  display: flex;
+  size: 20px;
+
+  justify-content: center;
+  background-color: #228b22;
+  color: white;
+}
+
+.results_container {
+  display: flex;
+  position: relative;
+  overflow: auto;
+
+  border-color: white;
+}
+
+.result_sections {
+  border-style: solid;
+  border-color: antiquewhite;
+}
+
+ul {
+  display: flex;
+  flex-wrap: wrap;
+
+  justify-content: space-evenly;
+
+  background-color: black;
+}
+
+li {
+  list-style: none;
+}
+
+.title {
+  justify-content: center;
+
+  background-color: transparent;
+  color: white;
+}
+
+.movie_title {
+  display: flex;
+
+  font-size: 17px;
+  justify-content: center;
+}
+
+.movie_year {
+  display: flex;
+
+  font-size: 15px;
+  justify-content: center;
+}
+
+.poster {
+  display: block;
+  text-align: center;
+
+  max-width: 100%;
+  /* height: 200px; */
+}
+
+.poster__error {
+  display: block;
+
+  justify-content: center;
+  max-width: 100%;
+  width: 300px;
+}
+
+#More_Info {
+  display: flex;
+  flex-direction: row;
+
+  justify-content: center;
+}
+
+footer {
+  width: 100%;
+
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  text-align: center;
+
+  background-color: black;
+}
+
+a {
+  color: white;
+}
+
+.amazon_link {
+  color: black;
+}
+
+.details__section {
+  display: flex;
+  position: absolute;
+
+  top: 300px;
+  left: 20px;
+
+  border-style: groove;
+  border-color: slategray;
+  background-color: white;
+}
