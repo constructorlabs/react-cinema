@@ -11,6 +11,7 @@ html {
 .header {
   padding: 5px 10px;
   background-color: navy;
+  border: solid 6px black;
 }
 
 .title {
@@ -34,6 +35,7 @@ html {
   background: navy;
   margin: auto;
   font-size: 14px;
+  
 }
 
 .search__label {
@@ -60,6 +62,7 @@ html {
   padding: 5px 10px;
   border: none;
   font: inherit;
+  border: solid 6px black;
 }
 
 .movie__list {
