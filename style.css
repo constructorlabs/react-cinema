@@ -1,0 +1,130 @@
+body {
+  background-color: crimson;
+  height: auto;
+  overflow-y: scroll;
+  position: relative;
+}
+
+.background {
+  height: auto;
+}
+
+.header {
+  position: fixed;
+  top: 0px;
+  z-index: 1;
+  right: 0;
+  left: 0;
+  background-color: crimson;
+}
+
+.title {
+  margin: auto;
+  text-align: center;
+  padding-top: 30px;
+  font-family: "Julius Sans One", sans-serif;
+  font-size: 75px;
+  font-weight: bold;
+  text-shadow: 4px 4px red;
+}
+
+.moviereel {
+  width: 70px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 4px 4px red;
+}
+
+.form {
+  margin: auto;
+  margin-top: 30px;
+  text-align: center;
+  padding: 5px;
+}
+
+.input {
+  width: 50%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  border: 2px solid red;
+  border-radius: 5px;
+  box-shadow: 4px 4px red;
+}
+
+.button {
+  background-color: white; /* Green */
+  border: none;
+  border-radius: 5px;
+  color: red;
+  padding: 9.5px 18px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  font-family: "Roboto", sans-serif;
+  box-shadow: 4px 4px red;
+}
+
+.movieinfo {
+  display: flex;
+  margin-top: 100px;
+}
+
+.moviecard {
+  margin: 20px;
+  margin-top: 250px;
+  width: 250px;
+  position: relative;
+  font-family: "Roboto", sans-serif;
+}
+
+.poster {
+  width: 250px;
+  height: 370px;
+  padding-bottom: 10px;
+}
+
+.cardtext {
+  margin: auto;
+  padding: 10px;
+  text-align: center;
+  border-style: solid;
+  border-width: 1px;
+  border-color: white;
+  border-radius: 5px;
+  font-family: "Roboto", sans-serif;
+  background-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 5px 1px 1px red;
+}
+
+.movieheading {
+  height: auto;
+}
+
+.infocard {
+  text-align: center;
+  height: auto;
+  padding: 15px;
+  overflow: auto;
+  border-style: solid;
+  border-width: 1px;
+  border-color: white;
+  border-radius: 5px;
+  font-family: "Roboto", sans-serif;
+  background-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 5px 1px 1px red;
+}
+
+.detailedinfo {
+  overflow-y: scroll;
+  margin: auto;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  padding: 10px;
+  height: auto;
+  width: 600px;
+}
