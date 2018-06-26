@@ -1,0 +1,42 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  padding: 10px;
+  text-align: center;
+  background: #222;
+  color: #ccc;
+}
+
+.header h1 {
+  font-family: 'Pacifico', sans-serif;
+  font-size: 20px;
+  text-shadow: 0 4px 2px rgba(0,0,0,.1);
+  margin: 0;
+}
+
+.footer {
+  background: #222;
+  color: #ccc;
+  height: 50px;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.posters {
+  flex: 4;
+  display: flex;
+  flex-wrap: wrap;
+}
