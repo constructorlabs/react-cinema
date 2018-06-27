@@ -5,14 +5,17 @@ import Movie from './Movie';
 class Movies extends React.Component {
     constructor() {
         super();
-        this.titleReceiver = this.titleReceiver.bind(this);
+        this.watchListReceiver = this.watchListReceiver.bind(this);
     }
 
-    titleReceiver(title) {
-        this.props.receiver(title);
+    watchListReceiver(title, action) {
+        this.props.receiver(title, action);
     }
 
     render() {
+
+        console.log(this.props.movies.length);
+        console.log(this.props.movies);
         return (
             this.props.movies.length > 0
                 ?
@@ -26,7 +29,7 @@ class Movies extends React.Component {
                                 title={movie.Title}
                                 year={movie.Year}
                                 imdbID={movie.imdbID}
-                                receiver={this.titleReceiver} />;
+                                receiver={this.watchListReceiver} />;
                         })}
                     </div>
                 </section>

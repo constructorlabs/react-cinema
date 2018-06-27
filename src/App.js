@@ -14,7 +14,7 @@ class App extends React.Component {
       search: [],
       searchTerm: "",
       page: 2,
-      watchList: [],
+      watchList: localStorage.getItem("watchList") ? localStorage.getItem("watchList") : [],
       watchListSection: false
     }
     this.receiverSearch = this.receiverSearch.bind(this);
@@ -93,27 +93,38 @@ class App extends React.Component {
     })
   }
 
-  receiverWatchList(articleTitle) {
-    this.state.search.forEach(articleObj => {
-      return Object.keys(articleObj).find(articleKey => {
-        if (articleObj[articleKey] === articleTitle) {
+  receiverWatchList(articleTitle, action) {
+    if (action === "addToWatchList") {
+      this.state.search.forEach(articleObj => {
+        return Object.keys(articleObj).find(articleKey => {
+          if (articleObj[articleKey] === articleTitle) {
+            this.setState({
+              watchList: [...this.state.watchList, articleObj]
+            })
+
+            localStorage.getItem("watchList")
+              ? localStorage.setItem("watchList", JSON.stringify([articleObj, ...JSON.parse(localStorage.getItem("watchList"))]))
+              : localStorage.setItem("watchList", JSON.stringify([...this.state.watchList, articleObj]));
+          }
+        });
+      });
+    } else {
+      const index = JSON.parse(this.state.watchList).forEach((item, index) => {
+        if (item.Title === articleTitle) {
+          // console.log("Aquis", this.state.watchList);
           this.setState({
-            watchList: [...this.state.watchList, articleObj]
+            watchList: JSON.parse(this.state.watchList).splice(index, 1)
           })
-          localStorage.setItem("watchList", JSON.stringify([...this.state.watchList, articleObj]));
+          localStorage.setItem("watchList", this.state.watchList);
+          // console.log("Aquis", localStorage.getItem("watchList"));
         }
       });
-    });
-    // console.log("state", this.state.watchList);
-    // console.log("getItem", JSON.parse(localStorage.getItem("watchList")));
-
+    }
   }
-
 
   render() {
     const watchList = this.state.watchListSection;
     let MoviesList;
-    console.log(localStorage.getItem("watchList"))
     if (watchList) {
       MoviesList = <Movies movies={localStorage.getItem("watchList") ? JSON.parse(localStorage.getItem("watchList")) : this.state.watchList} receiver={this.receiverWatchList} watchlistbutton={false} />;
     } else {

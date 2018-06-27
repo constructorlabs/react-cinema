@@ -52,12 +52,12 @@ class Movie extends React.Component {
                 console.error(error);
             });
     }
-    handleWatchList(e) {
+    handleWatchList(e, action) {
         const evtTarget = e.target;
         if (!evtTarget.classList.contains('disabled')) {
             evtTarget.classList.add("disabled");
             const articleTitle = evtTarget.getAttribute("data-title");
-            this.props.receiver(articleTitle);
+            this.props.receiver(articleTitle, action);
         }
     }
     render() {
@@ -79,8 +79,8 @@ class Movie extends React.Component {
                         Watch trailer &#8599;
                     </a>
                     {watchlistbutton
-                        ? <button id='' onClick={(e) => this.handleWatchList(e)} className='movie-info__moreinfo' data-title={this.props.title}>Add to watch list</button>
-                        : ""}
+                        ? <button id='' onClick={(e) => this.handleWatchList(e, "addToWatchList")} className='movie-info__moreinfo' data-title={this.props.title}>Add to watch list</button>
+                        : <button id='' onClick={(e) => this.handleWatchList(e, "deleteFromWatchList")} className='movie-info__moreinfo' data-title={this.props.title}>Remove from watch list</button>}
                     <button onClick={(e) => this.movieFetch(e)} id='movie-info__moreinfo' className='movie-info__moreinfo'>Info</button>
                 </div>
             </div>

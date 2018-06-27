@@ -5,10 +5,12 @@ class Header extends React.Component {
         this.handleWatchList = this.handleWatchList.bind(this);
     }
     handleWatchList() {
+        document.querySelectorAll('.movie-info__moreinfo').forEach(item => item.classList.remove("disabled"));
         this.props.receiver();
     }
     render() {
         return (
+
             <header className="main-header">
                 <h1 className="main-heading">{this.props.title}</h1>
                 <button onClick={this.handleWatchList} className="movie-info__moreinfo watch-list__button">Watch List</button>
