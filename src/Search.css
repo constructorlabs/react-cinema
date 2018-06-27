@@ -6,3 +6,8 @@
     margin: 0;
     padding: 1rem;
 }
+.Content{
+    background-color: aquamarine;
+    /* display: flex;
+    flex-direction: row; */
+}
