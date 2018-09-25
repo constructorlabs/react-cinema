@@ -2,9 +2,11 @@
 
 Let's revisit our first project where we built a movie search engine using the Open Movie Database. This time we want to implement it using React. It should be a Single Page App, that is all the functionality should be on a single page, rather switch between multiple pages.
 
-Before starting draw a plan of your application. What are some of the components you are going to need? Which components will fetch data and how will that data be displayed? Which components will store state and how will they pass data to other components? Which components should be re-used? Rather than re-implementing your previous solution again have a think about what you have learned in the past week and how you can apply it here.
+Before starting to code produce a diagram using pen and paper of your application which shows both layout and a tree diagram of the components.
 
-Before starting to code produce a diagram using pen and paper of your application which shows both layout and a tree diagram of the components. You can start coding once your plan has been checked by a TA or instructor.
+What are some of the components you are going to need? Which components will fetch data and how will that data be displayed? Which components will store state and how will they pass data to other components? Which components should be re-used? Rather than re-implementing your previous solution again have a think about what you have learned in the past week and how you can apply it here.
+
+You can start coding once your plan has been checked by a TA or instructor.
 
 ## The brief
 
