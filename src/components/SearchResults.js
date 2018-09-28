@@ -1,5 +1,6 @@
 import React from "react";
 import Film from "./Film";
+import Pagination from "./Pagination";
 
 class SearchResults extends React.Component {
     constructor() {
@@ -20,6 +21,7 @@ class SearchResults extends React.Component {
                         return <Film key={film.imdbID} id={film.imdbID} title={film.Title} year={film.Year} poster={film.Poster} />
                     })}
                 </div>
+                <Pagination />
             </section>
         );
     }
