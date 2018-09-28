@@ -2,7 +2,7 @@ import React from 'react';
 import Search from './Search';
 import Results from './Results';
 import Detail from './Detail';
-import Favourite from './Favourite';
+import Favourites from './Favourites';
 import Preview from './Preview';
 import cx from 'classnames';
 
@@ -14,22 +14,29 @@ class App extends React.Component {
                   results: [],
                   detail: '',
                   displayMode: '',
-                  favourites: [] };
+                  favourites: [],
+                  favsDisplayed: false };
+
     this.receiveSearch = this.receiveSearch.bind(this);
     this.getDetails = this.getDetails.bind(this);
     this.closeDetails = this.closeDetails.bind(this);
     this.addFav = this.addFav.bind(this);
     this.removeFav = this.removeFav.bind(this);
+    this.handleFavMenu = this.handleFavMenu.bind(this);
+  }
+
+  componentDidMount() {
+    this.setState({favourites: JSON.parse(window.localStorage.favourites)});
   }
 
   receiveSearch(query) {
-    const APIQuery = `http://www.omdbapi.com/?apikey=eee5954b&s=${query}&type=movie`;
+    const apiQuery = `http://www.omdbapi.com/?apikey=eee5954b&s=${query}&type=movie`;
     this.setState({query});
-    this.fetchData(APIQuery,'results');
+    this.fetchData(apiQuery,'results');
   }
 
-  fetchData(APIQuery,type) {
-    fetch(APIQuery)
+  fetchData(apiQuery,type) {
+    fetch(apiQuery)
     .then(response => response.json())
     .then(body => {
       if (type === 'results') {
@@ -42,8 +49,8 @@ class App extends React.Component {
   }
 
   getDetails(imdbID) {
-    const APIQuery = `http://www.omdbapi.com/?apikey=eee5954b&i=${imdbID}`;
-    this.fetchData(APIQuery, 'detail');
+    const apiQuery = `http://www.omdbapi.com/?apikey=eee5954b&i=${imdbID}`;
+    this.fetchData(apiQuery, 'detail');
   }
 
   closeDetails() {
@@ -52,20 +59,35 @@ class App extends React.Component {
   }
 
   addFav(detail) {
-    this.setState({favourites: this.state.favourites.concat([detail])},()=>console.log(this.state.favourites));
+    const newFavList = this.state.favourites.concat([detail]);
+    this.setState({favourites: newFavList});
+    window.localStorage.favourites = JSON.stringify(newFavList);
   }
 
   removeFav(detail) {
-    this.setState({favourites: this.state.favourites.filter(item => item.imdbID !== detail.imdbID)},()=>console.log(this.state.favourites));
+    const newFavList = this.state.favourites.filter(item => item.imdbID !== detail.imdbID);
+    this.setState({favourites: newFavList});
+    window.localStorage.favourites = JSON.stringify(newFavList);
+  }
+
+  handleFavMenu(event) {
+    this.setState({favsDisplayed: !this.state.favsDisplayed});
   }
   
   render() {
 
     const resultsClasses = cx('results__wrapper', {'results__wrapper--hidden': this.state.displayMode !== 'results'});
     const detailClasses = cx('details', {'details--hidden': this.state.displayMode !== 'detail'});
+    const favsClasses = cx('favs', {'favs--display': this.state.favsDisplayed});
 
     return (
       <div>
+        <div className="top-menu">
+          <i className="fas fa-heart" onClick={this.handleFavMenu}></i>
+          <h1 className="logo">YETFLIX</h1>
+          <i className="fas fa-sign-out-alt"></i>
+        </div>
+        <Favourites classes={favsClasses} favourites={this.state.favourites}/>
         <Search receiveSearch={this.receiveSearch}/>
         <Results classes={resultsClasses} results={this.state.results} getDetails={this.getDetails}/>
         {this.state.detail !== '' && <Detail classes={detailClasses} favourites={this.state.favourites} detail={this.state.detail} close={this.closeDetails} addFav={this.addFav} removeFav={this.removeFav}/>}

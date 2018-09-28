@@ -30,11 +30,8 @@ class Search extends React.Component {
             <button className='search__button' type="submit"><i className="search__icon fa fa-search"></i></button>
           </form>
         </div>
-
       );
   }
-
-
 }
 
 export default Search;
