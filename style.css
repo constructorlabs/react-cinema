@@ -1,0 +1,7 @@
+.result__item__details--active {
+    display: block;
+}
+
+.result__item__details--inactive {
+    display: none;
+}

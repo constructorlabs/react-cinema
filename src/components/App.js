@@ -30,9 +30,8 @@ class App extends React.Component {
     )
       .then(response => response.json())
       .then(body => {
-        this.setState({ movieArray: body.Search});
-        console.log(this.state.movieArray);
-      })
+        this.setState({ movieArray: body.Search });
+      });
   }
 
   render() {
@@ -43,7 +42,11 @@ class App extends React.Component {
           fetchMovies={this.fetchMovies}
           currentValue={this.state.searchTerm}
         />
-        <Results />
+        <Results
+          movieArray={this.state.movieArray}
+          filmDetails={this.state.filmDetails}
+          apiKey={this.state.apiKey}
+        />
       </div>
     );
   }
