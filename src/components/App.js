@@ -11,7 +11,7 @@ class App extends React.Component {
         this.state = {
             query: "",
             films: [],
-            totalFilms: 0,
+            totalFilms: 79,
             filmDetails: {}
         }
 
@@ -67,7 +67,7 @@ class App extends React.Component {
                 <Search receiveTitleQuery={this.receiveTitleQuery} />
 
                 {this.state.films.length > 0 &&
-                    <SearchResults films={this.state.films} receiveFilmID={this.receiveFilmID} />}
+                    <SearchResults films={this.state.films} totalFilms={this.state.totalFilms} receiveFilmID={this.receiveFilmID} />}
 
                 {Object.keys(this.state.filmDetails).length != 0 &&
                     <FilmDetails filmDetails={this.state.filmDetails} />}

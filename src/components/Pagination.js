@@ -11,10 +11,14 @@ class Pagination extends React.Component {
 
     render() {
 
+        const totalPages = Math.ceil(this.props.totalFilms / this.props.filmsPerPage);
+
         return (
-            <div>
-                <p>Pagination will go here</p>
-            </div>
+            <nav id="page-nav">
+                <button className="btn btn__prev">&larr;</button>
+                <p className="page-num">Page <span className="page-current">{this.state.currentPage}</span> of <span className="page-total">{totalPages}</span></p>
+                <button className="btn btn__next">&rarr;</button>
+            </nav>
         )
     }
 }
