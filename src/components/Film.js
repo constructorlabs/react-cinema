@@ -6,7 +6,7 @@ class Film extends React.Component {
 
         return (
             <article className="film">
-                <h2 className="film__title">{this.props.title}<span className="film__year">{this.props.Year}</span></h2>
+                <h2 className="film__title">{this.props.title} <span className="film__year">{this.props.year}</span></h2>
                 <img src={this.props.poster} alt="" className="film__poster" />
             </article>
         )

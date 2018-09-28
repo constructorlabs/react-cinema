@@ -5,8 +5,8 @@ class Header extends React.Component {
     render() {
         return (
             <header>
-                <h1 className="logo">The Reel Thing</h1>
-                <button className="btn btn__account">Account</button>
+                <h1 id="title">The Reel Thing</h1>
+                <button className="btn btn__account"><i className="fas fa-user-circle"></i></button>
             </header>
         )
     }

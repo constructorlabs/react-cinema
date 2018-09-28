@@ -8,13 +8,17 @@ class App extends React.Component {
         super();
 
         this.state = {
+            query: "",
             films: [],
             totalFilms: 0
         }
+
+        this.receiveTitleQuery = this.receiveTitleQuery.bind(this);
+        this.searchByTitle = this.searchByTitle.bind(this);
     }
 
-    searchByTitle() {
-        fetch("http://www.omdbapi.com/?apikey=507b4100&type=movie&s=Titanic")
+    searchByTitle(query) {
+        fetch(`http://www.omdbapi.com/?apikey=507b4100&type=movie&s=${query}`)
             .then(response => response.json())
             .then(body => {
                 this.setState({
@@ -27,18 +31,19 @@ class App extends React.Component {
             })
     }
 
-    componentWillMount() {
-        this.searchByTitle();
+    receiveTitleQuery(query) {
+        this.setState({
+            query: query
+        });
+        this.searchByTitle(query);
     }
-
-
 
 
     render() {
         return (
             <div>
                 <Header />
-                <Search />
+                <Search receiveTitleQuery={this.receiveTitleQuery} />
                 <SearchResults films={this.state.films} />
             </div>
         )
