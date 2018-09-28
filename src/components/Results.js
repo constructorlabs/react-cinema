@@ -5,7 +5,7 @@ class Results extends React.Component {
 
   render() {
     return (
-      <div className='results__wrapper'>
+      <div className={this.props.classes}>
         <p className='results__title'></p>
         <div className='results'>
           {this.props.results.map(item => <Result key={item.imdbID} result={item} getDetails={this.props.getDetails}/>)}
