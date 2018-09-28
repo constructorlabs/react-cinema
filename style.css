@@ -1,0 +1,150 @@
+body{
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100vw;
+}
+
+.search__display{
+  background-color: #f4f4f4;
+  margin: 20% auto;
+  padding: 2em;
+  width: 70%;
+  box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2), 0 7px 20px 0 rgba(0,0,0,0.17);
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+
+.search__display--hidden{
+  display: none;
+}
+
+.search__result{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.5rem;
+  height: 12vh;
+  width: 95%;
+  border-bottom: 1px #F89B0A solid;
+  background-color: white;
+  overflow: hidden;
+}
+
+
+
+.result__poster{
+  height: 90%;
+  width: auto;
+  align-self: center;
+}
+
+.result__title{
+  align-self: center;
+  margin-right: 1rem;
+  margin-left: 0.5rem;
+  width: 80%;
+
+}
+
+.result__year{
+   margin-right: 0.5rem;
+}
+
+
+
+
+/*FILM DISPLAY*/
+
+
+.film-display{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  padding: 0.5rem;
+  background-color: #FBFBFC;
+
+
+
+}
+
+.film-display__header{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1rem;
+}
+
+.film-display__info{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.film-display__poster{
+  width: 40%;
+  height: auto;
+  align-self: center;
+}
+
+.film-display__key-facts{
+  display: flex;
+  flex-direction: column;
+  margin: 0.5rem;
+  justify-content: flex-start;
+}
+
+.film-display__key-facts > span {
+  padding-bottom: 1rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid #E10703;
+}
+
+
+
+.film-display__cast{
+  margin-top: 1rem;
+
+}
+
+.film-display__ratings{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #FFFAFA;
+  padding: 0.25rem;
+
+}
+
+.film-display__misc{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #FFFAFA;
+  padding: 0.25rem;
+
+
+}
+
+.film-display__news-container{
+  display: flex;
+  flex-direction: column;
+  align-items: space-between;
+  padding: 0.5rem;
+
+}
+
+.film-display__news-item{
+  display: flex;
+  flex-direction: column;
+  background-color: snow;
+  margin: 0.5em;
+  border-bottom: 1px solid #E10703;
+}
