@@ -15,18 +15,17 @@ class App extends React.Component {
 
     this.state = {
       searchQuery: '',
+      searchDisplay: false,
       results: []
     }
   }
 
   receiveInput (text) {
-    const min = 2;
     this.setState({
-      results: text.length <= min ? [] : this.state.results,
-      error: (text.length == 0 || text.length > min) ?  "" : "Enter 3 or more letters",
-      searchQuery: text
+      searchQuery: text,
+      searchDisplay: text.length > 0
     }, () => {
-        if (text.length > min) { 
+        if (text.length > 2) { 
           this.fetchMovies ()
         }
       }
@@ -38,16 +37,13 @@ class App extends React.Component {
   }
 
   receiveFocus () {
-    if (this.state.searchQuery.length > 0) {
-      this.fetchMovies ()
-    }
+    this.setState({ 
+      searchDisplay: this.state.searchQuery.length > 0
+    })
   }
 
   receiveBlur () {
-    console.log("blurred!")
-    this.setState({
-      results: []
-    })
+    this.setState({ searchDisplay: false })
   }
 
   fetchMovies () {
@@ -57,6 +53,7 @@ class App extends React.Component {
     .then(body => {
       this.setState({
         error: body.Error,
+        searchDisplay: true,
         results: body.Search
       })
       return body;
@@ -64,6 +61,10 @@ class App extends React.Component {
   }
 
   render(){
+    const qLength = this.state.searchQuery.length;
+    let errorMsg = (this.state.error && qLength > 0) ? this.state.error : "";
+    errorMsg = (qLength == 0 || qLength > 2) ? errorMsg : "Enter 3 or more letters";
+
     return (
       <div>
         <Search 
@@ -73,9 +74,9 @@ class App extends React.Component {
           receiveBlur={this.receiveBlur} 
         />
         {
-          (this.state.error) ?
-            <div className="error">{this.state.error}</div> :
-            (this.state.results && this.state.results.length > 0 && <SearchResults resultsArray={this.state.results}/>)
+          (errorMsg !== "" && this.state.searchDisplay) ?
+            <div className="error">{errorMsg}</div> :
+            (this.state.searchDisplay && <SearchResults searchDisplay={this.state.searchDisplay} resultsArray={this.state.results}/>)
         }
       </div>
     )

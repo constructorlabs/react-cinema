@@ -32,6 +32,10 @@ body {
     color: rgb(69, 69, 69);
 }
 
+.search-results-hidden {
+    display: none; 
+}
+
 .error {
     color: red;
 }
