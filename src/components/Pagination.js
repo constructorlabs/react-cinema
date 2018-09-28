@@ -11,21 +11,26 @@ class Pagination extends React.Component {
         this.handleClick = this.handleClick.bind(this);
     }
 
+
+
+
     handleClick(e) {
-        if (e.target.className.includes("btn__next")) {
+        const totalPages = Math.ceil(this.props.totalFilms / this.props.filmsPerPage)
+
+        if (e.target.className.includes("btn__next") && this.state.currentPage < totalPages) {
             this.setState({
                 currentPage: this.state.currentPage + 1
-            });
-        } else if (e.target.className.includes("btn__prev")) {
+            }, () => this.props.receivePageNum(this.state.currentPage));
+        } else if (e.target.className.includes("btn__prev") && this.state.currentPage > 1) {
             this.setState({
                 currentPage: this.state.currentPage - 1
-            });
+            }, () => this.props.receivePageNum(this.state.currentPage));
         };
     }
 
     render() {
 
-        const totalPages = Math.ceil(this.props.totalFilms / this.props.filmsPerPage);
+        const totalPages = Math.ceil(this.props.totalFilms / this.props.filmsPerPage)
 
         return (
             <nav id="page-nav" onClick={this.handleClick}>
