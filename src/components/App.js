@@ -17,6 +17,7 @@ class App extends React.Component {
     this.receiveSearchTerm = this.receiveSearchTerm.bind(this);
     this.fetchMovies = this.fetchMovies.bind(this);
     this.receiveCurrentPage = this.receiveCurrentPage.bind(this);
+    this.receiveFavourites = this.receiveFavourites.bind(this);
   }
 
   receiveSearchTerm(term) {
@@ -44,7 +45,11 @@ class App extends React.Component {
   receiveCurrentPage(page){
     this.setState({
       currentPage: page
-    }, this.fetchMovies())
+    }, () => this.fetchMovies())
+  }
+
+  receiveFavourites(favourite){
+
   }
 
   render() {
@@ -59,6 +64,7 @@ class App extends React.Component {
           movieArray={this.state.movieArray}
           filmDetails={this.state.filmDetails}
           apiKey={this.state.apiKey}
+          receiveFavourites={this.receiveFavourites}
         />
         <Pages
           pagesObject={this.state.pagesObject}

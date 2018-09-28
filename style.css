@@ -5,3 +5,15 @@
 .result__item__details--inactive {
     display: none;
 }
+
+.pages--notVisable {
+    display: none;
+}
+
+.pages--visable {
+    display: block;
+}
+
+.button--notVisable {
+    display: none;
+}

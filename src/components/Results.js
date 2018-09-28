@@ -15,6 +15,7 @@ class Results extends React.Component {
             key={movie.imdbID}
             movie={movie}
             apiKey={this.props.apiKey}
+            receiveFavourites={this.props.receiveFavourites}
           />
         ))}
       </div>

@@ -22,15 +22,19 @@ class ResultItem extends React.Component {
   }
 
   handleClick(event) {
-    if (this.state.detailsShow === true) {
-      this.setState({
-        detailsShow: !this.state.detailsShow
-      });
+    if (event.target.className === "favourite__button") {
+      this.props.receiveFavourites(this.props.movie);
     } else {
-      this.fetchMovieDetails(this.props.movie);
-      this.setState({
-        detailsShow: !this.state.detailsShow
-      });
+      if (this.state.detailsShow === true) {
+        this.setState({
+          detailsShow: !this.state.detailsShow
+        });
+      } else {
+        this.fetchMovieDetails(this.props.movie);
+        this.setState({
+          detailsShow: !this.state.detailsShow
+        });
+      }
     }
   }
 
@@ -43,6 +47,7 @@ class ResultItem extends React.Component {
     return (
       <div onClick={this.handleClick} className="result__item">
         <h3>{this.props.movie.Title}</h3>
+        <button className="favourite__button">Favourite</button>
         <img src={this.props.movie.Poster} />
         <ResultItemDetails
           classes={classes}
