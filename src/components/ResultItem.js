@@ -5,7 +5,14 @@ class ResultItem extends React.Component {
         super();
     }
 
-    
+    render() {
+        return (
+            <div className="result__item">
+                <h
+
+            </div>
+        )
+    }
 }
 
 export default ResultItem;
