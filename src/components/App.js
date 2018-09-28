@@ -66,7 +66,7 @@ class App extends React.Component {
                 <Header />
                 <Search receiveTitleQuery={this.receiveTitleQuery} />
                 <SearchResults films={this.state.films} receiveFilmID={this.receiveFilmID} />
-                <FilmDetails />
+                <FilmDetails filmDetails={this.state.filmDetails} />
             </div>
         )
     }
