@@ -6,7 +6,7 @@ class Results extends React.Component {
         return (
             <ul className="results">
                 {this.props.results.map(result => {
-                    return <Result result={result} receiveMovie={this.props.receiveMovie} key={result.imdbID} />
+                    return <Result showInfo={result.imdbID === this.props.selectedMovie} result={result} receiveMovie={this.props.receiveMovie} key={result.imdbID} />
                 })}
             </ul>
         )

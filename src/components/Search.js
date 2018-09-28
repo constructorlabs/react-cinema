@@ -28,7 +28,7 @@ class Search extends React.Component {
     render(){
         return <form onSubmit={this.handleSubmit}>
             <label>
-                <input type="text" name="search" id="search" onChange={this.handleChange}/>
+                <input type="search" name="search" id="search" onChange={this.handleChange}/>
             </label>
         </form>
     }

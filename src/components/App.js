@@ -9,7 +9,7 @@ class App extends React.Component {
     this.state = {
       query : '',
       results : [],
-      imbdID : ''
+      selectedMovie : ''
     }
 
     this.receiveQuery = this.receiveQuery.bind(this);
@@ -45,18 +45,18 @@ class App extends React.Component {
     console.log('hello' + query);
   }
 
-  receiveMovie(imdbID) {
-    // this.setState({
-    //   imbdID:imbdID
-    // }.this.fetchMovie)
-    console.log(imdbID)
+  receiveMovie(selectedMovie) {
+    this.setState({
+      selectedMovie:selectedMovie
+    })
+    console.log(selectedMovie)
   }
 
   render(){
     return (
       <div className="app">
         <Search receiveQuery={this.receiveQuery}/>
-        <Results receiveMovie={this.receiveMovie} results={this.state.results}/>
+        <Results selectedMovie={this.state.selectedMovie} receiveMovie={this.receiveMovie} results={this.state.results}/>
       </div>
     )
   }
