@@ -1,6 +1,7 @@
 import React from "react";
 import Search from "./Search";
 import Results from "./Results";
+import Pages from "./Pages";
 
 class App extends React.Component {
   constructor() {
@@ -8,12 +9,14 @@ class App extends React.Component {
     this.state = {
       searchTerm: "",
       movieArray: [],
-      pages: "",
+      pagesObject: {},
+      currentPage: 1,
       favouritesArray: [],
       apiKey: "e2c4cd31"
     };
     this.receiveSearchTerm = this.receiveSearchTerm.bind(this);
     this.fetchMovies = this.fetchMovies.bind(this);
+    this.receiveCurrentPage = this.receiveCurrentPage.bind(this);
   }
 
   receiveSearchTerm(term) {
@@ -24,14 +27,24 @@ class App extends React.Component {
 
   fetchMovies() {
     fetch(
-      `http://www.omdbapi.com/?s=${this.state.searchTerm}&page=1&apikey=${
+      `http://www.omdbapi.com/?s=${this.state.searchTerm}&page=${this.state.currentPage}&apikey=${
         this.state.apiKey
       }`
     )
       .then(response => response.json())
       .then(body => {
-        this.setState({ movieArray: body.Search });
+        this.setState({
+          pagesObject: body,
+          movieArray: body.Search
+        });
+        console.log(this.state.currentPage)
       });
+  }
+
+  receiveCurrentPage(page){
+    this.setState({
+      currentPage: page
+    }, this.fetchMovies())
   }
 
   render() {
@@ -46,6 +59,12 @@ class App extends React.Component {
           movieArray={this.state.movieArray}
           filmDetails={this.state.filmDetails}
           apiKey={this.state.apiKey}
+        />
+        <Pages
+          pagesObject={this.state.pagesObject}
+          movieArray={this.state.movieArray}
+          receiveCurrentPage={this.receiveCurrentPage}
+          currentPage={this.state.currentPage}
         />
       </div>
     );
