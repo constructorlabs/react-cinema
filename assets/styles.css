@@ -10,17 +10,45 @@ body {
     font-family: 'Open Sans', Arial, Helvetica, sans-serif;
     margin: 1rem;
     box-sizing: border-box;
-    line-height: 1.5rem;
     font-size: 1rem;
     letter-spacing: 0.02rem;
 }
 
 .search {
-    font-size: 1.5rem;
-    padding: 1rem;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    padding: 0.5rem;
+    width: 20rem;
 }
 
-.search-results {
-    font-size: 1.5rem;
-    padding: 1rem;
+.search-results, .error {
+    font-size: 1rem;
+    line-height: 1.5rem;
+    border: 1px solid lightgrey;
+    border-top: 0;
+    border-bottom: 0;
+    width: 20rem;
+    background: rgb(247, 247, 247);
+    color: rgb(69, 69, 69);
+}
+
+.error {
+    color: red;
+}
+
+.search-item, .error {   
+    border-bottom: 1px solid lightgrey;
+    padding: 0.5rem;
+}
+
+.search-item {
+    cursor: pointer;
+    display: block; 
+    color: rgb(69, 69, 69);
+    text-decoration: none;
+}
+
+.search-item:hover {
+    color: rgb(0, 0, 0);
+    background: rgb(238, 238, 238);
 }

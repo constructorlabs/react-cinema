@@ -22,8 +22,6 @@ class App extends React.Component {
   receiveInput (text) {
     const min = 2;
     this.setState({
-      results: text.length <= min ? [] : this.state.results,
-      error: (text.length == 0 || text.length > min) ?  "" : "Enter 3 or more letters",
       searchQuery: text
     }, () => {
         if (text.length > min) { 
@@ -64,6 +62,9 @@ class App extends React.Component {
   }
 
   render(){
+    const min = 2;
+    const error = (this.state.searchQuery.length == 0 || this.state.searchQuery.length > min) ?  "" : "Enter 3 or more letters";
+    const results = this.state.searchQuery.length <= min ? [] : this.state.results;
     return (
       <div>
         <Search 
@@ -73,9 +74,9 @@ class App extends React.Component {
           receiveBlur={this.receiveBlur} 
         />
         {
-          (this.state.error) ?
-            <div className="error">{this.state.error}</div> :
-            (this.state.results && this.state.results.length > 0 && <SearchResults resultsArray={this.state.results}/>)
+          (this.state.error || error === "") ?
+            <div className="error">{error}</div> :
+            (this.state.results && this.state.results.length > 0 && <SearchResults resultsArray={results}/>)
         }
       </div>
     )
