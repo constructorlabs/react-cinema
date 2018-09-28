@@ -2,6 +2,7 @@ import React from 'react';
 import Header from './Header';
 import Search from './Search';
 import SearchResults from './SearchResults';
+import FilmDetails from './FilmDetails';
 
 class App extends React.Component {
     constructor() {
@@ -10,11 +11,14 @@ class App extends React.Component {
         this.state = {
             query: "",
             films: [],
-            totalFilms: 0
+            totalFilms: 0,
+            filmDetails: {}
         }
 
         this.receiveTitleQuery = this.receiveTitleQuery.bind(this);
+        this.receiveFilmID = this.receiveFilmID.bind(this);
         this.searchByTitle = this.searchByTitle.bind(this);
+        this.searchByID = this.searchByID.bind(this);
     }
 
     searchByTitle(query) {
@@ -31,11 +35,28 @@ class App extends React.Component {
             })
     }
 
+    searchByID(id) {
+        fetch(`http://www.omdbapi.com/?apikey=507b4100&type=movie&i=${id}`)
+            .then(response => response.json())
+            .then(body => {
+                this.setState({
+                    filmDetails: body
+                }, () => console.log(this.state))
+            })
+            .catch(error => {
+                alert(error);
+            })
+    }
+
     receiveTitleQuery(query) {
         this.setState({
             query: query
         });
         this.searchByTitle(query);
+    }
+
+    receiveFilmID(id) {
+        this.searchByID(id);
     }
 
 
@@ -44,7 +65,8 @@ class App extends React.Component {
             <div>
                 <Header />
                 <Search receiveTitleQuery={this.receiveTitleQuery} />
-                <SearchResults films={this.state.films} />
+                <SearchResults films={this.state.films} receiveFilmID={this.receiveFilmID} />
+                <FilmDetails />
             </div>
         )
     }
