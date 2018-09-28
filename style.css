@@ -1,0 +1,69 @@
+body{
+    background: black;
+    color: white;
+}
+
+
+
+
+
+.welcome-heading{
+    display:flex;
+    justify-content: center;
+    text-align:center
+}
+
+form{
+    display:flex;
+    justify-content: center;
+}
+
+.hero-heading {
+    text-align:center;
+    color:lightblue;
+}
+
+.scroll-heading{
+    text-align:center;
+}
+
+
+.hero-image {
+    height: 400px;
+    width: 350px;
+}
+
+.hero-landing{
+    display:flex;
+    justify-content: center;
+    background: white;
+}
+
+
+.hero-video{
+    display:flex;
+    justify-content: center;
+    
+}
+
+.results{
+    display: flex;
+    flex-direction: column;
+}
+
+
+@media screen and (min-width: 500px) {
+    .results {
+     display:flex;
+     flex-direction: row;
+     overflow: scroll;
+    }
+ 
+    .posters{
+        width: 200px;
+    }
+ 
+    .posters:hover{
+     transform: scale(1.1);
+ }
+  }
