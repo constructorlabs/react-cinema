@@ -4,7 +4,7 @@ import Result from './Result'
 class Results extends React.Component {
     render() {
         return (
-            <ul>
+            <ul className="results">
                 {this.props.results.map(result => {
                     return <Result result={result} receiveMovie={this.props.receiveMovie} key={result.imdbID} />
                 })}

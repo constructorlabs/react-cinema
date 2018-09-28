@@ -46,10 +46,10 @@ class App extends React.Component {
   }
 
   receiveMovie(imdbID) {
-    this.setState({
-      imbdID:imbdID
-    }.this.fetchMovie)
-    conso9le.log(imdbID)
+    // this.setState({
+    //   imbdID:imbdID
+    // }.this.fetchMovie)
+    console.log(imdbID)
   }
 
   render(){
