@@ -8,7 +8,7 @@ class Result extends React.Component {
   }
 
   handleClick(event) {
-    this.props.getDetails(this.props.result.imdbID);
+    this.props.getDetail(this.props.result.imdbID);
   }
 
   render() {

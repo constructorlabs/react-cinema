@@ -13,11 +13,9 @@ class Detail extends React.Component {
   componentDidMount() {
     if (this.props.favourites.map(item => item.imdbID).includes(this.props.detail.imdbID)) {
       this.setState({isFavourite: true});
-      console.log('true');
     }  
     else {
       this.setState({isFavourite: false});
-      console.log('false');
     }
   }
 
@@ -41,6 +39,7 @@ class Detail extends React.Component {
   }
 
   render() {
+    
     return (
       <div className={this.props.classes} onClick={this.handleClick}>
         <div className='detail__header'><h1 className='detail__title'>{this.props.detail.Title} ({this.props.detail.Year})</h1><div className='detail__logos' onClick={this.handleButtons}><input id='check' className='detail__checkbox' type='checkbox' checked={this.state.isFavourite} onChange={this.handleCheckbox}></input><label className='fa' htmlFor='check'></label><a href={`https://www.imdb.com/title/${this.props.detail.imdbID}/`}><i className="fab fa-imdb"></i></a></div></div>

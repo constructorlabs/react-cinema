@@ -3,36 +3,53 @@ import Search from './Search';
 import Results from './Results';
 import Detail from './Detail';
 import Favourites from './Favourites';
-import Preview from './Preview';
 import cx from 'classnames';
 
 class App extends React.Component {
   
   constructor() {
     super();
-    this.state = {query: '',
-                  results: [],
-                  detail: '',
-                  displayMode: '',
-                  favourites: [],
-                  favsDisplayed: false };
+    this.state = { submittedQuery: '',
+                   previewQuery: '',
+                   results: [],
+                   detail: '',
+                   preview: [],
+                   favourites: [],
+                   resultsDisplayed: false,
+                   detailDisplayed: false,
+                   favsDisplayed: false };
 
     this.receiveSearch = this.receiveSearch.bind(this);
-    this.getDetails = this.getDetails.bind(this);
-    this.closeDetails = this.closeDetails.bind(this);
+    this.getDetail = this.getDetail.bind(this);
+    this.closeDetail = this.closeDetail.bind(this);
     this.addFav = this.addFav.bind(this);
     this.removeFav = this.removeFav.bind(this);
     this.handleFavMenu = this.handleFavMenu.bind(this);
+    this.handleLogout = this.handleLogout.bind(this);
+    this.receiveMovie = this.receiveMovie.bind(this);
+    this.moveFavUp = this.moveFavUp.bind(this);
+    this.moveFavDown = this.moveFavDown.bind(this);
   }
 
   componentDidMount() {
     this.setState({favourites: JSON.parse(window.localStorage.favourites)});
   }
 
-  receiveSearch(query) {
+  receiveSearch(query, type) {
+    if (type === 'results') {
+      this.setState({submittedQuery: query});
+    }
+    else if (type === 'preview') {
+      this.setState({previewQuery: query}); 
+    }
+
     const apiQuery = `http://www.omdbapi.com/?apikey=eee5954b&s=${query}&type=movie`;
-    this.setState({query});
-    this.fetchData(apiQuery,'results');
+    this.fetchData(apiQuery, type);
+  }
+
+  receiveMovie(movie) {
+    const apiQuery = `http://www.omdbapi.com/?apikey=eee5954b&i=${movie.imdbID}`;
+    this.fetchData(apiQuery, 'detail');
   }
 
   fetchData(apiQuery,type) {
@@ -40,22 +57,42 @@ class App extends React.Component {
     .then(response => response.json())
     .then(body => {
       if (type === 'results') {
-        this.setState({ results: body.Search,
-                        displayMode: type }); }
+        if (body.Response === 'True') { 
+          this.setState({ results: body.Search,
+                          resultsDisplayed: true,
+                          detailDisplayed: false }); }
+        else {
+
+        }            
+      }
       else if (type === 'detail') {
-        this.setState({ detail: body,
-                        displayMode: type}); }
+        if (body.Response === 'True') { 
+          this.setState({ detail: body,
+                          resultsDisplayed: false,
+                          detailDisplayed: true }); }
+        else {
+          
+        }
+      }
+      else if (type === 'preview') {
+        if (body.Response === 'True') {   
+          this.setState({ preview: body.Search }); }
+        else {
+          this.setState({ preview: [] });
+        }  
+      }
     });
   }
 
-  getDetails(imdbID) {
+  getDetail(imdbID) {
     const apiQuery = `http://www.omdbapi.com/?apikey=eee5954b&i=${imdbID}`;
     this.fetchData(apiQuery, 'detail');
   }
 
-  closeDetails() {
-    this.setState({displayMode: 'results',
-                   detail: ''});
+  closeDetail() {
+    this.setState({ detailDisplayed: false,
+                    resultsDisplayed: true, 
+                    detail: '' });
   }
 
   addFav(detail) {
@@ -73,11 +110,40 @@ class App extends React.Component {
   handleFavMenu(event) {
     this.setState({favsDisplayed: !this.state.favsDisplayed});
   }
-  
+
+  handleLogout(event) {
+    this.setState({ favourites: [],
+                    resultsDisplayed: false,
+                    detailDisplayed: false });
+    window.localStorage.favourites = JSON.stringify([]);
+  }
+
+  moveFavUp(movie) {
+    const currentFavs = this.state.favourites;
+    const rank = currentFavs.indexOf(movie);
+    if (rank > 0) {
+      currentFavs[rank] = currentFavs[rank-1];
+      currentFavs[rank-1] = movie;
+      this.setState({favourites: currentFavs});
+      window.localStorage.favourites = JSON.stringify(currentFavs);
+    }
+  }
+
+  moveFavDown(movie) {
+    const currentFavs = this.state.favourites;
+    const rank = currentFavs.indexOf(movie);
+    if (rank < currentFavs.length -1) {
+      currentFavs[rank] = currentFavs[rank+1];
+      currentFavs[rank+1] = movie;
+      this.setState({favourites: currentFavs});
+      window.localStorage.favourites = JSON.stringify(currentFavs);
+  }
+}
+
   render() {
 
-    const resultsClasses = cx('results__wrapper', {'results__wrapper--hidden': this.state.displayMode !== 'results'});
-    const detailClasses = cx('details', {'details--hidden': this.state.displayMode !== 'detail'});
+    const resultsClasses = cx('results__wrapper', {'results__wrapper--hidden': !this.state.resultsDisplayed});
+    const detailClasses = cx('details', {'details--hidden': !this.state.detailDisplayed});
     const favsClasses = cx('favs', {'favs--display': this.state.favsDisplayed});
 
     return (
@@ -85,12 +151,12 @@ class App extends React.Component {
         <div className="top-menu">
           <i className="fas fa-heart" onClick={this.handleFavMenu}></i>
           <h1 className="logo">YETFLIX</h1>
-          <i className="fas fa-sign-out-alt"></i>
+          <i className="fas fa-sign-out-alt" onClick={this.handleLogout}></i>
         </div>
-        <Favourites classes={favsClasses} favourites={this.state.favourites}/>
-        <Search receiveSearch={this.receiveSearch}/>
-        <Results classes={resultsClasses} results={this.state.results} getDetails={this.getDetails}/>
-        {this.state.detail !== '' && <Detail classes={detailClasses} favourites={this.state.favourites} detail={this.state.detail} close={this.closeDetails} addFav={this.addFav} removeFav={this.removeFav}/>}
+        <Favourites classes={favsClasses} favourites={this.state.favourites} receiveMovie={this.receiveMovie} moveFavUp={this.moveFavUp} moveFavDown={this.moveFavDown}/>
+        <Search preview={this.state.preview} receiveSearch={this.receiveSearch} receiveMovie={this.receiveMovie} submittedQuery={this.state.submittedQuery} previewQuery={this.state.previewQuery}/>
+        <Results submittedQuery={this.state.submittedQuery} classes={resultsClasses} results={this.state.results} getDetail={this.getDetail}/>
+        {this.state.detail !== '' && <Detail classes={detailClasses} favourites={this.state.favourites} detail={this.state.detail} close={this.closeDetail} addFav={this.addFav} removeFav={this.removeFav}/>}
       </div>  
     );
   }
