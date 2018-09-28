@@ -13,7 +13,7 @@ class Search extends React.Component {
 
     handleSubmit (event) {
         event.preventDefault()
-        this.props.receiveSubmit(event.target.search.value)
+        this.props.receiveSubmit()
     }
 
     render () {
