@@ -2,6 +2,7 @@ import React from "react";
 import Search from "./Search";
 import Results from "./Results";
 import Pages from "./Pages";
+import Favourites from "./Favourites";
 
 class App extends React.Component {
   constructor() {
@@ -28,9 +29,9 @@ class App extends React.Component {
 
   fetchMovies() {
     fetch(
-      `http://www.omdbapi.com/?s=${this.state.searchTerm}&page=${this.state.currentPage}&apikey=${
-        this.state.apiKey
-      }`
+      `http://www.omdbapi.com/?s=${this.state.searchTerm}&page=${
+        this.state.currentPage
+      }&apikey=${this.state.apiKey}`
     )
       .then(response => response.json())
       .then(body => {
@@ -38,18 +39,42 @@ class App extends React.Component {
           pagesObject: body,
           movieArray: body.Search
         });
-        console.log(this.state.currentPage)
+        console.log(this.state.favouritesArray);
       });
   }
 
-  receiveCurrentPage(page){
-    this.setState({
-      currentPage: page
-    }, () => this.fetchMovies())
+  componentDidMount() {
+    this.setState(
+      {
+        favouritesArray:
+          localStorage.getItem("favourites") === null
+            ? []
+            : JSON.parse(localStorage.getItem("favourites"))
+      },
+      () => console.log(this.state.favouritesArray)
+    );
   }
 
-  receiveFavourites(favourite){
+  receiveCurrentPage(page) {
+    this.setState(
+      {
+        currentPage: page
+      },
+      () => this.fetchMovies()
+    );
+  }
 
+  receiveFavourites(favourite) {
+    this.setState(
+      {
+        favouritesArray: this.state.favouritesArray.concat([favourite])
+      },
+      () =>
+        localStorage.setItem(
+          "favourites",
+          JSON.stringify(this.state.favouritesArray)
+        )
+    );
   }
 
   render() {
@@ -59,6 +84,9 @@ class App extends React.Component {
           receiveSearchTerm={this.receiveSearchTerm}
           fetchMovies={this.fetchMovies}
           currentValue={this.state.searchTerm}
+        />
+        <Favourites 
+          favouritesArray={this.state.favouritesArray}
         />
         <Results
           movieArray={this.state.movieArray}
