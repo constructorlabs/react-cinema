@@ -1,12 +1,24 @@
 import React from "react"
+import cx from "classnames"
 
 class FilmDisplay extends React.Component{
   constructor(){
     super()
+
+    // this.state = {
+    //   filmDisplayHidden: true
+    // }
+
+
   }
 
 
   render(){
+    // const classes = cx("film-display", {
+    //   "film-display--hidden": this.state.filmDisplayHidden
+    // })
+
+
 
     return(
       <div className="film-display">

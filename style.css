@@ -6,6 +6,64 @@ body{
   width: 100vw;
 }
 
+
+nav > div {
+  height: 4rem;
+  background-color: #FBFBFC;
+  background:url(
+
+  data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAKklEQVQoU2P8/fvPfwYiAOMgUvjr108GNjZ2DFdT7kZ0kyk3Ed2RRJsIAKsgLXVT7f82AAAAAElFTkSuQmCC
+    ) repeat;
+}
+
+.nav__home{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.logo{
+  margin-left: 1rem;
+  color: #E10703;
+  font-family: 'Six Caps', sans-serif;
+  align-self: center;
+  letter-spacing: 0.8rem;
+  font-size: 2rem;
+  font-weight:bold;
+}
+
+.search__display-bar{
+  color: #050505;
+  font-size: 1.8rem;
+  align-self: center;
+  margin-right: 1rem;
+}
+
+.search__display-bar:hover{
+  color: #F89B0A;
+
+}
+
+.search{
+  display:flex;
+  flex-direction: row;
+  width: 100%;
+  font-size: 4em;
+
+}
+
+.nav__search{
+  display: none;
+  flex-direction: row;
+}
+
+.search__text{
+  width: 100%;
+  height: 100%;
+  font-size: 0.6em
+
+}
+
 .search__display{
   background-color: #f4f4f4;
   margin: 20% auto;
@@ -61,6 +119,8 @@ body{
 /*FILM DISPLAY*/
 
 
+
+
 .film-display{
   display: flex;
   flex-direction: column;
@@ -69,10 +129,12 @@ body{
   border: 1px solid black;
   padding: 0.5rem;
   background-color: #FBFBFC;
-
-
-
 }
+
+.film-display--hidden{
+  display: none;
+}
+
 
 .film-display__header{
   display: flex;
@@ -147,4 +209,43 @@ body{
   background-color: snow;
   margin: 0.5em;
   border-bottom: 1px solid #E10703;
+}
+
+
+
+.landing-page{
+  background-color: #E10703;
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  margin: 0rem 1rem;
+
+}
+
+.landing-icon{
+  font-size: 6rem;
+  align-self: center;
+  margin-top: 5rem;
+  color: #FBFBFC;
+  border-bottom: 3px solid #F89B0A;
+}
+
+.landing-text{
+  color: #FBFBFC;
+  align-self: center;
+  font-family: 'Archivo Narrow', sans-serif;
+  font-size: 1.3rem;
+  font-weight: bold;
+  letter-spacing: 0.1rem;
+}
+
+.favourites-container{
+  background-color: #FBFBFC;
+  width: 80vw;
+  height: 40vh;
+  align-self: center;
+  border-radius: 5%;
+  border-left: 3px solid #050505;
+  border-right: 3px solid #050505;
+  overflow-y: auto;
 }

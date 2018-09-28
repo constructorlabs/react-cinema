@@ -10,7 +10,7 @@ class SearchFilm extends React.Component{
   handleClick(event){
     event.preventDefault()
     this.props.retrieveFilmId(this.props.film.imdbID)
-    this.props.isFilmSelected()
+    this.props.toggleDisplay("film")
   }
 
 

@@ -29,12 +29,13 @@ class HeaderSearch extends React.Component{
   handleSubmit(event){
     event.preventDefault()
     this.props.retrieveSearchString(this.state.textInput)
+    this.props.toggleDisplay("search")
 
   }
 
   render(){
     return (
-      <header onSubmit={this.handleSubmit}>
+      <header className="" onSubmit={this.handleSubmit}>
         <form>
           <input onChange={this.handleInput} type="text" />
           <input type="submit" />
