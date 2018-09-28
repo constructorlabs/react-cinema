@@ -66,7 +66,9 @@ class App extends React.Component {
                 <Header />
                 <Search receiveTitleQuery={this.receiveTitleQuery} />
                 <SearchResults films={this.state.films} receiveFilmID={this.receiveFilmID} />
-                <FilmDetails filmDetails={this.state.filmDetails} />
+
+                {Object.keys(this.state.filmDetails).length != 0 && <FilmDetails filmDetails={this.state.filmDetails} />}
+
             </div>
         )
     }
