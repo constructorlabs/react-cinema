@@ -103,7 +103,7 @@ class App extends React.Component {
         return (
             <div>
                 <Header />
-                <FavouritesList favouritesList={this.state.favourites} receiveFav={this.receiveFav} btnClass={classes[0]} titleClass={classes[1]} />
+                <FavouritesList favouritesList={this.state.favourites} receiveFav={this.receiveFav} receiveFilmID={this.receiveFilmID} btnClass={classes[0]} titleClass={classes[1]} />
                 <Search receiveTitleQuery={this.receiveTitleQuery} />
 
                 {this.state.films.length > 0 &&
