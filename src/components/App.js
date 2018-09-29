@@ -2,17 +2,20 @@ import React from 'react';
 import Search from './Search';
 import Results from './Results';
 import Hero from './Hero';
+
 class App extends React.Component {
   constructor(){
     super();
 
+    this.handleClick = this.handleClick.bind(this)
     this.receiveSearch = this.receiveSearch.bind(this)
     // this.componentDidMount = this.componentDidMount.bind(this)
    
     this.fetchMovies = this.fetchMovies.bind(this)
     this.state ={
         userSearch: "",
-        moviesArray:[]
+        moviesArray:[],
+        pageNumber: 1
 
     }
   }
@@ -22,7 +25,7 @@ class App extends React.Component {
   // }
 
   fetchMovies(userSearch){
-    fetch(`http://www.omdbapi.com/?apikey=8d5ab09&s=${userSearch}`)
+    fetch(`http://www.omdbapi.com/?apikey=8d5ab09&s=${userSearch}&page=${this.state.pageNumber}`)
     .then(response => response.json())
     .then(body => {
       // console.log(body)
@@ -40,7 +43,14 @@ class App extends React.Component {
   }
 
 
-  
+  handleClick(event){
+    event.preventDefault()
+    console.log(this.state.pageNumber)
+    this.setState({
+      pageNumber: this.state.pageNumber + 1
+    })
+    console.log(this.state.pageNumber)
+  }
 
 
 
@@ -51,10 +61,10 @@ class App extends React.Component {
         <h1 className='welcome-heading'>The Internet's Biggest Collections Of Movies</h1>
       
        <Search  receiver={this.receiveSearch}/>
-
        {/* add a ternary to show hero if no movie search and if movie is search, no hero */}
-       <Results  moviesArray={this.state.moviesArray}/>
        <Hero />
+       <Results moviesArray={this.state.moviesArray}/>
+       <button onClick={this.handleClick}>Load More</button>
       </div>
     )
   }

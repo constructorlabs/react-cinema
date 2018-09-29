@@ -25,18 +25,72 @@ form{
 
 .scroll-heading{
     text-align:center;
+
 }
 
+span{
+    text-align: center;
+}
 
 .hero-image {
     height: 400px;
-    width: 350px;
+    width: 100%;
 }
 
 .hero-landing{
     display:flex;
     justify-content: center;
-    background: white;
+    /* background: white;
+    border-radius:  */
+}
+
+
+.hero-video{
+    display:flex;
+    justify-content: center;
+    width: 100%
+    
+}
+
+.results{
+    display: flex;
+    flex-direction: column;
+    
+}
+
+
+
+.posters{
+    border-radius: 10% / 50%;
+}
+
+.load-button{
+    display: none;
+}
+
+@media screen and (min-width: 500px) {
+    
+
+
+    .posters{
+        width: 400px;
+        
+    }
+ 
+    .posters:hover{
+     transform: scale(1.1);
+ }
+
+ .hero-landing{
+    display:flex;
+    justify-content: center;
+    /* background: white;
+    border-radius:  */
+}
+
+ .hero-image {
+    height: 400px;
+    width: 80%;
 }
 
 
@@ -46,24 +100,7 @@ form{
     
 }
 
-.results{
-    display: flex;
-    flex-direction: column;
-}
 
 
-@media screen and (min-width: 500px) {
-    .results {
-     display:flex;
-     flex-direction: row;
-     overflow: scroll;
-    }
- 
-    .posters{
-        width: 200px;
-    }
- 
-    .posters:hover{
-     transform: scale(1.1);
- }
+
   }
