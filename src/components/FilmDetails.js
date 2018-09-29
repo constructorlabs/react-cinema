@@ -10,9 +10,7 @@ class FilmDetails extends React.Component {
     }
 
     handleClick(e) {
-        this.setState({
-            isFav: !this.isFav
-        }, this.props.receiveFav(this.props.filmDetails));
+        this.props.receiveFav(this.props.filmDetails);
     }
 
 
