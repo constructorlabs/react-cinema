@@ -16,7 +16,6 @@ class FilmDetails extends React.Component {
 
     render() {
 
-
         const ratingsStyle = {
             backgroundImage: `linear-gradient(to right, orangered, orangered ${this.props.filmDetails.imdbRating * 10}%, rgba(0, 0, 0, 0) ${this.props.filmDetails.imdbRating * 10}%`
         }

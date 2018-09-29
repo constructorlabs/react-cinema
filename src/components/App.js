@@ -98,10 +98,12 @@ class App extends React.Component {
             return fav.imdbID;
         });
 
+        const classes = ["btn btn__delete", "favourites__list__film__title"];
+
         return (
             <div>
                 <Header />
-                <FavouritesList favouritesList={this.state.favourites} />
+                <FavouritesList favouritesList={this.state.favourites} receiveFav={this.receiveFav} btnClass={classes[0]} titleClass={classes[1]} />
                 <Search receiveTitleQuery={this.receiveTitleQuery} />
 
                 {this.state.films.length > 0 &&

@@ -93,8 +93,8 @@ header {
   display: none;
 }
 
-.btn__favourite__remove {
-  /*   font-weight:400; */
+.btn__delete {
+    font-weight:400;
   font-size: 0.8rem;
   text-transform: uppercase;
   padding: 0.1rem 0.25rem;
