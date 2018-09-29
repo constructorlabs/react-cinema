@@ -90,20 +90,27 @@ class App extends React.Component {
 
     return (
       <div className="app">
-        <Search 
-          receiveInput={this.receiveInput} 
-          receiveSubmit={this.receiveSubmit} 
-          receiveFocus={this.receiveFocus} 
-          receiveBlur={this.receiveBlur} 
-        />
-        {
-          (errorMsg !== "" && this.state.searchDisplay) ?
-            <div className="error">{errorMsg}</div> :
-            (this.state.searchDisplay && <SearchResults searchDisplay={this.state.searchDisplay} resultsArray={this.state.results} receiveMovieID={this.receiveMovieID}/>)
-        }
-        {
-        this.state.currentMovie && <MovieDisplay currentMovie={this.state.currentMovie}/>
-        }
+        <div className="search-wrapper">
+          <Search 
+            receiveInput={this.receiveInput} 
+            receiveSubmit={this.receiveSubmit} 
+            receiveFocus={this.receiveFocus} 
+            receiveBlur={this.receiveBlur} 
+          />
+          {
+            (errorMsg !== "" && this.state.searchDisplay) ?
+              <div className="error">{errorMsg}</div> :
+              (this.state.searchDisplay && <SearchResults searchDisplay={this.state.searchDisplay} resultsArray={this.state.results} receiveMovieID={this.receiveMovieID}/>)
+          }
+        </div>
+        <div>
+          {
+            (!this.state.currentMovie) ? <div className="loading-message">Find movies quickly and easily</div> : ""
+          }
+          {
+            (this.state.currentMovie) && <MovieDisplay currentMovie={this.state.currentMovie}/>
+          }
+        </div>
       </div>
     )
   }

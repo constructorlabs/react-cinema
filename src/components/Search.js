@@ -35,7 +35,7 @@ class Search extends React.Component {
                     onFocus={this.handleFocus} 
                     onBlur={this.handleBlur} 
                     className="search" 
-                    placeholder="Search for a movie..." 
+                    placeholder="Start your search..." 
                     autoComplete="off" 
                 />
                 

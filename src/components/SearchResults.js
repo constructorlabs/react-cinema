@@ -9,8 +9,6 @@ class SearchResults extends React.Component {
     }
 
     handleClick (event) {
-        // const url = "https://www.imdb.com/title/" + event.target.id;
-        // window.open(url, "_blank")
         this.props.receiveMovieID(event.target.id)
     }
 
@@ -20,8 +18,6 @@ class SearchResults extends React.Component {
           "search-results": this.props.searchDisplay,
           "search-results-hidden": !this.props.searchDisplay
         })
-        
-        console.log(this.props.searchDisplay)
 
         return (
         <div className={classes}>
