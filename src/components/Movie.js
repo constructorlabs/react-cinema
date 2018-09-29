@@ -8,7 +8,6 @@ class Movie extends React.Component {
     }
 
     handleClick() {
-        console.log("clicked" + this.props.id);
         this.props.receiveMovie(this.props.id);
     }
 
@@ -16,12 +15,12 @@ class Movie extends React.Component {
         return (
             // TODO - create movie card with image container
             <div className="movie" id={this.props.id} onClick={this.handleClick}>
-                <div className="movie__poster-container">
-                    <img className="movie__poster-container__poster" src={this.props.source} />
+                <div className="poster-container">
+                    <img className="poster-container__image" src={this.props.source} />
                 </div>
-                <div className="movie__info-container">
-                    <p className="movie__info-container__title">{this.props.title}</p>
-                    <p className="movie__info-container__year">{this.props.year}</p>
+                <div className="info-container">
+                    <p className="info-container__title">{this.props.title}</p>
+                    <p className="info-container__year">{this.props.year}</p>
                 </div>
             </div>
         )

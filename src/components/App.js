@@ -1,7 +1,8 @@
 import React from 'react';
 import Search from './Search'
 import Movies from './Movies'
-import MovieInfo from './MovieInfo'
+import Info from './Info'
+import Pagination from './Pagination'
 
 class App extends React.Component {
   constructor() {
@@ -9,42 +10,69 @@ class App extends React.Component {
 
     this.state = ({
       query: 'blade',
-      results: [],
+      movies: [],
       movieId: '',
-      info: {}
+      info: {},
+      favourites: [],
+      currentPage: 1,
+      totalResults: 0,
+      totalPages: 0,
+      pages: [1,2,3,4,5,6]
     })
 
     this.receiveQuery = this.receiveQuery.bind(this);
     this.fetchMovies = this.fetchMovies.bind(this);
     this.receiveMovie = this.receiveMovie.bind(this);
+    this.receiveFavourite = this.receiveFavourite.bind(this);
+    this.receivePageNumber = this.receivePageNumber.bind(this);
   }
 
   componentDidMount() {
   }
 
+  componentDidUpdate() {
+  }
+
   receiveQuery(query) {
     this.setState({
-      query: query
+      query: query,
+      currentPage: 1
     })
     this.fetchMovies(query);
   }
 
   receiveMovie(imdbId) {
-    console.log("received movie click" + imdbId);
-    this.fetchMovieInfo(imdbId);
+    this.fetchInfo(imdbId);
   }
 
-  fetchMovies(query) {
-    return fetch(`http://www.omdbapi.com/?s=${query}&apiKey=f155c772`)
+  receiveFavourite(imdbId, title) {
+    this.setState({
+      favourites: this.state.favourites.concat(imdbId)
+
+    })
+    localStorage.setItem(imdbId, title);
+  }
+
+  receivePageNumber(pageNum) {
+    this.setState({
+      currentPage: pageNum
+    }, () => this.fetchMovies())
+    
+  }
+
+  fetchMovies() {
+    return fetch(`http://www.omdbapi.com/?s=${this.state.query}&page=${this.state.currentPage}&apiKey=f155c772`)
       .then(data => data.json())
       .then(response => {
         this.setState({
-          results: response.Search
+          movies: response.Search,
+          totalResults: response.totalResults,
+          totalPages: Math.ceil(response.totalResults / 10)
         })
       })
   }
 
-  fetchMovieInfo(imdbId) {
+  fetchInfo(imdbId) {
     return fetch(`http://www.omdbapi.com/?i=${imdbId}&plot=full&apiKey=f155c772`)
       .then(data => data.json())
       .then(response => {
@@ -55,28 +83,26 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    console.log('componentDidMount called');
+    this.fetchMovies();
   }
 
-  componentWillMount(){
-    // called once after component is created before first render
-    console.log('componentWillMount called');
-    this.fetchMovies("batman");
+  componentWillMount() {
+
   }
 
   render() {
-    console.log(this.state.info);
     return (
       <div>
         <Search receiveQuery={this.receiveQuery} />
-        <MovieInfo movieObject={this.state.info}/>
-        <Movies receiveMovie={this.receiveMovie} moviesArray={this.state.results} />
+        <Info receiveFavourite={this.receiveFavourite} movieObject={this.state.info} />
+        <Movies receiveMovie={this.receiveMovie} moviesArray={this.state.movies} />
+
+
+        <Pagination receivePageNumber={this.receivePageNumber} currentPage={this.state.currentPage} totalResults={this.state.totalResults} totalPages={this.state.totalPages}/>
       </div>
     )
   }
-  
+
 }
-
-
 
 export default App;
