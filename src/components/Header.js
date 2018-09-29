@@ -14,7 +14,7 @@ class Header extends React.Component {
         </div>
         <img
           className="header__image"
-          src="/images/kilyan-sockalingum-478724-unsplash.jpg"
+          src="https://images.unsplash.com/photo-1513106580091-1d82408b8cd6?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=c93960a66ab95463358588dd85dc9d26&auto=format&fit=crop&w=755&q=80"
         />
       </header>
     );
