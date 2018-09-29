@@ -92,6 +92,11 @@ class App extends React.Component {
 
 
     render() {
+
+        const favList = this.state.favourites.map(fav => {
+            return fav.imdbID;
+        });
+
         return (
             <div>
                 <Header />
@@ -101,7 +106,7 @@ class App extends React.Component {
                     <SearchResults films={this.state.films} totalFilms={this.state.totalFilms} receiveFilmID={this.receiveFilmID} receivePageNum={this.receivePageNum} currentPage={this.state.currentPage} />}
 
                 {Object.keys(this.state.filmDetails).length != 0 &&
-                    <FilmDetails filmDetails={this.state.filmDetails} receiveFav={this.receiveFav} favStatus={false} />}
+                    <FilmDetails filmDetails={this.state.filmDetails} receiveFav={this.receiveFav} favList={favList} />}
 
             </div>
         )

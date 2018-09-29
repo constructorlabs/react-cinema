@@ -6,10 +6,6 @@ class FilmDetails extends React.Component {
     constructor() {
         super();
 
-        this.state = {
-            isFav: false
-        }
-
         this.handleClick = this.handleClick.bind(this);
     }
 
@@ -27,8 +23,10 @@ class FilmDetails extends React.Component {
             backgroundImage: `linear-gradient(to right, orangered, orangered ${this.props.filmDetails.imdbRating * 10}%, rgba(0, 0, 0, 0) ${this.props.filmDetails.imdbRating * 10}%`
         }
 
+        console.log(this.props.favList.includes(this.props.filmDetails.imdbID));
+
         const favClass = cx("btn btn__fav", {
-            "btn__fav--active": this.state.isFav
+            "btn__fav--active": this.props.favList.includes(this.props.filmDetails.imdbID)
         }
         );
 
