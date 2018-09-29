@@ -15,6 +15,9 @@ class App extends React.Component {
                    detail: '',
                    preview: [],
                    favourites: [],
+                   page: 1,
+                   newSearchInProgress: false,
+                   nextPageFetchInProgress: false,
                    resultsDisplayed: false,
                    detailDisplayed: false,
                    favsDisplayed: false };
@@ -36,15 +39,35 @@ class App extends React.Component {
   }
 
   receiveSearch(query, type) {
+
+    let apiQuery;
+
     if (type === 'results') {
-      this.setState({submittedQuery: query});
-    }
-    else if (type === 'preview') {
-      this.setState({previewQuery: query}); 
+      this.setState({ submittedQuery: query,
+                      page: 1,
+                      newSearchInProgress: true });
+      apiQuery = `http://www.omdbapi.com/?apikey=eee5954b&s=${query}&type=movie`;
+      this.fetchData(apiQuery, type);
     }
 
-    const apiQuery = `http://www.omdbapi.com/?apikey=eee5954b&s=${query}&type=movie`;
-    this.fetchData(apiQuery, type);
+    else if (type === 'resultsInfinite') {
+      const nextPageFetchInProgress = this.state.nextPageFetchInProgress;
+      if (!nextPageFetchInProgress) {
+        const page = this.state.page + 1;
+        this.setState({ page: page,
+                        nextPageFetchInProgress: true });
+        apiQuery = `http://www.omdbapi.com/?apikey=eee5954b&s=${query}&page=${page}&type=movie`;
+        this.fetchData(apiQuery, type);
+      }
+    }
+
+    else if (type === 'preview') {
+      this.setState({previewQuery: query}); 
+      apiQuery = `http://www.omdbapi.com/?apikey=eee5954b&s=${query}&type=movie`;
+      this.fetchData(apiQuery, type);
+    }
+
+    
   }
 
   receiveMovie(movie) {
@@ -56,15 +79,30 @@ class App extends React.Component {
     fetch(apiQuery)
     .then(response => response.json())
     .then(body => {
+      console.log(body);
+
       if (type === 'results') {
         if (body.Response === 'True') { 
-          this.setState({ results: body.Search,
+          this.setState({ results: body.Search.filter(item=>item.Poster !== "N/A"),
                           resultsDisplayed: true,
-                          detailDisplayed: false }); }
+                          detailDisplayed: false,
+                          newSearchInProgress: false }); }
         else {
 
         }            
       }
+
+      else if (type === 'resultsInfinite') {
+        if (body.Response === 'True') { 
+          this.setState({ results: this.state.results.concat(body.Search.filter(item=>item.Poster !== "N/A")),
+                          resultsDisplayed: true,
+                          detailDisplayed: false,
+                          nextPageFetchInProgress: false }); }
+        else {
+
+        } 
+      }
+
       else if (type === 'detail') {
         if (body.Response === 'True') { 
           this.setState({ detail: body,
@@ -74,6 +112,7 @@ class App extends React.Component {
           
         }
       }
+
       else if (type === 'preview') {
         if (body.Response === 'True') {   
           this.setState({ preview: body.Search }); }
@@ -81,6 +120,7 @@ class App extends React.Component {
           this.setState({ preview: [] });
         }  
       }
+
     });
   }
 
@@ -155,7 +195,7 @@ class App extends React.Component {
         </div>
         <Favourites classes={favsClasses} favourites={this.state.favourites} receiveMovie={this.receiveMovie} moveFavUp={this.moveFavUp} moveFavDown={this.moveFavDown}/>
         <Search preview={this.state.preview} receiveSearch={this.receiveSearch} receiveMovie={this.receiveMovie} submittedQuery={this.state.submittedQuery} previewQuery={this.state.previewQuery}/>
-        <Results submittedQuery={this.state.submittedQuery} classes={resultsClasses} results={this.state.results} getDetail={this.getDetail}/>
+        {!this.state.newSearchInProgress && <Results submittedQuery={this.state.submittedQuery} classes={resultsClasses} receiveSearch={this.receiveSearch} results={this.state.results} getDetail={this.getDetail}/>}
         {this.state.detail !== '' && <Detail classes={detailClasses} favourites={this.state.favourites} detail={this.state.detail} close={this.closeDetail} addFav={this.addFav} removeFav={this.removeFav}/>}
       </div>  
     );
