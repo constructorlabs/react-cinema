@@ -14,7 +14,6 @@ class Search extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        console.log(this.state.search);
         this.props.receiveTitleQuery(this.state.search);
 
     }

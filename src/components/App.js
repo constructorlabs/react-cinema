@@ -32,7 +32,7 @@ class App extends React.Component {
                 this.setState({
                     films: body.Search,
                     totalFilms: body.totalResults
-                }, () => console.log(this.state))
+                })
             })
             .catch(error => {
                 alert(error);
@@ -45,7 +45,7 @@ class App extends React.Component {
             .then(body => {
                 this.setState({
                     filmDetails: body
-                }, () => console.log(this.state))
+                })
             })
             .catch(error => {
                 alert(error);
@@ -72,11 +72,18 @@ class App extends React.Component {
 
     receiveFav(obj) {
         let favourites = this.state.favourites;
-        const isNotFav = film => {
+        const isFav = film => {
             return film.imdbID == obj.imdbID
         }
-        if (!favourites.find(isNotFav)) {
+        if (!favourites.find(isFav)) {
             favourites.push(obj);
+            this.setState({
+                favourites: favourites
+            });
+        } else {
+            const fav = favourites.find(isFav);
+            const index = favourites.indexOf(fav);
+            favourites.splice(index, 1);
             this.setState({
                 favourites: favourites
             });
@@ -94,7 +101,7 @@ class App extends React.Component {
                     <SearchResults films={this.state.films} totalFilms={this.state.totalFilms} receiveFilmID={this.receiveFilmID} receivePageNum={this.receivePageNum} currentPage={this.state.currentPage} />}
 
                 {Object.keys(this.state.filmDetails).length != 0 &&
-                    <FilmDetails filmDetails={this.state.filmDetails} receiveFav={this.receiveFav} />}
+                    <FilmDetails filmDetails={this.state.filmDetails} receiveFav={this.receiveFav} favStatus={false} />}
 
             </div>
         )
