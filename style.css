@@ -1,0 +1,38 @@
+*{
+    box-sizing: border-box;
+    margin:0;
+    padding:0;
+  }
+
+  .films {
+      display:flex;
+      flex-wrap: wrap;
+    
+  }
+
+  .film {
+    width: 200px;
+  }
+
+  .film img {
+    width: 200px;
+  }
+
+  .hidden{
+    position: fixed;
+    bottom: -100%;
+    left: 0px;
+    width: 100vw;
+    height:  100vh;
+    background-color: white;
+    transition:bottom 0.5s;
+    margin-right:0px;
+    opacity: 0.9;
+    z-index: 2;
+
+  }
+
+  .moreInfo{
+bottom: 0;
+  }
+

@@ -6,7 +6,8 @@ class App extends React.Component {
   constructor(){
     super();
 
-    this.state = {films: []};
+    this.state = {films: [], pageNum: 1};
+    this.handleNext=this.handleNext.bind(this);
 
     this.fetchIMDB = this.fetchIMDB.bind(this);
     // this.filmSearch = this.filmSearch.bind(this);
@@ -24,8 +25,15 @@ class App extends React.Component {
     console.log("notFound");
   }
 
+  handleNext(){
+    event.preventDefault();
+    this.setState({pageNum: this.state.pageNum + 1});
+    this.receiveSearch();
+  }
+  
+
   receiveSearch(filmSearchQuery){
-    const searchURL = `https://www.omdbapi.com/?s=${filmSearchQuery}&apikey=73071eff`;
+    const searchURL = `https://www.omdbapi.com/?s=${filmSearchQuery}&page=${this.state.pageNum}&apikey=73071eff`;
     this.fetchIMDB(searchURL);
   }
 
@@ -60,6 +68,7 @@ class App extends React.Component {
       <div>
         <Search receiveSearch={this.receiveSearch}/>
         <Films films={this.state.films}/>
+        <button onClick={this.handleNext}>Next</button>
       </div>
     );
   }
