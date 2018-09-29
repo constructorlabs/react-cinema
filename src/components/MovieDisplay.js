@@ -22,6 +22,8 @@ class MovieDisplay extends React.Component {
         const ignore = ["Website", "Poster", "Title", "Plot", "Response", "Ratings"]
         const imdbURL = `https://www.imdb.com/title/${movie.imdbID}`;
         const imgURL = movie.Poster === "N/A" ? "assets/no-image.png" : movie.Poster
+        const plot = movie.Poster === "N/A" ? "" : `<h3>Plot</h3>${movie.Plot}`; 
+        
 
         const classes = cx({
             "article__text-full": this.state.textDisplay,
@@ -43,8 +45,7 @@ class MovieDisplay extends React.Component {
                     <img src={imgURL} className="article__image__src"></img>
                 </div>
                 <div className="article__text">
-                    <h3>Plot</h3>
-                    {movie.Plot}
+                    { plot }
                     <div><a onClick={this.toggleTextDisplay}>More details below...</a></div>
                     <div className={classes}>
                         <ul>

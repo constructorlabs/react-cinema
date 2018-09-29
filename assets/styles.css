@@ -193,7 +193,7 @@ input[type=text]:blur {
 }
 
 .error {
-    color: var(--title-color);
+    color: var(--dark-color);
 }
 
 .search-item, .error {   
@@ -422,7 +422,9 @@ input[type=text]:blur {
     border-radius: 3px;
     color: white;
     cursor: pointer;
-    height: 28px;
+    height: 28px;    
+    filter: drop-shadow(0 0 3px rgb(255, 255, 255));
+
 }
 
 .page-button:hover {
