@@ -70,7 +70,7 @@ class App extends React.Component {
       .then(response => response.json())
       .then(body => {
         this.setState({
-          keyWord:"",
+          
           movies: body.Search,
           totalPages: Math.ceil(body.totalResults / 10),
           preview:[]
