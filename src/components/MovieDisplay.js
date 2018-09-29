@@ -6,7 +6,6 @@ class MovieDisplay extends React.Component {
         super()
         this.toggleTextDisplay = this.toggleTextDisplay.bind(this)
         this.state = {
-            prevMovieID: null,
             textDisplay: false
         }
     }
@@ -18,14 +17,11 @@ class MovieDisplay extends React.Component {
     }
 
     render () {
-        console.log(this.state)
 
         const movie = this.props.currentMovie;
         const ignore = ["Website", "Poster", "Title", "Plot", "Response", "Ratings"]
         const imdbURL = `https://www.imdb.com/title/${movie.imdbID}`;
         const imgURL = movie.Poster === "N/A" ? "assets/no-image.png" : movie.Poster
-        
-        console.log(movie.imdbID);
 
         const classes = cx({
             "article__text-full": this.state.textDisplay,

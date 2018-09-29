@@ -2,6 +2,7 @@ import React from 'react';
 import Search from './Search.js';
 import SearchResults from './SearchResults.js';
 import MovieDisplay from './MovieDisplay.js';
+import Pagination from './Pagination.js';
 
 class App extends React.Component {
   constructor(){
@@ -15,6 +16,7 @@ class App extends React.Component {
     this.getQueriedMovies = this.getQueriedMovies.bind(this)
     this.receiveMovieID = this.receiveMovieID.bind(this)
     this.displayCurrentMovie = this.displayCurrentMovie.bind(this)
+    this.receivePageNumber = this.receivePageNumber.bind(this)
 
     this.state = {
       searchQuery: '',
@@ -50,32 +52,43 @@ class App extends React.Component {
   }
  
   getQueriedMovies () {
-    fetch(`http://www.omdbapi.com/?apikey=2454706d&s=${this.state.searchQuery}`)
+    const url = `http://www.omdbapi.com/?apikey=2454706d&s=${this.state.searchQuery}&page=${this.state.currentPage}`;
+    fetch(url)
     .then(response => response.json())
     .then(body => {
       this.setState({
         error: body.Error,
         searchDisplay: true,
-        results: body.Search
+        results: body.Search,
+        pages: body.totalResults
       })
       return body;
     })
   }
 
+  receivePageNumber (page) {
+    this.setState({ 
+      currentPage: page,
+      searchDisplay: false,
+      currentMovie: false
+    }, () => {
+        this.getQueriedMovies ()
+    })
+  }
+
   receiveMovieID (id) {
     this.setState({
-      currentMovieID: id 
+      currentMovieID: id,
+      searchDisplay: false 
     }, () => {
         this.displayCurrentMovie ()
-      }
-    )
+    })
   }
 
   displayCurrentMovie () {
     fetch(`http://www.omdbapi.com/?apikey=2454706d&i=${this.state.currentMovieID}`)
     .then(response => response.json())
     .then(body => {
-      console.log(body)
       this.setState({
         currentMovie: body
       })
@@ -91,25 +104,26 @@ class App extends React.Component {
     return (
       <div className="app">
         <div className="search-wrapper">
+
+          {(this.state.pages) ? <Pagination receivePageNumber={this.receivePageNumber} pages={this.state.pages}/> : <div className="pagination"></div>}
+
           <Search 
             receiveInput={this.receiveInput} 
             receiveSubmit={this.receiveSubmit} 
             receiveFocus={this.receiveFocus} 
             receiveBlur={this.receiveBlur} 
           />
-          {
-            (errorMsg !== "" && this.state.searchDisplay) ?
+
+          {(errorMsg !== "" && this.state.searchDisplay) ?
               <div className="error">{errorMsg}</div> :
               (this.state.searchDisplay && <SearchResults searchDisplay={this.state.searchDisplay} resultsArray={this.state.results} receiveMovieID={this.receiveMovieID}/>)
           }
+        
         </div>
+
         <div>
-          {
-            (!this.state.currentMovie) ? <div className="loading-message">Find movies quickly and easily</div> : ""
-          }
-          {
-            (this.state.currentMovie) && <MovieDisplay currentMovie={this.state.currentMovie}/>
-          }
+          {(!this.state.currentMovie) ? <div className="loading-message">Find movies quickly and easily</div> : ""}
+          {(this.state.currentMovie) && <MovieDisplay currentMovie={this.state.currentMovie}/>}
         </div>
       </div>
     )
