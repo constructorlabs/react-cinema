@@ -9,10 +9,8 @@ class Pagination extends React.Component {
         }
 
         this.handleClick = this.handleClick.bind(this);
+        this.handleChange = this.handleChange.bind(this);
     }
-
-
-
 
     handleClick(e) {
         const totalPages = Math.ceil(this.props.totalFilms / this.props.filmsPerPage)
@@ -28,6 +26,17 @@ class Pagination extends React.Component {
         };
     }
 
+    handleChange(e) {
+        this.setState({
+            currentPage: e.target.value
+        });
+    }
+
+    handleSubmit(e) {
+        e.preventDefault();
+        this.props.receivePageNum(this.state.currentPage);
+    }
+
     render() {
 
         const totalPages = Math.ceil(this.props.totalFilms / this.props.filmsPerPage)
@@ -35,7 +44,7 @@ class Pagination extends React.Component {
         return (
             <nav id="page-nav" onClick={this.handleClick}>
                 <button className="btn btn__prev">&larr;</button>
-                <p className="page-num">Page <span className="page-current">{this.props.currentPage}</span> of <span className="page-total">{totalPages}</span></p>
+                <p className="page-num">Page <input onChange={this.handleChange} type="text" className="page-current" value={this.props.currentPage} /> of <span className="page-total">{totalPages}</span></p>
                 <button className="btn btn__next">&rarr;</button>
             </nav>
         )
