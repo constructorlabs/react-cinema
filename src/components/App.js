@@ -3,6 +3,7 @@ import Search from "./Search";
 import Results from "./Results";
 import Pages from "./Pages";
 import Favourites from "./Favourites";
+import Header from "./Header";
 
 class App extends React.Component {
   constructor() {
@@ -163,6 +164,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
+        <Header />
         <Search
           receiveSearchTerm={this.receiveSearchTerm}
           fetchMovies={this.fetchMovies}

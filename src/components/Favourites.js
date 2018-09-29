@@ -14,10 +14,12 @@ class Favourites extends React.Component {
   render() {
     return (
       <div className="favourites">
-        <button onClick={this.handleClick} id="favourites__clear__favourites">
-          Clear Favourites
-        </button>
         <ul>
+          {" "}
+          Favourites
+          <button onClick={this.handleClick} id="favourites__clear__favourites">
+            Clear Favourites
+          </button>
           {this.props.favouritesArray.map(favourite => (
             <FavouritesItem
               key={favourite.imdbID}

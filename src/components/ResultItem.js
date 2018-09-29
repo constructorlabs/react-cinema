@@ -17,7 +17,6 @@ class ResultItem extends React.Component {
       .then(response => response.json())
       .then(body => {
         this.setState({ filmDetails: body });
-        console.log(body);
       });
   }
 
@@ -46,11 +45,11 @@ class ResultItem extends React.Component {
 
     return (
       <div onClick={this.handleClick} className="result__item">
-        <h3>{this.props.movie.Title}</h3>
+        <h3 className="result__title">{this.props.movie.Title}</h3>
         <button id="add__to__favourites" className="favourite__button">
-          Favourite
+        &hearts;
         </button>
-        <img src={this.props.movie.Poster} />
+        <img className="results__image" src={this.props.movie.Poster} />
         <ResultItemDetails
           classes={classes}
           filmDetails={this.state.filmDetails}

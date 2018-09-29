@@ -26,8 +26,9 @@ class Search extends React.Component {
             onChange={this.handleChange}
             placeholder="Search for a film"
             value={this.props.currentValue}
+            className="search__input"
           />
-          <button>Search</button>
+          <button className="search__button">Search</button>
         </form>
       </div>
     );
