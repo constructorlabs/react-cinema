@@ -21,6 +21,7 @@ class App extends React.Component {
         this.receiveTitleQuery = this.receiveTitleQuery.bind(this);
         this.receiveFilmID = this.receiveFilmID.bind(this);
         this.receivePageNum = this.receivePageNum.bind(this);
+        this.receiveMove = this.receiveMove.bind(this);
         this.receiveFav = this.receiveFav.bind(this);
         this.searchByTitle = this.searchByTitle.bind(this);
         this.searchByID = this.searchByID.bind(this);
@@ -77,7 +78,7 @@ class App extends React.Component {
             return film.imdbID == obj.imdbID
         }
         if (!favourites.find(isFav)) {
-            favourites.push(obj);
+            favourites.unshift(obj);
             this.setState({
                 favourites: favourites
             });
@@ -91,6 +92,9 @@ class App extends React.Component {
         }
     }
 
+    receiveMove(film) {
+        console.log(film);
+    }
 
     render() {
 
@@ -103,7 +107,7 @@ class App extends React.Component {
         return (
             <div>
                 <Header />
-                <FavouritesList favouritesList={this.state.favourites} receiveFav={this.receiveFav} receiveFilmID={this.receiveFilmID} delFavClass={classes[0]} moveFavClass={classes[1]} titleClass={classes[2]} />
+                <FavouritesList favouritesList={this.state.favourites} receiveFav={this.receiveFav} receiveFilmID={this.receiveFilmID} receiveMove={this.receiveMove} delFavClass={classes[0]} moveFavClass={classes[1]} titleClass={classes[2]} />
                 <Search receiveTitleQuery={this.receiveTitleQuery} />
 
                 {this.state.films.length > 0 &&

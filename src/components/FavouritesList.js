@@ -10,7 +10,14 @@ class FavouritesList extends React.Component {
     }
 
     handleClick(e, film) {
-        e.target.classList.value == this.props.delFavClass ? this.props.receiveFav(film) : this.props.receiveFilmID(film.imdbID)
+        if (e.target.classList.value == this.props.delFavClass) {
+            this.props.receiveFav(film)
+        } else if (e.target.classList.value == this.props.titleClass) {
+            this.props.receiveFilmID(film.imdbID)
+        } else {
+            console.log(`move this item up`);
+            this.props.receiveMove(film);
+        }
     };
 
 
