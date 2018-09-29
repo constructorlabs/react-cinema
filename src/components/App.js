@@ -1,83 +1,78 @@
-import React from 'react';
-import Films from './Films';
-import Search from './Search';
+import React from "react";
+import Films from "./Films";
+import Search from "./Search";
 
 class App extends React.Component {
-  constructor(){
+  constructor() {
     super();
 
-    this.state = {films: [], pageNum: 1};
-    this.handleNext=this.handleNext.bind(this);
+    this.state = { films: [], pageNum: 1, filmSearchQuery: "love" };
+    this.handleNext = this.handleNext.bind(this);
 
     this.fetchIMDB = this.fetchIMDB.bind(this);
     // this.filmSearch = this.filmSearch.bind(this);
     // this.IMDBData= this.IMDBData.bind(this);
-    this.notFound= this.notFound.bind(this);
+    this.notFound = this.notFound.bind(this);
     // this.searchText = this.searchText.bind(this);
     this.receiveSearch = this.receiveSearch.bind(this);
   }
 
-  componentDidMount(){
-    this.receiveSearch('Interstellar');
+  componentDidMount() {
+    this.receiveSearch(this.state.filmSearchQuery);
   }
 
-  notFound(){
+  notFound() {
     console.log("notFound");
   }
 
-  handleNext(){
-    event.preventDefault();
-    this.setState({pageNum: this.state.pageNum + 1});
-    this.receiveSearch();
+  handleNext() {
+    // event.preventDefault();
+    // this.setState(prevState => ({...prevState, pageNum: this.state.pageNum + 1})
+    this.setState({ pageNum: this.state.pageNum + 1 });
+    // let pageNumber = this.state.pageNum + 1;
+    // console.log(pageNumber);
+    // let filmSearchQuery = this.state.filmSearchQuery;
+    this.receiveSearch(this.state.filmSearchQuery);
   }
-  
 
-  receiveSearch(filmSearchQuery){
+  receiveSearch(filmSearchQuery) {
+    // this.setState(prevState => {...prevState, filmSearchQuery: this.state.filmSearchQuery});
+    this.setState({ filmSearchQuery: this.state.filmSearchQuery });
     const searchURL = `https://www.omdbapi.com/?s=${filmSearchQuery}&page=${this.state.pageNum}&apikey=73071eff`;
     this.fetchIMDB(searchURL);
+    console.log(searchURL);
   }
 
-
-  
   // Initial Search Fetch
-  fetchIMDB(searchURL){
-    fetch(searchURL) 
-    .then(function(response) {
-        
+  fetchIMDB(searchURL) {
+    fetch(searchURL)
+      .then(function(response) {
         return response.json();
-    })
-    .then(films=> {
-      if(films.Response === "False") {
-        this.notFound()
-        console.log("WHOOPS!");
-      } else {
-        console.log(films)
-        this.setState({films: films.Search})}
-    }
-    );
+      })
+      .then(films => {
+        if (films.Response === "False") {
+          this.notFound();
+          console.log("WHOOPS!");
+        } else {
+          console.log(films);
+          this.setState({ films: films.Search });
+        }
+      });
   }
 
-// searchText(){
-//   console.log("SearchQuery")
-// }
-  
-  
+  // searchText(){
+  //   console.log("SearchQuery")
+  // }
 
-  render(){
+  render() {
     return (
       <div>
-        <Search receiveSearch={this.receiveSearch}/>
-        <Films films={this.state.films}/>
+        <Search receiveSearch={this.receiveSearch} />
+        <Films films={this.state.films} />
         <button onClick={this.handleNext}>Next</button>
       </div>
     );
   }
-
-
-
-
 }
 
 export default App;
-
-
