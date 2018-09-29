@@ -101,6 +101,62 @@ class App extends React.Component {
             JSON.stringify(this.state.favouritesArray)
           )
       );
+    } else if (id === "favourites__move__up") {
+      let favouriteIndex = this.state.favouritesArray.indexOf(favourite);
+      let firstHalfFavourites = this.state.favouritesArray.slice(
+        0,
+        favouriteIndex - 1
+      );
+      let favouritesToSwap = this.state.favouritesArray.slice(
+        favouriteIndex - 1,
+        favouriteIndex + 1
+      );
+      let secondHalfFavourites = this.state.favouritesArray.slice(
+        favouriteIndex + 1
+      );
+      favouritesToSwap.reverse();
+      let rearrangedFavourites = firstHalfFavourites.concat(
+        favouritesToSwap,
+        secondHalfFavourites
+      );
+      this.setState(
+        {
+          favouritesArray: rearrangedFavourites
+        },
+        () =>
+          localStorage.setItem(
+            "favourites",
+            JSON.stringify(this.state.favouritesArray)
+          )
+      );
+    } else if (id === "favourites__move__down") {
+      let favouriteIndex = this.state.favouritesArray.indexOf(favourite);
+      let firstHalfFavourites = this.state.favouritesArray.slice(
+        0,
+        favouriteIndex
+      );
+      let favouritesToSwap = this.state.favouritesArray.slice(
+        favouriteIndex,
+        favouriteIndex + 2
+      );
+      let secondHalfFavourites = this.state.favouritesArray.slice(
+        favouriteIndex + 2
+      );
+      favouritesToSwap.reverse();
+      let rearrangedFavourites = firstHalfFavourites.concat(
+        favouritesToSwap,
+        secondHalfFavourites
+      );
+      this.setState(
+        {
+          favouritesArray: rearrangedFavourites
+        },
+        () =>
+          localStorage.setItem(
+            "favourites",
+            JSON.stringify(this.state.favouritesArray)
+          )
+      );
     }
   }
 
