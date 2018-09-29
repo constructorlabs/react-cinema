@@ -10,9 +10,9 @@ class App extends React.Component {
 
         this.state = {
             query: "",
-            currentPage: 0,
+            currentPage: 1,
             films: [],
-            totalFilms: 79,
+            totalFilms: 0,
             filmDetails: {}
         }
 
@@ -53,7 +53,8 @@ class App extends React.Component {
     receiveTitleQuery(query) {
         this.setState({
             query: query,
-            currentPage: 1
+            currentPage: 1,
+            filmDetails: {}
         }, () => this.searchByTitle(query, this.state.currentPage));
     }
 
@@ -75,7 +76,7 @@ class App extends React.Component {
                 <Search receiveTitleQuery={this.receiveTitleQuery} />
 
                 {this.state.films.length > 0 &&
-                    <SearchResults films={this.state.films} totalFilms={this.state.totalFilms} receiveFilmID={this.receiveFilmID} receivePageNum={this.receivePageNum} />}
+                    <SearchResults films={this.state.films} totalFilms={this.state.totalFilms} receiveFilmID={this.receiveFilmID} receivePageNum={this.receivePageNum} currentPage={this.state.currentPage} />}
 
                 {Object.keys(this.state.filmDetails).length != 0 &&
                     <FilmDetails filmDetails={this.state.filmDetails} />}

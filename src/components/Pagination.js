@@ -35,7 +35,7 @@ class Pagination extends React.Component {
         return (
             <nav id="page-nav" onClick={this.handleClick}>
                 <button className="btn btn__prev">&larr;</button>
-                <p className="page-num">Page <span className="page-current">{this.state.currentPage}</span> of <span className="page-total">{totalPages}</span></p>
+                <p className="page-num">Page <span className="page-current">{this.props.currentPage}</span> of <span className="page-total">{totalPages}</span></p>
                 <button className="btn btn__next">&rarr;</button>
             </nav>
         )

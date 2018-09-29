@@ -21,7 +21,7 @@ class SearchResults extends React.Component {
                         return <Film key={film.imdbID} id={film.imdbID} title={film.Title} year={film.Year} poster={film.Poster} />
                     })}
                 </div>
-                <Pagination totalFilms={this.props.totalFilms} filmsPerPage={this.props.films.length} receivePageNum={this.props.receivePageNum} />
+                <Pagination totalFilms={this.props.totalFilms} filmsPerPage={this.props.films.length} receivePageNum={this.props.receivePageNum} currentPage={this.props.currentPage} />
             </section>
         );
     }
