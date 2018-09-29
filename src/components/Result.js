@@ -8,16 +8,18 @@ class Result extends React.Component{
         this.handleClick = this.handleClick.bind(this);
     }
 
-    handleClick (event) {
-        this.props.receiveMovie(this.props.result.imdbID)
+    handleClick () {
+
+        this.props.receiveMovie(this.props.showInfo ? null : this.props.result.imdbID)
     }
 
     render() {
         return (
-            <li className="results__item">
-                <img className="results__image" src={this.props.result.Poster} id={this.props.result.imbdID} onClick={this.handleClick} />
+            <div className="result">
+                <img className="result__image" src={this.props.result.Poster} id={this.props.result.imbdID} onClick={this.handleClick} />
+                <p>{this.props.result.Title}</p>
                 {this.props.showInfo ? <Movie movie={this.props.result} imdbID={this.props.result.imdbID} /> : null}
-            </li>
+            </div>
         )
     }
 }

@@ -45,17 +45,23 @@ class App extends React.Component {
     console.log('hello' + query);
   }
 
+
   receiveMovie(selectedMovie) {
     this.setState({
       selectedMovie:selectedMovie
     })
-    console.log(selectedMovie)
+    console.log('ffff' + selectedMovie)
   }
 
   render(){
     return (
       <div className="app">
-        <Search receiveQuery={this.receiveQuery}/>
+        <div className="search">
+          <div className="search__inner-div">
+            <Search receiveQuery={this.receiveQuery}/>
+            <h1>PHLX</h1>
+          </div>
+        </div>
         <Results selectedMovie={this.state.selectedMovie} receiveMovie={this.receiveMovie} results={this.state.results}/>
       </div>
     )

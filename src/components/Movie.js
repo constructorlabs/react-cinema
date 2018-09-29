@@ -27,10 +27,9 @@ class Movie extends React.Component {
 
     render() {
         return (
-            <ul>
-                <li>{this.props.movie.Title}</li>
-                <li>{this.props.movie.Title}</li>
-                <li>{this.props.movie.Title}</li>
+            <ul className="more-info">
+                <li className="more-info__item"><strong>Plot: </strong> "{this.state.movie.Plot}"</li>
+                <li className="more-info__item"><strong>Starring: </strong>{this.state.movie.Actors}</li>
             </ul>
         )
     }

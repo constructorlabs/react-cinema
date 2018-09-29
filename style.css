@@ -1,50 +1,110 @@
-* {
-    box-sizing: inherit;
-}
-
 body {
-    box-sizing: border-box;
     margin: 0;
     font-family: "Open Sans", sans-serif;
     min-height: 100vh;
-    background-color: rgb(216, 238, 245);    
+    background-color: rgb(212, 215, 216);    
     background-attachment: fixed;
     align-content: center;
   }
 
+/* .input {
 
-.results{
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-    margin: 0 auto;
-    list-style-type: none;
-    padding: 0;
+} */
+
+.app {
+    width:100%;
+    display:flex;
+    flex-direction:column;
     background: gainsboro;
-    justify-content: center;
 }
 
-.results__image{
-    margin: 50px;
-    border: 3px solid white;
-    width: 350px;
-    height: 350px;
-    object-fit: cover;
+
+.search {
+    position:fixed;
+    background: rgb(129, 126, 126);
+    width:100%;
+    display:flex;
+    flex:1;
+    height:65px;
 }
 
-input[type="search"] {
-    background: rgba(196, 196, 196, 0.43);
-    border: 2px solid white;
-    box-sizing: border-box;
-    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
-    width: 185px;
-    height: 42px;
-    font-family: Roboto Slab;
-    font-style: normal;
-    font-weight: normal;
-    line-height: normal;
-    font-size: 18px;
-    text-align: center;
-    color: #FFFFFF;
-    margin-right:20px;
-  }
+.search__inner-div {
+    display:flex;
+    flex:1;
+    flex-direction:row;
+    height:25px;
+    background: gainsboro;
+    z-index: 10;
+    margin:10px;
+    padding:10px;
+
+}
+
+.result {
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    width: 300px;
+    background: white;
+    border: solid 0px black;
+    margin:10px;
+    padding:10px;
+}
+
+.result__image {
+    width: 300px;
+    height: 300px;
+    object-fit:cover;
+}
+
+.search-results {
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    width: 100%;
+    margin-top:70px;
+}
+
+.search__input {
+    width:150px;
+    height:25px;
+    border: solid 1px black;
+}
+
+.search__form {
+    display: flex;
+}
+
+.search__button {
+    font-size: 70%;
+    font-family: inherit;
+    border: solid 1px;
+    padding: 3px;
+    margin-left: 10px;
+}
+
+h1 {
+    display:flex;
+    width:100px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.5em;
+    padding:0px;
+    margin:0;
+    justify-content:flex-end;
+    align-items:center;
+}
+
+h2 {font-family: 'Open Sans', sans-serif;
+    padding:0;
+    margin:0;
+    font-size:1em;
+}
+
+.more-info {
+        padding-left: 0;
+        list-style-type: none;
+}
+
+.more-info__item {
+    margin: 0 0 10px 0;
+}
