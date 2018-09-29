@@ -2,6 +2,7 @@
 //url = `http://www.omdbapi.com/?i=${id}&plot=full&apikey=d2807699`
 
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 
 class Movie extends React.Component{
@@ -14,6 +15,7 @@ class Movie extends React.Component{
 
     this.handleClick = this.handleClick.bind(this);
     this.fetchMovieDetails = this.fetchMovieDetails.bind(this);
+    this.handleFavClick = this.handleFavClick.bind(this);
 
   }
 
@@ -22,6 +24,10 @@ class Movie extends React.Component{
     this.setState({
       showDetails:!this.state.showDetails
     })
+  }
+
+  handleFavClick(){
+    this.props.receiveFavClick(this.props.id)
   }
 
   fetchMovieDetails(){
@@ -41,22 +47,24 @@ class Movie extends React.Component{
 
   render(){
     return(
-      <div className='movie' onClick={this.handleClick} id={this.props.id}>
+      <div className='movie' id={this.props.id}>
         <h2>{this.props.title}</h2>
         <h3>{this.props.year}</h3>
-        <img src={this.props.image}/>
+        <div><FontAwesomeIcon icon="star" onClick={this.handleFavClick}/></div>
+        <img onClick={this.handleClick} src={this.props.image}/>
+
         {this.state.showDetails?
           <ul>
-          <li>{this.state.movieDetails.Director}</li>
-          <li>{this.state.movieDetails.Actors}</li>
+          <li>Director: {this.state.movieDetails.Director}</li>
+          <li>Actors: {this.state.movieDetails.Actors}</li>
           {this.state.movieDetails.Ratings == undefined?"":
-          <li>{this.state.movieDetails.Ratings.map(rating => {
-                return <p>{rating.Source}: {rating.Value}</p>
+          <li>Ratings: {this.state.movieDetails.Ratings.map(rating => {
+                return <p key={rating.Source}>{rating.Source}: {rating.Value}</p>
                 }
               )}
           </li>}
 
-          <li>{this.state.movieDetails.Plot}</li>
+          <li>Description: {this.state.movieDetails.Plot}</li>
         </ul> : ""}
       </div>
     )
