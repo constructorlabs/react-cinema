@@ -3,6 +3,7 @@ import Header from './Header';
 import Search from './Search';
 import SearchResults from './SearchResults';
 import FilmDetails from './FilmDetails';
+import FavouritesList from './FavouritesList';
 
 class App extends React.Component {
     constructor() {
@@ -100,6 +101,7 @@ class App extends React.Component {
         return (
             <div>
                 <Header />
+                <FavouritesList favouritesList={this.state.favourites} />
                 <Search receiveTitleQuery={this.receiveTitleQuery} />
 
                 {this.state.films.length > 0 &&
