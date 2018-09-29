@@ -135,6 +135,11 @@ h1.logo {
     cursor: pointer;
 }
 
+.error {
+    padding-top: 2em;
+    text-align: center;
+}
+
 .results {
     display: block;
     overflow: auto;
@@ -340,13 +345,6 @@ h1.logo {
 
     .preview {
         font-size: 1rem;
-    }
-    
-    .results {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
     }
     
     .results__wrapper {

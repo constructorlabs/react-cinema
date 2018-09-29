@@ -20,7 +20,8 @@ class App extends React.Component {
                    nextPageFetchInProgress: false,
                    resultsDisplayed: false,
                    detailDisplayed: false,
-                   favsDisplayed: false };
+                   favsDisplayed: false, 
+                   movieNotFound: false };
 
     this.receiveSearch = this.receiveSearch.bind(this);
     this.getDetail = this.getDetail.bind(this);
@@ -86,9 +87,12 @@ class App extends React.Component {
           this.setState({ results: body.Search.filter(item=>item.Poster !== "N/A"),
                           resultsDisplayed: true,
                           detailDisplayed: false,
-                          newSearchInProgress: false }); }
+                          newSearchInProgress: false,
+                          movieNotFound: false }); }
         else {
-
+          if (body.Error === "Movie not found!") {
+            this.setState({ movieNotFound: true });
+          }
         }            
       }
 
@@ -107,7 +111,8 @@ class App extends React.Component {
         if (body.Response === 'True') { 
           this.setState({ detail: body,
                           resultsDisplayed: false,
-                          detailDisplayed: true }); }
+                          detailDisplayed: true,
+                          movieNotFound: false }); }
         else {
           
         }
@@ -195,6 +200,7 @@ class App extends React.Component {
         </div>
         <Favourites classes={favsClasses} favourites={this.state.favourites} receiveMovie={this.receiveMovie} moveFavUp={this.moveFavUp} moveFavDown={this.moveFavDown}/>
         <Search preview={this.state.preview} receiveSearch={this.receiveSearch} receiveMovie={this.receiveMovie} submittedQuery={this.state.submittedQuery} previewQuery={this.state.previewQuery}/>
+        {this.state.movieNotFound && <div className='error'>Movie not found!</div>}
         {!this.state.newSearchInProgress && <Results submittedQuery={this.state.submittedQuery} classes={resultsClasses} receiveSearch={this.receiveSearch} results={this.state.results} getDetail={this.getDetail}/>}
         {this.state.detail !== '' && <Detail classes={detailClasses} favourites={this.state.favourites} detail={this.state.detail} close={this.closeDetail} addFav={this.addFav} removeFav={this.removeFav}/>}
       </div>  
