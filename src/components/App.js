@@ -66,7 +66,7 @@ class App extends React.Component {
     this.setState({
       currentMovieID: id 
     }, () => {
-        displayCurrentMovie ()
+        this.displayCurrentMovie ()
       }
     )
   }
@@ -89,7 +89,7 @@ class App extends React.Component {
     errorMsg = (qLength == 0 || qLength > 2) ? errorMsg : "Enter 3 or more letters";
 
     return (
-      <div>
+      <div className="app">
         <Search 
           receiveInput={this.receiveInput} 
           receiveSubmit={this.receiveSubmit} 
