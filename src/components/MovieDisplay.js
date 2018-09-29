@@ -12,12 +12,6 @@ class MovieDisplay extends React.Component {
     }
 
     toggleTextDisplay () {
-        // if (this.state.prevMovieID !== this.props.currentMovie.imdbID) {
-        //     this.setState ({
-        //         prevMovieID: this.props.currentMovie.imdbID,
-        //         textDisplay: false
-        //     })
-        // } 
         this.setState ({
             textDisplay: !this.state.textDisplay
         })
@@ -30,6 +24,8 @@ class MovieDisplay extends React.Component {
         const ignore = ["Website", "Poster", "Title", "Plot", "Response", "Ratings"]
         const imdbURL = `https://www.imdb.com/title/${movie.imdbID}`;
         const imgURL = movie.Poster === "N/A" ? "assets/no-image.png" : movie.Poster
+        
+        console.log(movie.imdbID);
 
         const classes = cx({
             "article__text-full": this.state.textDisplay,
