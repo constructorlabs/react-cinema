@@ -14,14 +14,10 @@ class FilmDisplay extends React.Component{
 
 
     this.addToFaves = this.addToFaves.bind(this)
-
-
-
   }
 
 
   componentWillReceiveProps(nextProps){
-      console.log(nextProps.filmDetails.Title)
       fetch(`https://newsapi.org/v2/everything?q="${nextProps.filmDetails.Title}"&sortBy=relevancy&pageSize=6&apiKey=9ed005ef4eb94baf913fce701c69972f`)
       .then(response => response.json())
       .then(body => {

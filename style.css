@@ -259,3 +259,52 @@ nav > div {
   border-right: 3px solid #050505;
   overflow-y: auto;
 }
+
+
+.favourite-element{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-bottom: 1px red solid;
+  margin: 0rem 1rem;
+}
+
+.favourite-element__none{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Assistant', sans-serif;
+  font-size: 1.5rem;
+  text-align:center;
+  margin: 0rem 1.5rem;
+}
+
+.favourite-element__none > h4{
+  padding-bottom: 1rem;
+  border-bottom: 1px black solid;
+}
+
+.favourite-element__arrows{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.arrow{
+  display: none;
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  padding: 3px;
+}
+
+.up {
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+    margin-bottom: 1rem;
+}
+
+.down {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+}
