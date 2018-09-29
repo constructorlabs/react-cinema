@@ -18,7 +18,7 @@ class App extends React.Component {
     this.receiveSearchTerm = this.receiveSearchTerm.bind(this);
     this.fetchMovies = this.fetchMovies.bind(this);
     this.receiveCurrentPage = this.receiveCurrentPage.bind(this);
-    this.receiveFavourites = this.receiveFavourites.bind(this);
+    this.receiveFavouritesInfo = this.receiveFavouritesInfo.bind(this);
   }
 
   receiveSearchTerm(term) {
@@ -39,7 +39,6 @@ class App extends React.Component {
           pagesObject: body,
           movieArray: body.Search
         });
-        console.log(this.state.favouritesArray);
       });
   }
 
@@ -50,8 +49,8 @@ class App extends React.Component {
           localStorage.getItem("favourites") === null
             ? []
             : JSON.parse(localStorage.getItem("favourites"))
-      },
-      () => console.log(this.state.favouritesArray)
+      }
+      // localStorage.clear()
     );
   }
 
@@ -64,17 +63,45 @@ class App extends React.Component {
     );
   }
 
-  receiveFavourites(favourite) {
-    this.setState(
-      {
-        favouritesArray: this.state.favouritesArray.concat([favourite])
-      },
-      () =>
-        localStorage.setItem(
-          "favourites",
-          JSON.stringify(this.state.favouritesArray)
-        )
-    );
+  receiveFavouritesInfo(id, favourite) {
+    if (
+      id === "add__to__favourites" &&
+      this.state.favouritesArray.indexOf(favourite) === -1
+    ) {
+      this.setState(
+        {
+          favouritesArray: this.state.favouritesArray.concat([favourite])
+        },
+        () =>
+          localStorage.setItem(
+            "favourites",
+            JSON.stringify(this.state.favouritesArray)
+          )
+      );
+    } else if (id === "favourites__clear__favourites") {
+      this.setState(
+        {
+          favouritesArray: []
+        },
+        () => localStorage.clear()
+      );
+    } else if (id === "favourites__delete__favourite") {
+      const favouritesToBeRemoved = this.state.favouritesArray;
+      favouritesToBeRemoved.splice(
+        this.state.favouritesArray.indexOf(favourite),
+        1
+      );
+      this.setState(
+        {
+          favouritesArray: favouritesToBeRemoved
+        },
+        () =>
+          localStorage.setItem(
+            "favourites",
+            JSON.stringify(this.state.favouritesArray)
+          )
+      );
+    }
   }
 
   render() {
@@ -85,14 +112,15 @@ class App extends React.Component {
           fetchMovies={this.fetchMovies}
           currentValue={this.state.searchTerm}
         />
-        <Favourites 
+        <Favourites
           favouritesArray={this.state.favouritesArray}
+          receiveFavouritesInfo={this.receiveFavouritesInfo}
         />
         <Results
           movieArray={this.state.movieArray}
           filmDetails={this.state.filmDetails}
           apiKey={this.state.apiKey}
-          receiveFavourites={this.receiveFavourites}
+          receiveFavouritesInfo={this.receiveFavouritesInfo}
         />
         <Pages
           pagesObject={this.state.pagesObject}

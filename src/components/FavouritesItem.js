@@ -1,17 +1,23 @@
-import React from 'react';
+import React from "react";
 
 class FavouritesItem extends React.Component {
-    constructor(){
-        super();
-    }
+  constructor() {
+    super();
+    this.handleClick = this.handleClick.bind(this);
+  }
 
-    render(){
-        return (
-            <div>
-                <li>{this.props.favourite.Title}</li>
-            </div>
-        )
-    }
+  handleClick(event){
+      this.props.receiveFavouritesInfo(event.target.id, this.props.favourite)
+  }
+
+  render() {
+    return (
+      <div>
+        <li>{this.props.favourite.Title}</li>
+        <button onClick={this.handleClick} id="favourites__delete__favourite">X</button>
+      </div>
+    );
+  }
 }
 
 export default FavouritesItem;

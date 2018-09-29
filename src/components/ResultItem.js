@@ -23,7 +23,7 @@ class ResultItem extends React.Component {
 
   handleClick(event) {
     if (event.target.className === "favourite__button") {
-      this.props.receiveFavourites(this.props.movie);
+      this.props.receiveFavouritesInfo(event.target.id, this.props.movie);
     } else {
       if (this.state.detailsShow === true) {
         this.setState({
@@ -47,7 +47,9 @@ class ResultItem extends React.Component {
     return (
       <div onClick={this.handleClick} className="result__item">
         <h3>{this.props.movie.Title}</h3>
-        <button className="favourite__button">Favourite</button>
+        <button id="add__to__favourites" className="favourite__button">
+          Favourite
+        </button>
         <img src={this.props.movie.Poster} />
         <ResultItemDetails
           classes={classes}
