@@ -9,10 +9,10 @@ class SearchResults extends React.Component {
     }
 
     handleClick (event) {
-        const url = "https://www.imdb.com/title/" + event.target.id;
-        window.open(url, "_blank")
+        // const url = "https://www.imdb.com/title/" + event.target.id;
+        // window.open(url, "_blank")
+        this.props.receiveMovieID(event.target.id)
     }
-
 
     render () {
 

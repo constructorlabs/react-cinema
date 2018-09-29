@@ -35,10 +35,9 @@ class Search extends React.Component {
                     onFocus={this.handleFocus} 
                     onBlur={this.handleBlur} 
                     className="search" 
-                    placeholder="&#128269; Enter movie search term" 
+                    placeholder="Search for a movie..." 
                     autoComplete="off" 
                 />
-                {/* <i className="fas fa-search search-padding"></i> */}
                 
             </form>
         )

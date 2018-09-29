@@ -1,6 +1,7 @@
 import React from 'react';
 import Search from './Search.js';
 import SearchResults from './SearchResults.js';
+import MovieDisplay from './MovieDisplay.js';
 
 class App extends React.Component {
   constructor(){
@@ -11,7 +12,9 @@ class App extends React.Component {
     this.receiveSubmit = this.receiveSubmit.bind(this)
     this.receiveFocus = this.receiveFocus.bind(this)
     this.receiveBlur = this.receiveBlur.bind(this)
-    this.fetchMovies = this.fetchMovies.bind(this)
+    this.getQueriedMovies = this.getQueriedMovies.bind(this)
+    this.receiveMovieID = this.receiveMovieID.bind(this)
+    this.displayCurrentMovie = this.displayCurrentMovie.bind(this)
 
     this.state = {
       searchQuery: '',
@@ -26,14 +29,14 @@ class App extends React.Component {
       searchDisplay: text.length > 0
     }, () => {
         if (text.length > 2) { 
-          this.fetchMovies ()
+          this.getQueriedMovies ()
         }
       }
     )
   }
 
   receiveSubmit () {
-    this.fetchMovies ()
+    this.getQueriedMovies ()
   }
 
   receiveFocus () {
@@ -45,16 +48,36 @@ class App extends React.Component {
   receiveBlur () {
     this.setState({ searchDisplay: false })
   }
-
-  fetchMovies () {
-    const baseUrl = `http://www.omdbapi.com/?apikey=2454706d&s=${this.state.searchQuery}`;
-    fetch(baseUrl)
+ 
+  getQueriedMovies () {
+    fetch(`http://www.omdbapi.com/?apikey=2454706d&s=${this.state.searchQuery}`)
     .then(response => response.json())
     .then(body => {
       this.setState({
         error: body.Error,
         searchDisplay: true,
         results: body.Search
+      })
+      return body;
+    })
+  }
+
+  receiveMovieID (id) {
+    this.setState({
+      currentMovieID: id 
+    }, () => {
+        displayCurrentMovie ()
+      }
+    )
+  }
+
+  displayCurrentMovie () {
+    fetch(`http://www.omdbapi.com/?apikey=2454706d&i=${this.state.currentMovieID}`)
+    .then(response => response.json())
+    .then(body => {
+      console.log(body)
+      this.setState({
+        currentMovie: body
       })
       return body;
     })
@@ -76,7 +99,10 @@ class App extends React.Component {
         {
           (errorMsg !== "" && this.state.searchDisplay) ?
             <div className="error">{errorMsg}</div> :
-            (this.state.searchDisplay && <SearchResults searchDisplay={this.state.searchDisplay} resultsArray={this.state.results}/>)
+            (this.state.searchDisplay && <SearchResults searchDisplay={this.state.searchDisplay} resultsArray={this.state.results} receiveMovieID={this.receiveMovieID}/>)
+        }
+        {
+        this.state.currentMovie && <MovieDisplay currentMovie={this.state.currentMovie}/>
         }
       </div>
     )
