@@ -5,14 +5,11 @@ import cx from 'classnames';
 class Movie extends React.Component {
   constructor(){
     super();
-    
-
     this.state = {clicked: false, movieresult: {} };
     this.handleClick = this.handleClick.bind(this)
   }
 
   handleClick(event){
-    
     this.setState({
      clicked: !this.state.clicked
     });
