@@ -9,6 +9,14 @@ class FilmDetails extends React.Component {
         this.state = {
             isFav: false
         }
+
+        this.handleClick = this.handleClick.bind(this);
+    }
+
+    handleClick(e) {
+        this.setState({
+            isFav: !this.state.isFav
+        });
     }
 
     render() {
@@ -17,12 +25,15 @@ class FilmDetails extends React.Component {
             backgroundImage: `linear-gradient(to right, orangered, orangered ${this.props.filmDetails.imdbRating * 10}%, rgba(0, 0, 0, 0) ${this.props.filmDetails.imdbRating * 10}%`
         }
 
-
+        const favClass = cx("btn btn__fav", {
+            "btn__fav--active": this.state.isFav
+        }
+        );
 
         return (
             <div className="film-details__wrapper" >
                 <h3 className="film-details__title">{this.props.filmDetails.Title}</h3>
-                <button id="fav" className="btn btn__fav" data-id="tt0372784"><i className="fas fa-heart"></i></button>
+                <button onClick={this.handleClick} id="fav" className={favClass} data-id="tt0372784"><i className="fas fa-heart"></i></button>
                 <img className="film-details__poster" src={this.props.filmDetails.Poster} alt="poster" />
                 <h4 className="film-details__director">{this.props.filmDetails.Director}</h4>
                 <p className="film-details__meta">(Released {this.props.filmDetails.Year}, dur. {this.props.filmDetails.Runtime}, {this.props.filmDetails.Rated})</p>
