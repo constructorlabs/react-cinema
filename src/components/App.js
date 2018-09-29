@@ -12,9 +12,14 @@ class App extends React.Component {
     super();
     this.state = {
       searchString: "",
-      currentFilmId: "",
       searchResults: [],
+
+      currentFilmId: "",
       currentFilm: {},
+
+      favourites: [],
+
+
       display: 'home' // home, film, search
 
     }
@@ -24,6 +29,7 @@ class App extends React.Component {
     this.retrieveSearchString = this.retrieveSearchString.bind(this)
     this.retrieveFilmId = this.retrieveFilmId.bind(this)
     this.toggleDisplay = this.toggleDisplay.bind(this)
+    this.retrieveFave = this.retrieveFave.bind(this)
   }
 
   fetchSearchResults(searchString){
@@ -63,6 +69,12 @@ class App extends React.Component {
     this.fetchFilmResults(currentFilmId)
   }
 
+  retrieveFave(currentFilmId){
+    this.setState({
+      favourites: this.state.favourites.concat(currentFilmId)
+    })
+  }
+
 //when user selects film from search results, search results should be hidden
   toggleDisplay(element){
     this.setState({
@@ -77,7 +89,7 @@ class App extends React.Component {
         <HeaderSearch retrieveSearchString={this.retrieveSearchString} toggleDisplay={this.toggleDisplay}/>
         {this.state.display === 'home' ? <HomePage /> : null}
         {this.state.display === 'search' ? <SearchDisplay toggleDisplay={this.toggleDisplay} retrieveFilmId={this.retrieveFilmId} searchResults={this.state.searchResults} /> : null}
-        {this.state.display === 'film'? <FilmDisplay  filmDetails={this.state.currentFilm}/> : null}
+        {this.state.display === 'film'? <FilmDisplay  retrieveFave={this.retrieveFave} filmDetails={this.state.currentFilm}/> : null}
       </div>
     )
   }

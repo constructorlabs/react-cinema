@@ -4,12 +4,18 @@ body{
   flex-direction: column;
   box-sizing: border-box;
   width: 100vw;
+  height: 100vh;
   background-color: black;
 }
 
+.navbar{
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
 nav > div {
-  height: 4rem;
   background-color: #FBFBFC;
   background:url(
 
@@ -21,6 +27,7 @@ nav > div {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  height: 100%;
 }
 
 .logo{
@@ -55,11 +62,12 @@ nav > div {
 
 .nav__search{
   flex-direction: row;
+
 }
 
 .search__text{
   width: 100%;
-  height: 100%;
+
   font-size: 0.6em
 
 }
@@ -67,6 +75,8 @@ nav > div {
 .search__display{
   background-color: #f4f4f4;
   margin: 20% auto;
+  margin-top: 1rem;
+
   padding: 2em;
   width: 70%;
   box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2), 0 7px 20px 0 rgba(0,0,0,0.17);

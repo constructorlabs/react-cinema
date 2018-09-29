@@ -13,6 +13,9 @@ class FilmDisplay extends React.Component{
     }
 
 
+    this.addToFaves = this.addToFaves.bind(this)
+
+
 
   }
 
@@ -29,6 +32,11 @@ class FilmDisplay extends React.Component{
 
   }
 
+  addToFaves(event){
+    event.preventDefault()
+    this.props.retrieveFave(this.props.filmDetails.imdbID)
+  }
+
 
 
   render(){
@@ -36,7 +44,7 @@ class FilmDisplay extends React.Component{
       <div className="film-display">
         <div className="film-display__header">
           <h2>{this.props.filmDetails.Title} <small>{this.props.filmDetails.Year}</small></h2>
-          <a className="add-favourite-button" href=""><i className="far fa-star add-favourite-button"></i></a>
+          <a onClick={this.addToFaves} className="add-favourite-button" href=""><i className="far fa-star add-favourite-button"></i></a>
         </div>
         <div className="film-display__info">
           <img className="film-display__poster" src={this.props.filmDetails.Poster}/>
