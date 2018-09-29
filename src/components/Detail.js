@@ -19,6 +19,15 @@ class Detail extends React.Component {
     }
   }
 
+  componentWillReceiveProps(newProps) {
+    if (newProps.favourites.map(item => item.imdbID).includes(newProps.detail.imdbID)) {
+      this.setState({isFavourite: true});
+    }  
+    else {
+      this.setState({isFavourite: false});
+    }
+  }
+
   handleClick(event) {
     this.props.close();
   }
