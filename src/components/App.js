@@ -72,10 +72,15 @@ class App extends React.Component {
 
     receiveFav(obj) {
         let favourites = this.state.favourites;
-        favourites.push(obj);
-        this.setState({
-            favourites: favourites
-        });
+        const isNotFav = film => {
+            return film.imdbID == obj.imdbID
+        }
+        if (!favourites.find(isNotFav)) {
+            favourites.push(obj);
+            this.setState({
+                favourites: favourites
+            });
+        }
     }
 
 
