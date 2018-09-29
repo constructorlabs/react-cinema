@@ -25,7 +25,7 @@ class Pages extends React.Component {
       "pages--visable": this.props.movieArray.length > 0
     });
 
-    const previousPageClass = cx("prevousPage", {
+    const previousPageClass = cx("previousPage", {
       "button--notVisable": this.props.currentPage === 1
     });
 

@@ -8,15 +8,15 @@ class Favourites extends React.Component {
   }
 
   handleClick(event) {
+    event.stopPropagation();
     this.props.receiveFavouritesInfo(event.target.id);
   }
 
   render() {
     return (
       <div className="favourites" tabIndex="0">
-        <ul className="favourites__list">
+        <ul onClick={this.handleClick} className="favourites__list">
           {" "}
-          Favourites
           {this.props.favouritesArray.map(favourite => (
             <FavouritesItem
               key={favourite.imdbID}
