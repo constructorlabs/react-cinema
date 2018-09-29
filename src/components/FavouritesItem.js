@@ -23,25 +23,27 @@ class FavouritesItem extends React.Component {
     });
 
     return (
-      <div>
+      <div className="favourites__list__item">
         <li>{this.props.favourite.Title}</li>
-        <button
-          onClick={this.handleClick}
-          className={classesUp}
-          id="favourites__move__up"
-        >
-          &and;
-        </button>
-        <button
-          onClick={this.handleClick}
-          className={classesDown}
-          id="favourites__move__down"
-        >
-          &or;
-        </button>
-        <button onClick={this.handleClick} id="favourites__delete__favourite">
-          X
-        </button>
+        <div className="favourites__list__item__buttons">
+          <button
+            onClick={this.handleClick}
+            className={classesUp}
+            id="favourites__move__up"
+          >
+            &and;
+          </button>
+          <button
+            onClick={this.handleClick}
+            className={classesDown}
+            id="favourites__move__down"
+          >
+            &or;
+          </button>
+          <button onClick={this.handleClick} id="favourites__delete__favourite">
+            X
+          </button>
+        </div>
       </div>
     );
   }

@@ -29,18 +29,24 @@ class App extends React.Component {
   }
 
   fetchMovies() {
-    fetch(
-      `http://www.omdbapi.com/?s=${this.state.searchTerm}&page=${
-        this.state.currentPage
-      }&apikey=${this.state.apiKey}`
-    )
-      .then(response => response.json())
-      .then(body => {
-        this.setState({
-          pagesObject: body,
-          movieArray: body.Search
-        });
+    if (this.state.searchTerm === "") {
+      this.setState({
+        movieArray: []
       });
+    } else {
+      fetch(
+        `http://www.omdbapi.com/?s=${this.state.searchTerm}&page=${
+          this.state.currentPage
+        }&apikey=${this.state.apiKey}`
+      )
+        .then(response => response.json())
+        .then(body => {
+          this.setState({
+            pagesObject: body,
+            movieArray: body.Search
+          });
+        });
+    }
   }
 
   componentDidMount() {

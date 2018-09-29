@@ -49,7 +49,7 @@ class ResultItem extends React.Component {
         <button id="add__to__favourites" className="favourite__button">
         &hearts;
         </button>
-        <img className="results__image" src={this.props.movie.Poster} />
+        <img className="result__image" src={this.props.movie.Poster} />
         <ResultItemDetails
           classes={classes}
           filmDetails={this.state.filmDetails}

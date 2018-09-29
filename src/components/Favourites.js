@@ -13,13 +13,10 @@ class Favourites extends React.Component {
 
   render() {
     return (
-      <div className="favourites">
-        <ul>
+      <div className="favourites" tabIndex="0">
+        <ul className="favourites__list">
           {" "}
           Favourites
-          <button onClick={this.handleClick} id="favourites__clear__favourites">
-            Clear Favourites
-          </button>
           {this.props.favouritesArray.map(favourite => (
             <FavouritesItem
               key={favourite.imdbID}
@@ -28,6 +25,9 @@ class Favourites extends React.Component {
               favouritesArray={this.props.favouritesArray}
             />
           ))}
+          <button onClick={this.handleClick} id="favourites__clear__favourites">
+            Clear Favourites
+          </button>
         </ul>
       </div>
     );
