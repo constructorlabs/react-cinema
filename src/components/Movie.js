@@ -54,7 +54,7 @@ class Movie extends React.Component{
         <img onClick={this.handleClick} src={this.props.image}/>
 
         {this.state.showDetails?
-          <ul>
+          <ul className='movie__details'>
           <li>Director: {this.state.movieDetails.Director}</li>
           <li>Actors: {this.state.movieDetails.Actors}</li>
           {this.state.movieDetails.Ratings == undefined?"":

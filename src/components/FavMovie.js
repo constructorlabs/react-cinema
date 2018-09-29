@@ -7,7 +7,7 @@ class FavMovie extends React.Component {
 
   render() {
     return (
-      <li>
+      <li className="favMovie">
         {this.props.title} {this.props.year}
       </li>
     );

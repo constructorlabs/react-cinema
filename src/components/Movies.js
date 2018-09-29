@@ -45,8 +45,8 @@ class Movies extends React.Component{
 
     return(
       <div>
-        <button onClick={this.handleClick}>Show my favorites</button>
-        {this.state.displayFav?<ul className='favorites'>
+        <button className="favorite__button" onClick={this.handleClick}>Show my favorites</button>
+        {this.state.displayFav?<ul className='favorite__list'>
           {localFavList.map(fav => {
             return  <FavMovie title={fav.Title}
               year={fav.Year} key={fav.imdbID}/>

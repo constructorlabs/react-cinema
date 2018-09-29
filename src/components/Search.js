@@ -38,15 +38,15 @@ class Search extends React.Component{
   }
 
   render(){
-    
+
     return(
         <div>
-        <form onSubmit={this.handleSubmit}>
-          <input type="text"  onChange={this.handleChange} value={this.props.keyWord}/>
+        <form className="search" onSubmit={this.handleSubmit}>
+          <input placeholder="Try your luck" className="search__input" type="text"  onChange={this.handleChange} value={this.props.keyWord}/>
           <button>Search</button>
         </form>
         {this.props.preview==undefined || !this.state.previewDisplay ? []:
-          <ul className='previews' onChange={this.handleChange}>
+          <ul className='search__preview' onChange={this.handleChange}>
           {this.props.preview.map(item=>{
             return <li key={item}>{item}</li>
             })
