@@ -17,12 +17,17 @@ class Paging extends React.Component {
     }   
  
   render(){
+   const totalpages = this.props.totalresults/10;
+
     return (
     <nav className="paging">
-        
-        <a onClick={this.handleClickPrevious} className="paging__previous">&larr; <span>Page: {this.props.currentPage}</span></a>    
-        
-        <a onClick={this.handleClickNext} className="paging__next">&rarr;</a>
+
+      {this.props.currentPage >1 ? <a onClick={this.handleClickPrevious} className="paging__previous">&larr;</a> : null}
+
+        <span className="paging__count">Page: {this.props.currentPage}</span>
+
+      {this.props.currentPage < totalpages ? <a onClick={this.handleClickNext} className="paging__next">&rarr;</a> : null}
+
     </nav>
     )
   }

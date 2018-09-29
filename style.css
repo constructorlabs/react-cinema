@@ -186,7 +186,7 @@ font-size: 1.75rem;
     text-align: center;
     margin:  var(--main-padding) 0 calc( 3 * var(--main-padding) );
 }
-.paging__previous, .paging__next {
+.paging__previous, .paging__next, .paging__count {
     display: inline-block;
     padding: var(--main-padding);
     background: var(--light-color);

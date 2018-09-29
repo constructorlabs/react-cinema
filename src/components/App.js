@@ -24,12 +24,12 @@ class App extends React.Component {
     .then(response => response.json())
     .then(content => {
       if(content.Response !=="False"  ) {
-        this.setState({movieresults: content.Search})
+        this.setState({movieresults: content.Search, moviestotal: content.totalResults})
       } 
       else { alert("oops")}
-    })
+      })
   }
-// App component stores the query
+
   receiveQuery(query) {
     this.setState({query : query})
   }
@@ -42,18 +42,21 @@ class App extends React.Component {
   receivePages(num) {
     // fetch movies when state is being set - not before
     this.setState({page: num}, () => this.fetchMovies())
-    }      
-
+    }   
+    
   render(){
+   
     return (
       <main className="maincontent">
 
       <Search receiveQuery={this.receiveQuery} receiveSubmit={this.receiveSubmit} query={this.state.query}/>
 
-        <section className="movies">
-          <Movies movieresults={this.state.movieresults} />
-        </section>
-        <Paging receivePages={this.receivePages} currentPage={this.state.page}/>
+      <section className="movies">
+        <Movies movieresults={this.state.movieresults} />
+      </section>
+
+      {this.state.movieresults.length !== 0 ? <Paging receivePages={this.receivePages} currentPage={this.state.page} totalresults={this.state.moviestotal} /> : null}
+
       </main>
     )
   }
