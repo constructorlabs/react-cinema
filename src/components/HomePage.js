@@ -6,15 +6,18 @@ class HomePage extends React.Component{
     super()
   }
 
-  render(){
+  componentDidMount(){
+    this.props.populateFavourites()
+  }
 
+  render(){
     return (
       <div className="landing-page">
         <i className="fas fa-film landing-icon"></i>
         <h3 className="landing-text">WELCOME TO PROJECT CINEMA</h3>
         <div className="favourites-container">
           {this.props.favourites.map(fave => {
-            return  <Favourite retrieveFilmId={this.props.retrieveFilmId} toggleDisplay={this.props.toggleDisplay} faveDetails={fave}/>
+            return  <Favourite key={fave.imdbID} retrieveFilmId={this.props.retrieveFilmId} toggleDisplay={this.props.toggleDisplay} faveDetails={fave}/>
           })}
 
         </div>

@@ -32,14 +32,10 @@ class App extends React.Component {
     this.toggleDisplay = this.toggleDisplay.bind(this)
     this.retrieveFave = this.retrieveFave.bind(this)
     this.fetchFavourite = this.fetchFavourite.bind(this)
+    this.populateFavourites = this.populateFavourites.bind(this)
   }
 
   componentDidMount(){
-    const faveList = JSON.parse(localStorage.getItem("favourites"))
-    this.setState({
-      favourites: faveList
-    })
-    faveList.forEach(fave => this.fetchFavourite(fave))
 
   }
 
@@ -49,6 +45,19 @@ class App extends React.Component {
     const faveList = JSON.stringify(this.state.favourites)
     localStorage.setItem("favourites", faveList)
 
+  }
+
+  populateFavourites(){
+    const faveList = JSON.parse(localStorage.getItem("favourites"))
+    this.setState({
+      favourites: faveList
+    })
+    //pretty sure this isnt the best way of doing this, but my favouritesResults was getting duplicated
+    //when Homepage mounted
+    this.setState({
+      favouriteResults: []
+    })
+    faveList.forEach(fave => this.fetchFavourite(fave))
   }
 
   fetchSearchResults(searchString){
@@ -79,10 +88,10 @@ class App extends React.Component {
     fetch(searchURL)
     .then(response => response.json())
     .then(body => {
-      console.log(body)
       this.setState({
         favouriteResults: this.state.favouriteResults.concat(body)
       })
+
     })
   }
 
@@ -118,7 +127,7 @@ class App extends React.Component {
     return (
       <div className="app">
         <HeaderSearch retrieveSearchString={this.retrieveSearchString} toggleDisplay={this.toggleDisplay}/>
-        {this.state.display === 'home' ? <HomePage favourites={this.state.favouriteResults} toggleDisplay={this.toggleDisplay} retrieveFilmId={this.retrieveFilmId} /> : null}
+        {this.state.display === 'home' ? <HomePage favourites={this.state.favouriteResults} populateFavourites={this.populateFavourites} toggleDisplay={this.toggleDisplay} retrieveFilmId={this.retrieveFilmId} /> : null}
         {this.state.display === 'search' ? <SearchDisplay toggleDisplay={this.toggleDisplay} retrieveFilmId={this.retrieveFilmId} searchResults={this.state.searchResults} /> : null}
         {this.state.display === 'film' ? <FilmDisplay  retrieveFave={this.retrieveFave} filmDetails={this.state.currentFilm}/> : null}
       </div>
