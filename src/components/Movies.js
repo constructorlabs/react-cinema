@@ -40,8 +40,11 @@ class Movies extends React.Component{
   }
 
   render(){
+      console.log(this.props.movies);
+
     const storageString=localStorage.getItem('favList')
     let localFavList=!storageString ? []: JSON.parse(storageString)
+
     return(
       <div>
         <button onClick={this.handleClick}>Show my favorites</button>
@@ -52,6 +55,7 @@ class Movies extends React.Component{
             })}
         </ul>:""}
         <div className='movies' >
+
         {this.props.movies.map(movie => {
 
           return  <Movie

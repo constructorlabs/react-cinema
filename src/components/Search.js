@@ -34,13 +34,13 @@ class Search extends React.Component{
           <input type="text"  onChange={this.handleChange} value={this.props.keyWord}/>
           <button>Search</button>
         </form>
-        {this.props.preview==undefined ? []:
+        {/* {this.props.preview==undefined ? []:
           <ul className='previews' onChange={this.handleChange}>
           {this.props.preview.map(item=>{
             return <li key={item}>{item}</li>
             })
           }
-          </ul>}
+          </ul>} */}
         </div>
 
     )

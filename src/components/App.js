@@ -56,7 +56,7 @@ class App extends React.Component {
         const previewTitles=body.Search.map(movie => movie.Title);
         this.setState({
           preview: previewTitles
-        },()=> console.log(this.state.preview));
+        });
 
       });
   }
@@ -74,7 +74,8 @@ class App extends React.Component {
           movies: body.Search,
           totalPages: Math.ceil(body.totalResults / 10),
           preview:[]
-        });
+        },()=>console.log(this.state.movies))
+
       });
   }
 
