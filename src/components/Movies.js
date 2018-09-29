@@ -1,6 +1,6 @@
 import React from 'react';
 import Movie from './Movie';
-import FavList from './FavList';
+import FavMovie from './FavMovie';
 
 
 
@@ -40,13 +40,14 @@ class Movies extends React.Component{
   }
 
   render(){
-
+    const storageString=localStorage.getItem('favList')
+    let localFavList=!storageString ? []: JSON.parse(storageString)
     return(
       <div>
         <button onClick={this.handleClick}>Show my favorites</button>
         {this.state.displayFav?<ul className='favorites'>
-          {this.state.favList.map(fav => {
-            return  <FavList title={fav.Title}
+          {localFavList.map(fav => {
+            return  <FavMovie title={fav.Title}
               year={fav.Year} key={fav.imdbID}/>
             })}
         </ul>:""}
