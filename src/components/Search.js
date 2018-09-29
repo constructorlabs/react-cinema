@@ -10,6 +10,7 @@ class Search extends React.Component {
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.setSearchHint = this.setSearchHint.bind(this);
     }
 
     handleSubmit(e) {
@@ -21,7 +22,13 @@ class Search extends React.Component {
     handleChange(e) {
         this.setState({
             search: e.target.value
-        });
+        }, () => this.setSearchHint(this.state.search));
+    }
+
+    setSearchHint(string) {
+        if (string.length > 3) {
+            this.props.receiveSearchHint(string);
+        }
     }
 
     render() {

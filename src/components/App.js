@@ -23,6 +23,7 @@ class App extends React.Component {
         this.receivePageNum = this.receivePageNum.bind(this);
         this.receiveMove = this.receiveMove.bind(this);
         this.receiveFav = this.receiveFav.bind(this);
+        this.receiveSearchHint = this.receiveSearchHint.bind(this);
         this.searchByTitle = this.searchByTitle.bind(this);
         this.searchByID = this.searchByID.bind(this);
     }
@@ -60,6 +61,27 @@ class App extends React.Component {
             currentPage: 1,
             filmDetails: {}
         }, () => this.searchByTitle(query, this.state.currentPage));
+    }
+
+    receiveSearchHint(string) {
+        this.setState({
+            query: string,
+        }, () => this.searchHint(this.state.query));
+    }
+
+    searchHint(string, pageNum = 1) {
+        fetch(`http://www.omdbapi.com/?apikey=507b4100&type=movie&s=${string}&page=${pageNum}`)
+            .then(response => response.json())
+            .then(body => {
+                console.log(body.Search)
+                // this.setState({
+                //     films: body.Search,
+                //     totalFilms: body.totalResults
+                // })
+            })
+            .catch(error => {
+                alert(error);
+            })
     }
 
     receiveFilmID(id) {
@@ -120,7 +142,7 @@ class App extends React.Component {
             <div>
                 <Header />
                 <FavouritesList favouritesList={this.state.favourites} receiveFav={this.receiveFav} receiveFilmID={this.receiveFilmID} receiveMove={this.receiveMove} delFavClass={classes[0]} moveFavClass={classes[1]} titleClass={classes[2]} />
-                <Search receiveTitleQuery={this.receiveTitleQuery} />
+                <Search receiveTitleQuery={this.receiveTitleQuery} receiveSearchHint={this.receiveSearchHint} />
 
                 {this.state.films.length > 0 &&
                     <SearchResults films={this.state.films} totalFilms={this.state.totalFilms} receiveFilmID={this.receiveFilmID} receivePageNum={this.receivePageNum} currentPage={this.state.currentPage} />}
