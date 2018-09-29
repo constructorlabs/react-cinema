@@ -40,8 +40,6 @@ class Movies extends React.Component{
   }
 
   render(){
-      console.log(this.props.movies);
-
     const storageString=localStorage.getItem('favList')
     let localFavList=!storageString ? []: JSON.parse(storageString)
 

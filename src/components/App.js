@@ -18,6 +18,7 @@ class App extends React.Component {
     this.state = {
       movies: [],
       keyWord: "",
+
       page: 1,
       totalPages: "",
       preview:[]
@@ -27,6 +28,7 @@ class App extends React.Component {
     this.receiveSearchInput = this.receiveSearchInput.bind(this);
     this.receivePageChange = this.receivePageChange.bind(this);
     this.fetchPreview = this.fetchPreview.bind(this);
+    this.cleanPreview = this.cleanPreview.bind(this);
 
   }
 
@@ -44,6 +46,7 @@ class App extends React.Component {
   receiveSearchInput(input) {
     this.setState({
       keyWord: input
+
     });
   }
 
@@ -61,6 +64,12 @@ class App extends React.Component {
       });
   }
 
+  cleanPreview(){
+    this.setState({
+      preview:[]
+    })
+  }
+
   fetchMovies(){
     //console.log(this.state.keyWord)
     let moviesUrl = `http://www.omdbapi.com/?s=${this.state.keyWord}&page=${
@@ -70,7 +79,7 @@ class App extends React.Component {
       .then(response => response.json())
       .then(body => {
         this.setState({
-          
+    
           movies: body.Search,
           totalPages: Math.ceil(body.totalResults / 10),
           preview:[]
@@ -89,6 +98,7 @@ class App extends React.Component {
           keyWord={this.state.keyWord}
           fetchMovies={this.fetchMovies}
           preview={this.state.preview}
+          cleanPreview={this.cleanPreview}
         />
         <Pagination
           receivePageChange={this.receivePageChange}
