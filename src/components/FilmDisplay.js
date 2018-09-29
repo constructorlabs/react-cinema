@@ -1,6 +1,8 @@
 import React from "react"
 import cx from "classnames"
+import { v4 } from "uuid"
 import NewsItem from "./NewsItem.js"
+
 
 class FilmDisplay extends React.Component{
   constructor(){
@@ -61,7 +63,7 @@ class FilmDisplay extends React.Component{
         <div className="film-display__news">
           <h4>Recent News</h4>
           {this.state.filmNews.map(story => {
-            return <NewsItem story={story} />
+            return <NewsItem key={v4()} story={story} />
           })}
 
         </div>

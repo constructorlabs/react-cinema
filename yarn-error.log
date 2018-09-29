@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add classnames
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add uuid
 
 PATH: 
   C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\Git\cmd;C:\Program Files (x86)\Streamlink\bin;C:\Program Files\nodejs\;C:\Program Files (x86)\Yarn\bin\;C:\Users\dangr\AppData\Local\Microsoft\WindowsApps;C:\Users\dangr\AppData\Local\atom\bin;C:\Users\dangr\AppData\Local\Microsoft\WindowsApps;C:\Users\dangr\AppData\Roaming\npm;C:\Users\dangr\AppData\Local\GitHubDesktop\bin;C:\Users\dangr\AppData\Local\Yarn\bin
@@ -14,7 +14,7 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: EPERM: operation not permitted, unlink 'C:\Users\dangr\workspace\react-cinema\node_modules\react\node_modules\.bin'
+  Error: EPERM: operation not permitted, unlink 'C:\Users\dangr\workspace\react-cinema\node_modules\nomnom\node_modules\chalk\node_modules\.bin'
 
 npm manifest: 
   {
@@ -36,6 +36,7 @@ npm manifest:
       ]
     },
     "dependencies": {
+      "classnames": "^2.2.6",
       "react": "^16.2.0",
       "react-dom": "^16.2.0"
     },
@@ -1381,6 +1382,10 @@ Lockfile:
       define-property "^0.2.5"
       isobject "^3.0.0"
       static-extend "^0.1.1"
+  
+  classnames@^2.2.6:
+    version "2.2.6"
+    resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.6.tgz#43935bffdd291f326dad0a205309b38d00f650ce"
   
   cli-cursor@^1.0.1, cli-cursor@^1.0.2:
     version "1.0.2"
