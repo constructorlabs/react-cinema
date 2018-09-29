@@ -20,6 +20,7 @@ class App extends React.Component {
         this.receiveTitleQuery = this.receiveTitleQuery.bind(this);
         this.receiveFilmID = this.receiveFilmID.bind(this);
         this.receivePageNum = this.receivePageNum.bind(this);
+        this.receiveFav = this.receiveFav.bind(this);
         this.searchByTitle = this.searchByTitle.bind(this);
         this.searchByID = this.searchByID.bind(this);
     }
@@ -69,6 +70,14 @@ class App extends React.Component {
         }, () => this.searchByTitle(this.state.query, this.state.currentPage));
     }
 
+    receiveFav(obj) {
+        let favourites = this.state.favourites;
+        favourites.push(obj);
+        this.setState({
+            favourites: favourites
+        });
+    }
+
 
     render() {
         return (
@@ -80,7 +89,7 @@ class App extends React.Component {
                     <SearchResults films={this.state.films} totalFilms={this.state.totalFilms} receiveFilmID={this.receiveFilmID} receivePageNum={this.receivePageNum} currentPage={this.state.currentPage} />}
 
                 {Object.keys(this.state.filmDetails).length != 0 &&
-                    <FilmDetails filmDetails={this.state.filmDetails} />}
+                    <FilmDetails filmDetails={this.state.filmDetails} receiveFav={this.receiveFav} />}
 
             </div>
         )
