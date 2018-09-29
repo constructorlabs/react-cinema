@@ -10,6 +10,7 @@ class Pagination extends React.Component {
 
         this.handleClick = this.handleClick.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleClick(e) {
@@ -27,6 +28,7 @@ class Pagination extends React.Component {
     }
 
     handleChange(e) {
+        console.log(e.target.value);
         this.setState({
             currentPage: e.target.value
         });
@@ -44,7 +46,7 @@ class Pagination extends React.Component {
         return (
             <nav id="page-nav" onClick={this.handleClick}>
                 <button className="btn btn__prev">&larr;</button>
-                <p className="page-num">Page <input onChange={this.handleChange} type="text" className="page-current" value={this.props.currentPage} /> of <span className="page-total">{totalPages}</span></p>
+                <p className="page-num">Page</p> <form className="page-current" onSubmit={this.handleSubmit}><input onChange={this.handleChange} type="text" value={this.state.currentPage} /></form> <p>of <span className="page-total">{totalPages}</span></p>
                 <button className="btn btn__next">&rarr;</button>
             </nav>
         )

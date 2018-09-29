@@ -194,8 +194,31 @@ header {
 
 #page-nav {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   font-size: 0.9rem;
+}
+
+.btn__prev{
+  font-weight: bold;
+  margin-right: 2rem;
+}
+
+.page-current{
+    margin: 0.5rem 0.25rem 0 0.5rem;
+    max-width: 2rem;
+}
+
+.page-current input{
+  max-width: inherit;
+  border: 1px solid light gray;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color:orangered;
+}
+
+.btn__next{
+  margin-left:2rem;
 }
 
 .film-details__wrapper {
