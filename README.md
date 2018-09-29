@@ -2,8 +2,8 @@
 
 Yetflix is an easy-to-use, minimalistic search engine for movies that is based on the Open Movie Database API. 
 
-![Search Results](/screenshots/img1.jpg?raw=true "Search Results")
-![Details](/screenshots/img2.jpg?raw=true "Details")
+![Search Results](/screenshots/img1.jpeg?raw=true "Search Results")
+![Details](/screenshots/img2.jpeg?raw=true "Details")
 
 ## How to use
 
