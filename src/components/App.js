@@ -13,7 +13,8 @@ class App extends React.Component {
             currentPage: 1,
             films: [],
             totalFilms: 0,
-            filmDetails: {}
+            filmDetails: {},
+            favourites: []
         }
 
         this.receiveTitleQuery = this.receiveTitleQuery.bind(this);

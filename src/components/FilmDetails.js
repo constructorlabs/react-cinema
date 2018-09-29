@@ -1,8 +1,15 @@
 import React from 'react';
+import cx from 'classnames';
 
 class FilmDetails extends React.Component {
 
+    constructor() {
+        super();
 
+        this.state = {
+            isFav: false
+        }
+    }
 
     render() {
 
