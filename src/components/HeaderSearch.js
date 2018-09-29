@@ -35,12 +35,19 @@ class HeaderSearch extends React.Component{
 
   render(){
     return (
-      <header className="" onSubmit={this.handleSubmit}>
-        <form>
-          <input onChange={this.handleInput} type="text" />
-          <input type="submit" />
-        </form>
-      </header>
+      <nav>
+        <div className="nav__home">
+          <h2 className="logo">PROJECT CINEMA</h2>
+          <i className="fas fa-search search__display-bar"></i>
+        </div>
+        <div className="nav__search">
+          <form onSubmit={this.handleSubmit} className="search">
+            <input type="text" className="search__text" onChange={this.handleInput} placeholder="Search.."/>
+            <button type="submit" className="search__submit"><i className="fas fa-search"></i></button>
+          </form>
+        </div>
+      </nav>
+
     )
   }
 

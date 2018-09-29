@@ -4,6 +4,7 @@ body{
   flex-direction: column;
   box-sizing: border-box;
   width: 100vw;
+  background-color: black;
 }
 
 
@@ -53,7 +54,6 @@ nav > div {
 }
 
 .nav__search{
-  display: none;
   flex-direction: row;
 }
 

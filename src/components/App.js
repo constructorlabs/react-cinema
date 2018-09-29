@@ -73,7 +73,7 @@ class App extends React.Component {
 
   render(){
     return (
-      <div>
+      <div className="app">
         <HeaderSearch retrieveSearchString={this.retrieveSearchString} toggleDisplay={this.toggleDisplay}/>
         {this.state.display === 'home' ? <HomePage /> : null}
         {this.state.display === 'search' ? <SearchDisplay toggleDisplay={this.toggleDisplay} retrieveFilmId={this.retrieveFilmId} searchResults={this.state.searchResults} /> : null}

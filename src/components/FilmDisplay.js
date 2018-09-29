@@ -1,25 +1,35 @@
 import React from "react"
 import cx from "classnames"
+import NewsItem from "./NewsItem.js"
 
 class FilmDisplay extends React.Component{
   constructor(){
     super()
 
-    // this.state = {
-    //   filmDisplayHidden: true
-    // }
+    this.state = {
+      filmNews: []
+    }
+
 
 
   }
 
 
+  componentWillReceiveProps(nextProps){
+      console.log(nextProps.filmDetails.Title)
+      fetch(`https://newsapi.org/v2/everything?q="${nextProps.filmDetails.Title}"&sortBy=relevancy&pageSize=6&apiKey=9ed005ef4eb94baf913fce701c69972f`)
+      .then(response => response.json())
+      .then(body => {
+        this.setState({
+          filmNews: body.articles
+        })
+      })
+
+  }
+
+
+
   render(){
-    // const classes = cx("film-display", {
-    //   "film-display--hidden": this.state.filmDisplayHidden
-    // })
-
-
-
     return(
       <div className="film-display">
         <div className="film-display__header">
@@ -47,6 +57,13 @@ class FilmDisplay extends React.Component{
         <span>Released: {this.props.filmDetails.Released}, Box Office: {this.props.filmDetails.BoxOffice}. DVD: {this.props.filmDetails.DVD}</span>
         <span>{this.props.filmDetails.Country} | {this.props.filmDetails.Language} | {this.props.filmDetails.Production} </span>
         <span><a href="{this.props.filmDetails.Website}">Website</a></span>
+        </div>
+        <div className="film-display__news">
+          <h4>Recent News</h4>
+          {this.state.filmNews.map(story => {
+            return <NewsItem story={story} />
+          })}
+
         </div>
     </div>
 
