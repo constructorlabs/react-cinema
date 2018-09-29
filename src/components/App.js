@@ -93,7 +93,19 @@ class App extends React.Component {
     }
 
     receiveMove(film) {
-        console.log(film);
+        const favourites = this.state.favourites;
+        const outIndex = +favourites.indexOf(film);
+        let inIndex = 0;
+        if (outIndex > 1) {
+            inIndex = outIndex - 1;
+        } else {
+            inIndex = 0;
+        }
+        const fav = favourites.splice(outIndex, 1)[0];
+        favourites.splice(inIndex, 0, fav);
+        this.setState({
+            favourites: favourites
+        })
     }
 
     render() {
