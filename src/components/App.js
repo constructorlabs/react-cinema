@@ -10,7 +10,6 @@ class App extends React.Component {
     this.handleClick = this.handleClick.bind(this)
     this.handlePrevClick = this.handlePrevClick.bind(this)
     this.receiveSearch = this.receiveSearch.bind(this)
-    // this.componentDidMount = this.componentDidMount.bind(this)
    
     this.fetchMovies = this.fetchMovies.bind(this)
     this.state ={
@@ -20,10 +19,7 @@ class App extends React.Component {
     }
   }
 
-  // componentDidMount(){
-  //   this.fetchMovies("")
-  // }
-
+  
   fetchMovies(userSearch){
     fetch(`http://www.omdbapi.com/?apikey=8d5ab09&s=${userSearch}&page=${this.state.page}`)
     .then(response => response.json())
@@ -49,17 +45,15 @@ class App extends React.Component {
    
     this.setState({
       page: this.state.page + 1
-    })
-   this.fetchMovies(this.state.userSearch,this.setState.page)
-   window.scrollTo(0,1000)
+    }, () => this.fetchMovies(this.state.userSearch,this.setState.page))
+   window.scrollTo(0,1050)
   }
 
   handlePrevClick(){
     this.setState({
       page: this.state.page - 1
-    })
-    this.fetchMovies(this.state.userSearch, this.setState.page)
-    window.scrollTo(0,500)
+    },() => this.fetchMovies(this.state.userSearch, this.setState.page))
+    window.scrollTo(0,1050)
   }
 
 
@@ -73,9 +67,12 @@ class App extends React.Component {
        <Search  receiver={this.receiveSearch}/>
        {/* add a ternary to show hero if no movie search and if movie is search, no hero */}
        <Hero />
-       <Results moviesArray={this.state.moviesArray}/>
-       <button className='load-button' onClick={this.handleClick}>Next 10 Results</button>
-       <button className='load-button' onClick={this.handlePrevClick}>Prev Results</button>
+       <Results   moviesArray={this.state.moviesArray}/>
+
+       <div className='buttons'>
+       <button className='load-button__next' onClick={this.handleClick}>Next 10 Results</button>
+       <button className='load-button__prev' onClick={this.handlePrevClick}>Prev Results</button>
+       </div>
       </div>
     )
   }

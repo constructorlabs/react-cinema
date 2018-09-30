@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from './Button'
+
 
 class Displayresults extends React.Component {
   constructor(){
@@ -28,11 +28,14 @@ class Displayresults extends React.Component {
       Genre: `Genre: ${body.Genre}`,
       Runtime: `Runtime: ${body.Runtime}`,
       
+      
 
     }))
   }
   
   render(){
+         
+
     return (
          
         <div className='results' >

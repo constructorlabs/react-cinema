@@ -20,7 +20,6 @@ constructor(){
         //capture user input submit
         event.preventDefault()
         this.props.receiver(this.state.text)
-        
     }
  
 

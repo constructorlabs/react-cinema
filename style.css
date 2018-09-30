@@ -67,9 +67,20 @@ span{
     border-radius: 10% / 50%;
 }
 
-button .load-button{
 
-   
+
+.buttons{
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+}
+
+.load-button__next:hover{
+    transform: scale(1.1);
+}
+
+.load-button__prev:hover{
+    transform: scale(1.1);
 }
 
 @media screen and (min-width: 500px) {
