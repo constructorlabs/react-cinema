@@ -37,6 +37,7 @@ class App extends React.Component {
             .then(response => response.json())
             .then(body => {
                 this.setState({
+                    hints: [],
                     films: body.Search,
                     totalFilms: body.totalResults
                 })

@@ -15,7 +15,7 @@ class SearchResults extends React.Component {
 
     render() {
         return (
-            <section id="search__results">
+            <section className="search__results">
                 <div onClick={this.handleClick} className="search__results__page">
                     {this.props.films.map(film => {
                         return <Film key={film.imdbID} id={film.imdbID} title={film.Title} year={film.Year} poster={film.Poster} />
