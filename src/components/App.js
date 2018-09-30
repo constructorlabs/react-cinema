@@ -8,9 +8,8 @@ import Favourites from './Favourites'
 class App extends React.Component {
   constructor() {
     super();
-
     this.state = {
-      query: 'blade',
+      query: '',
       movies: [],
       movieId: '',
       info: {},
@@ -18,33 +17,58 @@ class App extends React.Component {
       currentPage: 1,
       totalResults: 0,
       totalPages: 0,
-      pages: [1, 2, 3, 4, 5, 6]
+      pages: [1, 2, 3, 4, 5, 6],
+      movieIsFav: false,
+      renderInfo: false,
+      loading: true
     };
 
     this.receiveQuery = this.receiveQuery.bind(this);
     this.fetchMovies = this.fetchMovies.bind(this);
     this.receiveMovie = this.receiveMovie.bind(this);
-    this.addFavourite = this.addFavourite.bind(this);
+    this.toggleFavourite = this.toggleFavourite.bind(this);
     this.receivePageNumber = this.receivePageNumber.bind(this);
     this.handleFavMenuClick = this.handleFavMenuClick.bind(this);
     this.handleFavMenuChange = this.handleFavMenuChange.bind(this);
+    this.deleteFavourite = this.deleteFavourite.bind(this);
   }
 
   receiveQuery(query) {
     this.setState({
       query: query,
-      currentPage: 1
-    })
-    this.fetchMovies(query);
+      currentPage: 1,
+      renderInfo: false,
+      loading: true
+    }, this.fetchMovies)
+
   }
 
   receiveMovie(imdbId) {
     this.fetchInfo(imdbId);
+    if (this.state.favourites.find(favourite => favourite.imdbID === imdbId)) {
+      this.setState({ movieIsFav: true, renderInfo: true })
+    } else {
+      this.setState({ movieIsFav: false, renderInfo: true })
+    }
+
   }
 
-  addFavourite(info) {
-    const newFavourites = this.state.favourites.concat(info);
-    this.setState({favourites: newFavourites});
+  toggleFavourite(info) {
+
+    if (this.state.movieIsFav === false) {
+      const newFavourites = this.state.favourites.concat(info);
+      this.setState({ favourites: newFavourites, movieIsFav: true });
+      localStorage.favourites = (JSON.stringify(newFavourites));
+    } else {
+      const newFavourites = this.state.favourites.filter(favourite => info.imdbID !== favourite.imdbID)
+      this.setState({ favourites: newFavourites, movieIsFav: false });
+      localStorage.favourites = (JSON.stringify(newFavourites));
+    }
+  }
+
+  deleteFavourite(imdbId) {
+    const newFavourites = this.state.favourites.filter(favourite => imdbId.imdbID !== favourite.imdbID)
+    this.setState({ favourites: newFavourites, movieIsFav: false });
     localStorage.favourites = (JSON.stringify(newFavourites));
   }
 
@@ -55,16 +79,20 @@ class App extends React.Component {
 
   }
 
-  fetchMovies() {
+  fetchMovies(query) {
     return fetch(`http://www.omdbapi.com/?s=${this.state.query}&page=${this.state.currentPage}&apiKey=f155c772`)
       .then(data => data.json())
       .then(response => {
         this.setState({
           movies: response.Search,
           totalResults: response.totalResults,
-          totalPages: Math.ceil(response.totalResults / 10)
+          totalPages: Math.ceil(response.totalResults / 10),
+          loading: false
         })
       })
+      .catch(error => {
+        console.log(error);
+      });
   }
 
   fetchInfo(imdbId) {
@@ -78,33 +106,15 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    // this.fetchMovies();
-    console.log("componentDidMount");
-    this.setState({favourites: JSON.parse(window.localStorage.favourites)});
+    if (window.localStorage.favourites) {
+      this.setState({ favourites: JSON.parse(window.localStorage.favourites) });
+    }
   }
 
-  componentWillMount() {
-    console.log("componentWillMount")
-  }
-
-  componentWillUpdate(nextProps, nextState) {
-    console.log("componentWillUpdate")
-  }
-
-  componentDidUpdate() {
-    console.log("componentDidUpdate")
-  }
-
-  handleFavMenuClick() {
-    console.log("handleFavMenuClick")
-  }
-
-  handleFavMenuChange() {
-    console.log("handleFavMenuChange")
-  }
 
   render() {
-    console.log("render")
+    // console.log("render")
+
 
     return (
 
@@ -116,14 +126,12 @@ class App extends React.Component {
             <h1 className="nav-bar__title">Movie Search</h1>
 
             <div className="nav-dropdown">
-              <Favourites />
-              {/* {this.props.moviesArray.map(movie => <Movie key={movie.imdbID} id={movie.imdbID} source={movie.Poster} title={movie.Title} year={movie.Year} receiveMovie={this.props.receiveMovie} />)} */}
               <div className="nav-dropdown__fav" onClick={this.handleFavMenuClick} onMouseOver={this.handleFavMenuChange}>
                 <img className="nav-dropdown-icon" src="src/images/favouritesFolder.png" />
               </div>
-              <div className="nav-dropdown__content">
-                <h3 className="favorites-title">Favorites</h3>
-                {this.state.favourites.map(favourite => <Favourites key={favourite.imdbID} id={favourite.imdbID} title={favourite.Title} year={favourite.Year} source={favourite.Poster} />)}
+              <div className="fav_menu">
+                <h3 className="fav-menu__title">My Favourites</h3>
+                {this.state.favourites.map(favourite => <Favourites key={favourite.imdbID} id={favourite.imdbID} favourite={favourite} deleteFavourite={this.deleteFavourite} />)}
               </div>
             </div>
 
@@ -131,16 +139,16 @@ class App extends React.Component {
           <Search receiveQuery={this.receiveQuery} />
         </header>
 
-        <Info addFavourite={this.addFavourite} info={this.state.info} />
-
-        <Movies receiveMovie={this.receiveMovie} moviesArray={this.state.movies} />
-
+        {!this.state.renderInfo ? null : <Info toggleFavourite={this.toggleFavourite} info={this.state.info} favourites={this.state.favourites} movieIsFav={this.state.movieIsFav} />}
+        {/* {this.state.loading ? (console.log("still loading")) : <Movies receiveMovie={this.receiveMovie} moviesArray={this.state.movies} />} */}
+        {this.state.loading === undefined ? console.log("movies is loading") : <Movies receiveMovie={this.receiveMovie} moviesArray={this.state.movies} />}
+        {/* {console.log("loadingStatus" + this.state.loading)} */}
         <Pagination receivePageNumber={this.receivePageNumber} currentPage={this.state.currentPage} totalResults={this.state.totalResults} totalPages={this.state.totalPages} />
 
       </main>
+
     )
   }
 
 }
-
 export default App;
