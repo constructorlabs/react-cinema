@@ -59,12 +59,13 @@ class FilmDisplay extends React.Component{
           <span>{this.props.filmDetails.Ratings[1].Source}: {this.props.filmDetails.Ratings[1].Value}</span> */}
         </div>
         <div className="film-display__misc">
-        <h5>Miscellaneous</h5>
-        <span>Released: {this.props.filmDetails.Released}, Box Office: {this.props.filmDetails.BoxOffice}. DVD: {this.props.filmDetails.DVD}</span>
-        <span>{this.props.filmDetails.Country} | {this.props.filmDetails.Language} | {this.props.filmDetails.Production} </span>
-        <span><a href="{this.props.filmDetails.Website}">Website</a></span>
-        </div>
+          <h5>Miscellaneous</h5>
+          <span>Released: {this.props.filmDetails.Released}, Box Office: {this.props.filmDetails.BoxOffice}. DVD: {this.props.filmDetails.DVD}</span>
+          <span>{this.props.filmDetails.Country} | {this.props.filmDetails.Language} | {this.props.filmDetails.Production} </span>
+          <span><a href="{this.props.filmDetails.Website}">Website</a></span>
+          </div>
         <div className="film-display__news">
+          
           <h4>Recent News</h4>
           {this.state.filmNews.map(story => {
             return <NewsItem key={v4()} story={story} />

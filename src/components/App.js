@@ -57,7 +57,12 @@ class App extends React.Component {
     this.setState({
       favouriteResults: []
     })
-    faveList.forEach(fave => this.fetchFavourite(fave))
+    //make sure we received an array in local storage before using array method to fill favouriteResults
+    faveList
+       ? faveList.forEach(fave => this.fetchFavourite(fave))
+       : null
+
+
   }
 
   fetchSearchResults(searchString){
@@ -110,12 +115,12 @@ class App extends React.Component {
   }
 
   retrieveFave(currentFilmId){
-    this.setState({
-      favourites: this.state.favourites.concat(currentFilmId)
-    })
+    this.state.favourites
+    ?  this.setState({ favourites: this.state.favourites.concat(currentFilmId) })
+    :  this.setState({ favourites: [currentFilmId]})
   }
 
-//when user selects film from search results, search results should be hidden
+//when user selects film from search results, search results should be hidden etc.
   toggleDisplay(element){
     this.setState({
       display: element
