@@ -11,10 +11,10 @@ class Detail extends React.Component {
         <div className="moviesfeed__details">
             <div className="moviesfeed__details--wrap">
                 <ul className="moviesfeed__details-list menu--settings">
-                    <li>{this.props.movie.Director}</li>
+                    <li>Director <strong>{this.props.movie.Director}</strong></li>
                     <li>{this.props.movie.Plot}</li>
-                    <li>{this.props.movie.Actors}</li>
-                    <li>{this.props.movie.Language}</li>
+                    <li>Actors: <strong>{this.props.movie.Actors}</strong></li>
+                    <li>Language: <strong>{this.props.movie.Language}</strong></li>
                 </ul>
             </div>
         </div>

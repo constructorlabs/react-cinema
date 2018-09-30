@@ -48,7 +48,7 @@ class App extends React.Component {
     // fetch movies when state is being set - not before
     this.setState({page: num}, () => this.fetchMovies())
     }   
-    
+   
   render(){
    
     return (

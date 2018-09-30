@@ -20,6 +20,7 @@ class Search extends React.Component {
     }
  
   render(){
+    // when search not filled in - subtle hint
     const searchInput = cx('search__input', {
       'no--results': this.state.submitted && (this.props.noresults === "empty" || this.props.query  === ""),
       'results':  this.state.submitted && this.props.query !== ""
@@ -28,10 +29,12 @@ class Search extends React.Component {
     return (    
     <section className="search">
         <form onSubmit={this.handleSubmit} className="search__form"  id="search">
-            <input onChange={this.handleChange} className={searchInput}  type='text' name="search" placeholder="Enter film title" autoComplete="search" value={this.props.query} />
+            <div className="search__input-wrapper">
+              <input onChange={this.handleChange} className={searchInput}  type='text' name="search" placeholder="Enter film title" autoComplete="search" value={this.props.query} />
+            </div>
             <button className="btn search__btn">Search</button>
         </form>
-    </section>
+      </section>
     )
   }
 }

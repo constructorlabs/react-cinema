@@ -24,7 +24,7 @@ class Movie extends React.Component {
      clicked: !this.state.clicked
     });
 
-    if (!(Math.max(window.innerWidth) > 768) || !(Math.max(window.innerHeight) > 768)) {
+    if (Math.max(window.innerWidth) < 768 ){
       this.scrollTo();
     }
   }
