@@ -9,11 +9,14 @@ class App extends React.Component {
     this.state = {
       query : '',
       results : [],
-      selectedMovie : ''
+      selectedMovie : '',
+      page: 1,
+      resultsLeft:0
     }
 
     this.receiveQuery = this.receiveQuery.bind(this);
     this.receiveMovie = this.receiveMovie.bind(this);
+    this.receiveMoreMovies = this.receiveMoreMovies.bind(this);
     this.createUrl = this.createUrl.bind(this);
     this.fetchResults = this.fetchResults.bind(this);
   }
@@ -22,7 +25,7 @@ class App extends React.Component {
   createUrl(typeOfSearch, search) {
     const baseURL = "http://www.omdbapi.com/";
     const apiKey = "95869d44";
-    const page = "1";
+    const page = this.state.page;
     console.log(`${baseURL}?apikey=${apiKey}&${typeOfSearch}=${search}&page=${page}&type=movie`)
     return `${baseURL}?apikey=${apiKey}&${typeOfSearch}=${search}&page=${page}&type=movie`
 }
@@ -31,16 +34,19 @@ class App extends React.Component {
     fetch(this.createUrl('s', this.state.query)).
       then(response => response.json()).
       then(body => {
-        this.setState({
-          results: body.Search
-        })
-        console.log(this.state.results);
+        console.log(body)
+        this.state.page===1?
+          (this.setState({results: body.Search})):
+          (this.setState({results: this.state.results.concat(body.Search)}))
+          this.setState({resultsLeft: body.totalResults-(this.state.page*10)});
+        
       })
   }
 
   receiveQuery(query) {
     this.setState({
-      query: query
+      query: query,
+      page: 1
     },this.fetchResults)
     console.log('hello' + query);
   }
@@ -53,6 +59,13 @@ class App extends React.Component {
     console.log('ffff' + selectedMovie)
   }
 
+  receiveMoreMovies() {
+    this.setState({
+      page:this.state.page+1
+    },this.fetchResults)
+
+  }
+
   render(){
     return (
       <div className="app">
@@ -62,7 +75,9 @@ class App extends React.Component {
             <h1>PHLX</h1>
           </div>
         </div>
-        <Results selectedMovie={this.state.selectedMovie} receiveMovie={this.receiveMovie} results={this.state.results}/>
+        <div className="container">
+         <Results selectedMovie={this.state.selectedMovie} receiveMovie={this.receiveMovie} receiveMoreMovies={this.receiveMoreMovies} results={this.state.results} resultsLeft={this.state.resultsLeft} />
+        </div>
       </div>
     )
   }

@@ -17,7 +17,7 @@ class Result extends React.Component{
         return (
             <div className="result">
                 <img className="result__image" src={this.props.result.Poster} id={this.props.result.imbdID} onClick={this.handleClick} />
-                <p>{this.props.result.Title}</p>
+                <p><strong>{this.props.result.Title} ({this.props.result.Year})</strong></p>
                 {this.props.showInfo ? <Movie movie={this.props.result} imdbID={this.props.result.imdbID} /> : null}
             </div>
         )

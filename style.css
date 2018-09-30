@@ -7,25 +7,28 @@ body {
     align-content: center;
   }
 
-/* .input {
-
-} */
+  .container {
+    margin:10px 10px;
+}
 
 .app {
     width:100%;
     display:flex;
     flex-direction:column;
     background: gainsboro;
+    align-items:center;
 }
 
 
 .search {
     position:fixed;
+    z-index: 10;
     background: rgb(129, 126, 126);
     width:100%;
     display:flex;
     flex:1;
     height:65px;
+    padding:0px;
 }
 
 .search__inner-div {
@@ -34,7 +37,6 @@ body {
     flex-direction:row;
     height:25px;
     background: gainsboro;
-    z-index: 10;
     margin:10px;
     padding:10px;
 
@@ -44,7 +46,7 @@ body {
     display:flex;
     flex-direction: column;
     align-items:center;
-    width: 300px;
+    width: 90%;
     background: white;
     border: solid 0px black;
     margin:10px;
@@ -52,7 +54,7 @@ body {
 }
 
 .result__image {
-    width: 300px;
+    width: 100%;
     height: 300px;
     object-fit:cover;
 }
@@ -60,9 +62,17 @@ body {
 .search-results {
     display:flex;
     flex-direction:column;
+    margin:70px 0px 0px 0;
+    padding:0 10px;
+}
+
+.search-results__column {
+    display:flex;
+    flex-direction:column;
+    flex:1;
+    padding:0;
+    margin:0;
     align-items:center;
-    width: 100%;
-    margin-top:70px;
 }
 
 .search__input {
@@ -73,6 +83,7 @@ body {
 
 .search__form {
     display: flex;
+    flex:4;
 }
 
 .search__button {
@@ -83,22 +94,37 @@ body {
     margin-left: 10px;
 }
 
+.search-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.search-more {
+    display:flex;
+    flex:1;
+    padding:20px;
+    margin:10px;
+    justify-content:center;
+}
+
+.search-more__button {
+    width:50%;
+    background-color: white;
+    border:0;
+    margin:0;
+}
+
 h1 {
     display:flex;
-    width:100px;
     font-family: 'Roboto', sans-serif;
     font-size: 1.5em;
     padding:0px;
     margin:0;
     justify-content:flex-end;
     align-items:center;
+    flex:1;
 }
 
-h2 {font-family: 'Open Sans', sans-serif;
-    padding:0;
-    margin:0;
-    font-size:1em;
-}
 
 .more-info {
         padding-left: 0;
@@ -107,4 +133,20 @@ h2 {font-family: 'Open Sans', sans-serif;
 
 .more-info__item {
     margin: 0 0 10px 0;
+}
+
+@media (min-width: 768px) {
+    .search-results {
+        display:flex;
+        flex-direction:row;
+        margin:70px 0px 0px 0;
+        padding:0 10px;
+    }
+}
+
+@media (min-width: 960px) {
+    .container {
+        width: 940px;
+    }
+
 }
