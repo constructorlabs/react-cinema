@@ -129,6 +129,10 @@ header {
   transition: 1s;
 }
 
+.search__label {
+  display:none;
+}
+
 .search__input {
   grid-area:a;
   justify-self:stretch;
@@ -321,6 +325,7 @@ header {
   background-image: url('../assets/bg_cinema-seats.jpg');
   background-position: bottom;
   background-size: cover;
+  width:100%;
 }
 
 .film-details__wrapper--closed{
