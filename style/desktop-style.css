@@ -1,0 +1,160 @@
+@media (min-width: 1068px) {
+  header {
+    height: 8rem;
+  }
+  #title {
+    font-size: 4rem;
+  }
+
+  .btn__account {
+    font-size: 4rem;
+    margin-right: 2rem;
+  }
+
+  #account {
+    background: skyblue;
+    position: fixed;
+    top: -50rem;
+    left: 80vw;
+    width: 20vw;
+    z-index: 5;
+    transition: top 1s;
+    box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.5);
+  }
+  #account.account--active {
+    top: 8rem;
+  }
+
+  .search__input {
+    width: 50vw;
+    font-size: 3rem;
+    font-weight: 400;
+    padding: 3rem;
+  }
+
+  /* search results */
+  .search-results__page {
+    width: 85vw;
+    margin: 0 auto;
+    padding: 1rem;
+    grid-template-columns: repeat(5, 20%);
+    justify-content: space-around;
+  }
+
+  .film {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-self: center;
+    margin: 0 0.5rem;
+    width: 18vw;
+  }
+
+  .film__title {
+    width: 13vw;
+    font-size: 1.3rem;
+  }
+
+  .film__poster {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
+    width: 13vw;
+    height: 20vw;
+    border: 6px solid white;
+    object-fit: cover;
+    transition: all 0.5s;
+  }
+
+  .film__poster:hover {
+    border-color: orangered;
+  }
+
+  #page-nav {
+    font-size: 1.5rem;
+    justify-content: center;
+    background: whitesmoke;
+  }
+
+  /*. film details */
+
+  #film-details {
+    background-image: url(/src/bg_popcorn.jpg);
+    background-size: cover;
+    padding: 5rem 0 1rem 0;
+    margin-bottom: 0;
+  }
+
+  .film-details__wrapper {
+    width: 65vw;
+    margin: 0 auto;
+    padding-top: 1rem;
+    grid-template-columns: 22vw max-content 1fr;
+    grid-template-rows: repeat(5, min-content) 1fr;
+  }
+
+  .film-details__title {
+    font-size: 2.3rem;
+    border-top: 5px solid black;
+    padding-top: 0.25rem;
+    width: 35vw;
+  }
+
+  .btn__fav {
+    margin: 0 0.5rem 0.25rem;
+    font-size: 1.2rem;
+    justify-self: end;
+    align-self: start;
+    transition: padding 0.2s;
+  }
+
+  .btn__fav:hover {
+    padding: 0.5rem 1rem;
+  }
+
+  .film-details__poster {
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 8;
+    width: 20vw;
+    justify-self: stretch;
+    border: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
+  }
+  .film-details__wrapper h4 {
+    grid-column: 2 / span 2;
+    margin-bottom: 0.5rem;
+    align-self: end;
+  }
+  h4.film-details__director {
+    grid-column: 2 / span 2;
+    align-self: start;
+    margin-bottom: 0.25rem;
+  }
+
+  .film-details__meta {
+    font-size: 1.2rem;
+    font-style: italic;
+    margin-top: 0.5rem;
+    grid-column: 2 / span 2;
+  }
+
+  .film-details__plot,
+  .film-details__actors {
+    grid-column: 2 / span 2;
+    width: 30vw;
+    font-family: serif;
+    margin-top: 0;
+    font-size: 1rem;
+  }
+
+  .film-details__ratings__imdb {
+    grid-column: 2 / span 2;
+    margin: 1rem 0;
+    font-size: 1.2rem;
+  }
+
+  .film-details__wrapper h4 {
+    grid-column: 2 / span 2;
+    margin: 1rem 0 0.5rem 0;
+    align-self: end;
+    font-size: 1.4rem;
+  }
+}
