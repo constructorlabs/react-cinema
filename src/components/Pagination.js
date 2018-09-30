@@ -28,18 +28,17 @@ class Pagination extends React.Component {
                 // (totalButtons > 1) && (<div>Page currentPage of {totalButtons}</div>)
                 }
                 <div className="pagination">
-                { 
+                    { 
                     totalArray(totalButtons).map(item => {
                         return  <div 
                                     key={item} 
                                     id={item} 
                                     className={this.getClass(item)} 
                                     onClick={(event) => this.handleClick(item, event)}>
-                                {item}
+                                    {item}
                                 </div>
-                    })
-                }
-
+                        })
+                    }
                 </div>
             </div>
         )

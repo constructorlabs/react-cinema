@@ -21,8 +21,6 @@ class MovieDisplay extends React.Component {
         const imgURL = (!movie.Poster || movie.Poster === "N/A") ? "./assets/no-image.png" : movie.Poster;
         const noPlot = !movie.Plot || movie.Plot === "N/A";
 
-        // console.log(typeof movie)
-
         const classes = cx({
             "article__text-full": this.state.textDisplay,
             "article__text-none": !this.state.textDisplay
@@ -32,7 +30,7 @@ class MovieDisplay extends React.Component {
 
             <div className="article__main">
                 <div className="article__image-mobile">
-                    <img src={imgURL} className="article__image__src"></img>
+                { movie && <img src={imgURL} className="article__image__src"></img>}
                 </div>
                 <div>
                     <span className="article__header">
@@ -40,12 +38,12 @@ class MovieDisplay extends React.Component {
                     </span>
                 </div>
                 <div className="article__image-ipad">
-                    <img src={imgURL} className="article__image__src"></img>
+                    { movie && <img src={imgURL} className="article__image__src"></img>}
                 </div>
                 <div className="article__text">
                     { (noPlot) || <SetInnerHTML>{"<h3>Plot</h3>"}</SetInnerHTML>}
                     { (noPlot) || movie.Plot}
-                    <div><a onClick={this.toggleTextDisplay}>More details below...</a></div>
+                    { movie && <div><a onClick={this.toggleTextDisplay}>More details below...</a></div>}
                     <div className={classes}>
                         <ul>
                             {

@@ -510,9 +510,6 @@ input[type=text]:blur {
         /* border: 3px solid rgb(25, 0, 255); */
     }
 
-    .article__header {
-
-    }
     .article__photo__wrapper {
         display: flex;
         flex-direction: row;

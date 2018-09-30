@@ -4,10 +4,6 @@ import SearchResults from './SearchResults.js';
 import MovieDisplay from './MovieDisplay.js';
 import Pagination from './Pagination.js';
 
-// load all favourites from localStorage on `componentDidMount` in App. 
-// Also, writing favourites to localStorage on each render is quite inefficient. 
-// It would be better to only do so when favourites change
-
 class App extends React.Component {
   constructor(){
 
