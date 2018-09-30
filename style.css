@@ -10,7 +10,7 @@ body{
 .welcome-heading{
     display:flex;
     justify-content: center;
-    text-align:center
+    text-align:center;
 }
 
 form{
@@ -25,6 +25,16 @@ form{
 
 p.scroll-heading, h3.scroll-heading{
     text-align:center;
+}
+
+h1.scroll-heading{
+    display: flex;
+    justify-content: center;
+}
+
+span{
+    display:flex;
+    justify-content: center;
 }
 
 .hero-image {
@@ -43,14 +53,13 @@ p.scroll-heading, h3.scroll-heading{
 .hero-video{
     display:flex;
     justify-content: center;
-    width: 100%
+    width: 100%;
     
 }
 
 .results{
     display: flex;
     flex-direction: column;
-    
 }
 
 
@@ -58,8 +67,9 @@ p.scroll-heading, h3.scroll-heading{
     border-radius: 10% / 50%;
 }
 
-.load-button{
-   margin: auto;
+button .load-button{
+
+   
 }
 
 @media screen and (min-width: 500px) {

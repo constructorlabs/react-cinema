@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from './Button'
 
 class Displayresults extends React.Component {
   constructor(){
@@ -33,7 +34,7 @@ class Displayresults extends React.Component {
   
   render(){
     return (
-      
+         
         <div className='results' >
             <h1 className='scroll-heading'>{this.props.movie.Title} ({this.props.movie.Year})</h1>
             <span>Click For Movie Info</span>
