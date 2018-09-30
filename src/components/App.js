@@ -14,10 +14,9 @@ class App extends React.Component {
     this.fetchMovies = this.fetchMovies.bind(this)
     this.state ={
         userSearch: "",
-        moviesArray:[],
-        pageNumber: 1
-
+        moviesArray:[]
     }
+    this.page = 1
   }
 
   // componentDidMount(){
@@ -25,11 +24,13 @@ class App extends React.Component {
   // }
 
   fetchMovies(userSearch){
-    fetch(`http://www.omdbapi.com/?apikey=8d5ab09&s=${userSearch}&page=${this.state.pageNumber}`)
+    fetch(`http://www.omdbapi.com/?apikey=8d5ab09&s=${userSearch}&page=${this.page}`)
     .then(response => response.json())
     .then(body => {
       // console.log(body)
-      this.setState({moviesArray: body.Search})
+      this.setState({moviesArray: body.Search,
+                    
+      })
     })
   }
 
@@ -45,11 +46,7 @@ class App extends React.Component {
 
   handleClick(event){
     event.preventDefault()
-    console.log(this.state.pageNumber)
-    this.setState({
-      pageNumber: this.state.pageNumber + 1
-    })
-    console.log(this.state.pageNumber)
+    this.page + 1
   }
 
 
@@ -63,8 +60,9 @@ class App extends React.Component {
        <Search  receiver={this.receiveSearch}/>
        {/* add a ternary to show hero if no movie search and if movie is search, no hero */}
        <Hero />
+       
        <Results moviesArray={this.state.moviesArray}/>
-       <button onClick={this.handleClick}>Load More</button>
+       <button className='load-button' onClick={this.handleClick}>Load More</button>
       </div>
     )
   }

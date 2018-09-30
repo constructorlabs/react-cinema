@@ -43,7 +43,6 @@ class Displayresults extends React.Component {
             <p>{this.state.Director}</p>
             <p>{this.state.Genre}</p>
             <p>{this.state.Runtime}</p>
-
         </div>
     );
   }

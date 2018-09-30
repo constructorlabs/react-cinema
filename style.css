@@ -23,13 +23,8 @@ form{
     color:lightblue;
 }
 
-.scroll-heading{
+p.scroll-heading, h3.scroll-heading{
     text-align:center;
-
-}
-
-span{
-    text-align: center;
 }
 
 .hero-image {
@@ -59,22 +54,30 @@ span{
 }
 
 
-
 .posters{
     border-radius: 10% / 50%;
 }
 
 .load-button{
-    display: none;
+   margin: auto;
 }
 
 @media screen and (min-width: 500px) {
     
+h1.scroll-heading{
+    display: flex;
+    justify-content: center;
+}
 
+span{
+    display:flex;
+    justify-content: center;
+}
 
     .posters{
-        width: 400px;
-        
+       width: 300px;
+        margin:auto;
+    
     }
  
     .posters:hover{
@@ -100,6 +103,12 @@ span{
     
 }
 
+p{
+    width: 260px;
+    margin: auto;
+    padding: 5px;
+    text-align: center;
+}
 
 
 
