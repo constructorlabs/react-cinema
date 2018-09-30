@@ -11,15 +11,32 @@ class App extends React.Component {
       results : [],
       selectedMovie : '',
       page: 1,
-      resultsLeft:0
+      resultsLeft:0,
+      favouritesArray : [],
+      favouritesObject: {test:123}
     }
 
     this.receiveQuery = this.receiveQuery.bind(this);
+    this.receiveFavourite = this.receiveFavourite.bind(this);
     this.receiveMovie = this.receiveMovie.bind(this);
     this.receiveMoreMovies = this.receiveMoreMovies.bind(this);
     this.createUrl = this.createUrl.bind(this);
     this.fetchResults = this.fetchResults.bind(this);
   }
+
+  // componentWillMount() {
+  //   this.setState({
+  //     favouritesObject : JSON.parse(localStorage.getItem('reactFavourites'))
+  //   })
+     
+
+
+      // this.setState({
+      //   favouritesArray : object.Keys(favouritesObject).map(key => favouritesObject[key])
+      // })
+    // }
+
+
 
   // builds the url for omdb api request
   createUrl(typeOfSearch, search) {
@@ -66,6 +83,22 @@ class App extends React.Component {
 
   }
 
+  receiveFavourite(result) {
+    const favObject = this.state.favouritesObject
+    if (favObject.hasOwnProperty(result.imdbID)) {
+      console.log('delete');
+      console.log(favObject)
+      console.log(result.imdbID)
+      delete favObject[result.imdbID]
+    } else {
+      favObject[result.imdbID] = result
+      console.log('add')
+    }
+    this.setState({
+      favouritesObject:favObject
+    })
+  }
+
   render(){
     return (
       <div className="app">
@@ -76,7 +109,7 @@ class App extends React.Component {
           </div>
         </div>
         <div className="container">
-         <Results selectedMovie={this.state.selectedMovie} receiveMovie={this.receiveMovie} receiveMoreMovies={this.receiveMoreMovies} results={this.state.results} resultsLeft={this.state.resultsLeft} />
+         <Results selectedMovie={this.state.selectedMovie} receiveMovie={this.receiveMovie} receiveMoreMovies={this.receiveMoreMovies} results={this.state.results} resultsLeft={this.state.resultsLeft} receiveFavourite={this.receiveFavourite}/>
         </div>
       </div>
     )

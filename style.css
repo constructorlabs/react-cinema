@@ -2,7 +2,7 @@ body {
     margin: 0;
     font-family: "Open Sans", sans-serif;
     min-height: 100vh;
-    background-color: rgb(212, 215, 216);    
+    background: gainsboro;
     background-attachment: fixed;
     align-content: center;
   }
@@ -23,7 +23,7 @@ body {
 .search {
     position:fixed;
     z-index: 10;
-    background: rgb(129, 126, 126);
+    background: gainsboro;
     width:100%;
     display:flex;
     flex:1;
@@ -136,6 +136,10 @@ h1 {
 }
 
 @media (min-width: 768px) {
+    .containt {
+        width: 740px;
+    }
+
     .search-results {
         display:flex;
         flex-direction:row;

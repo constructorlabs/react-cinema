@@ -35,6 +35,7 @@ class Results extends React.Component {
 
 
 
+
     render() {
         console.log(this.props.resultsLeft)
         return (
@@ -42,12 +43,12 @@ class Results extends React.Component {
             <div className="search-results" onScroll={this.handleScroll}>
                 <div className="search-results__column">
                     {this.splitResults('left').map(result => {
-                        return <Result showInfo={result.imdbID === this.props.selectedMovie} result={result} receiveMovie={this.props.receiveMovie} key={result.imdbID} />
+                        return <Result showInfo={result.imdbID === this.props.selectedMovie} result={result} receiveMovie={this.props.receiveMovie} receiveFavourite={this.props.receiveFavourite} key={result.imdbID} />
                     })}
                 </div>
                 <div className="search-results__column" onScroll={this.handleScroll}>
                     {this.splitResults('right').map(result => {
-                        return <Result showInfo={result.imdbID === this.props.selectedMovie} result={result} receiveMovie={this.props.receiveMovie} key={result.imdbID} />
+                        return <Result showInfo={result.imdbID === this.props.selectedMovie} result={result} receiveMovie={this.props.receiveMovie} receiveFavourite={this.props.receiveFavourite} key={result.imdbID} />
                     })}
                 </div>
             </div>
