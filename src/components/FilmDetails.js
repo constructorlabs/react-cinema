@@ -5,13 +5,18 @@ class FilmDetails extends React.Component {
 
     constructor() {
         super();
-
         this.handleClick = this.handleClick.bind(this);
     }
 
     handleClick(e) {
-        this.props.receiveFav(this.props.filmDetails);
+        if (e.target.classList.value == "btn btn__close") {
+            this.props.toggleVisible();
+        } else {
+            this.props.receiveFav(this.props.filmDetails);
+        }
     }
+
+
 
 
     render() {
@@ -25,11 +30,17 @@ class FilmDetails extends React.Component {
         }
         );
 
+        const wrapperClass = cx("film-details__wrapper", {
+            "film-details__wrapper--closed": this.props.isClosed
+        });
+
+
         return (
-            <div className="film-details__wrapper">
+            <div className={wrapperClass}>
                 <div className="film-details">
                     <h3 className="film-details__title">{this.props.filmDetails.Title}</h3>
-                    <button onClick={this.handleClick} id="fav" className={favClass} data-id="tt0372784"><i className="fas fa-heart"></i></button>
+                    <button onClick={this.handleClick} className={favClass}><i className="fas fa-heart"></i></button>
+                    <button onClick={this.handleClick} className="btn btn__close"><i className="far fa-times-circle"></i></button>
                     <img className="film-details__poster" src={this.props.filmDetails.Poster} alt="poster" />
                     <h4 className="film-details__director">{this.props.filmDetails.Director}</h4>
                     <p className="film-details__meta">(Released {this.props.filmDetails.Year}, dur. {this.props.filmDetails.Runtime}, {this.props.filmDetails.Rated})</p>

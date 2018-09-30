@@ -16,6 +16,7 @@ class App extends React.Component {
             hints: [],
             films: [],
             totalFilms: 0,
+            isClosed: true,
             filmDetails: {},
             showFavs: false,
             favourites: []
@@ -30,6 +31,7 @@ class App extends React.Component {
         this.receiveSearchHint = this.receiveSearchHint.bind(this);
         this.searchByTitle = this.searchByTitle.bind(this);
         this.searchByID = this.searchByID.bind(this);
+        this.toggleVisible = this.toggleVisible.bind(this);
     }
 
     searchByTitle(query, pageNum = 1) {
@@ -53,7 +55,7 @@ class App extends React.Component {
             .then(body => {
                 this.setState({
                     filmDetails: body
-                })
+                }, () => this.toggleVisible())
             })
             .catch(error => {
                 alert(error);
@@ -139,6 +141,13 @@ class App extends React.Component {
         })
     }
 
+    toggleVisible() {
+        this.setState({
+            isClosed: !this.state.isClosed
+        });
+    }
+
+
     render() {
 
         const favList = this.state.favourites.map(fav => {
@@ -160,10 +169,10 @@ class App extends React.Component {
                 <Search receiveTitleQuery={this.receiveTitleQuery} receiveSearchHint={this.receiveSearchHint} hints={this.state.hints} receiveFilmID={this.receiveFilmID} />
 
                 {this.state.films.length > 0 &&
-                    <SearchResults films={this.state.films} totalFilms={this.state.totalFilms} receiveFilmID={this.receiveFilmID} receivePageNum={this.receivePageNum} currentPage={this.state.currentPage} />}
+                    <SearchResults films={this.state.films} totalFilms={this.state.totalFilms} receiveFilmID={this.receiveFilmID} receivePageNum={this.receivePageNum} currentPage={this.state.currentPage} toggleVisible={this.toggleVisible} />}
 
                 {Object.keys(this.state.filmDetails).length != 0 &&
-                    <FilmDetails filmDetails={this.state.filmDetails} receiveFav={this.receiveFav} favList={favList} />}
+                    <FilmDetails filmDetails={this.state.filmDetails} receiveFav={this.receiveFav} isClosed={this.state.isClosed} toggleVisible={this.toggleVisible} favList={favList} />}
 
             </React.Fragment>
         )

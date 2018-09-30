@@ -44,9 +44,9 @@ class Pagination extends React.Component {
 
         return (
             <nav className="page__nav" onClick={this.handleClick}>
-                <button className="btn btn__prev"><i class="fas fa-chevron-circle-left"></i></button>
+                <button className="btn btn__prev"><i className="fas fa-chevron-circle-left"></i></button>
                 <p>Page</p> <form className="page__current" onSubmit={this.handleSubmit}><input onChange={this.handleChange} type="text" value={this.state.currentPage} /></form> <p>of <span className="page__total">{totalPages}</span></p>
-                <button className="btn btn__next"><i class="fas fa-chevron-circle-right"></i></button>
+                <button className="btn btn__next"><i className="fas fa-chevron-circle-right"></i></button>
             </nav>
         )
     }
