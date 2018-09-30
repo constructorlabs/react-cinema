@@ -43,7 +43,7 @@ class Search extends React.Component{
         <div>
         <form className="search" onSubmit={this.handleSubmit}>
           <input placeholder="Try your luck" className="search__input" type="text"  onChange={this.handleChange} value={this.props.keyWord}/>
-          <button>Search</button>
+          <button className="search__button">Search</button>
         </form>
         {this.props.preview==undefined || !this.state.previewDisplay ? []:
           <ul className='search__preview' onChange={this.handleChange}>

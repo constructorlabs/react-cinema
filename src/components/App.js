@@ -79,7 +79,7 @@ class App extends React.Component {
           movies: body.Search,
           totalPages: Math.ceil(body.totalResults / 10),
           preview:[]
-        },()=>console.log(this.state.movies))
+        })
 
       });
   }

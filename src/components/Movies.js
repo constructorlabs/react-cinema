@@ -2,6 +2,10 @@ import React from 'react';
 import Movie from './Movie';
 import FavMovie from './FavMovie';
 import cx from 'classnames';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+
 
 
 
@@ -47,7 +51,7 @@ class Movies extends React.Component{
 
     return(
       <div>
-        <button className="favorite__button" onClick={this.handleClick}>Show my favorites</button>
+        <Button variant="outlined" color="secondary" className="favorite__button" onClick={this.handleClick}>Show my favorites</Button>
         {this.state.displayFav?<ul className='favorite__list'>
           {localFavList.map(fav => {
             return  <FavMovie title={fav.Title}
@@ -56,7 +60,8 @@ class Movies extends React.Component{
         </ul>:""}
         <div className='movies' >
 
-        {this.props.movies.map(movie => {
+        {this.props.movies==undefined? <img src="https://media.giphy.com/media/IO3NC6rAktKrC/giphy.gif"/>
+        : this.props.movies.map(movie => {
 
           return  <Movie
             title={movie.Title}

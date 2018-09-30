@@ -26,8 +26,8 @@
     "i": "^0.3.6",
     "material-design-icons": "^3.0.1",
     "npm": "^6.4.1",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0"
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2"
   },
   "devDependencies": {
     "babel-loader": "^7.1.3",
