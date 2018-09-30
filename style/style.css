@@ -222,6 +222,10 @@ header {
 /*** search results ***/
 
 .search__results {
+  display:flex;
+  flex-direction:column;
+  justify-content: space-between;
+  height: calc(100vh - 8rem);
   background-image: url('../assets/bg_cinema-seats.jpg');
   background-position: bottom;
   background-size: cover;
