@@ -18,11 +18,16 @@ class Result extends React.Component{
         this.props.receiveFavourite(this.props.result)
     }
 
+
     render() {
+        console.log(this.props.isFavourite?'movies__fav-icon fas fa-star fa-2x':'movies__fav-icon far fa-star fa-2x')
         return (
             <div className="result">
-                <img className="result__image" src={this.props.result.Poster} id={this.props.result.imbdID} onClick={this.handleClick} />
-                <p><strong>{this.props.result.Title} ({this.props.result.Year})</strong> <i className="movies__fav-icon far fa-star fa-2x" onClick={this.handleClickFavourite}></i></p>
+                <img className="result__image" src={this.props.result.Poster} id={this.props.result.imdbID} onClick={this.handleClick} />
+                <p>
+                        <strong>{this.props.result.Title} ({this.props.result.Year})</strong>
+                        <i className={this.props.isFavourite?'movies__fav-icon fas fa-star fa-2x':'movies__fav-icon far fa-star fa-2x'} onClick={this.handleClickFavourite}></i>
+                </p>
                 {this.props.showInfo ? <Movie movie={this.props.result} imdbID={this.props.result.imdbID} /> : null}
             </div>
         )

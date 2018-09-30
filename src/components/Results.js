@@ -9,6 +9,7 @@ class Results extends React.Component {
         this.handleScroll = this.handleScroll.bind(this);
         this.splitResults = this.splitResults.bind(this);
         this.handleClickMore = this.handleClickMore.bind(this);
+        this.isFavourite = this.isFavourite.bind(this);
     }
 
     handleScroll(event) {
@@ -33,6 +34,10 @@ class Results extends React.Component {
         return column === 'left'?leftSide:rightSide;
     }
 
+    isFavourite(imdbID) {
+        return this.props.favObject[imdbID]?true:false
+    }
+
 
 
 
@@ -43,12 +48,13 @@ class Results extends React.Component {
             <div className="search-results" onScroll={this.handleScroll}>
                 <div className="search-results__column">
                     {this.splitResults('left').map(result => {
-                        return <Result showInfo={result.imdbID === this.props.selectedMovie} result={result} receiveMovie={this.props.receiveMovie} receiveFavourite={this.props.receiveFavourite} key={result.imdbID} />
+                        return <Result showInfo={result.imdbID === this.props.selectedMovie} result={result} receiveMovie={this.props.receiveMovie} receiveFavourite={this.props.receiveFavourite} isFavourite={this.isFavourite(result.imdbID)} key={result.imdbID} />
                     })}
                 </div>
                 <div className="search-results__column" onScroll={this.handleScroll}>
                     {this.splitResults('right').map(result => {
-                        return <Result showInfo={result.imdbID === this.props.selectedMovie} result={result} receiveMovie={this.props.receiveMovie} receiveFavourite={this.props.receiveFavourite} key={result.imdbID} />
+                        return <Result showInfo={result.imdbID === this.props.selectedMovie} result={result} 
+                        isFavourite={this.isFavourite(result.imdbID)} receiveMovie={this.props.receiveMovie} receiveFavourite={this.props.receiveFavourite} key={result.imdbID} />
                     })}
                 </div>
             </div>

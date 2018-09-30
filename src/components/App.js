@@ -24,17 +24,19 @@ class App extends React.Component {
     this.fetchResults = this.fetchResults.bind(this);
   }
 
-  // componentWillMount() {
-  //   this.setState({
-  //     favouritesObject : JSON.parse(localStorage.getItem('reactFavourites'))
-  //   })
-     
+  componentWillMount() {
+    let favObject = JSON.parse(localStorage.getItem('reactFavourites'))
 
-
-      // this.setState({
-      //   favouritesArray : object.Keys(favouritesObject).map(key => favouritesObject[key])
-      // })
-    // }
+    if (favObject) {
+      this.setState({
+        favouritesObject : favObject
+      })
+    }
+    else {
+      console.log(false)
+      console.log(this.state.favouritesObject)
+    }
+  }
 
 
 
@@ -43,7 +45,6 @@ class App extends React.Component {
     const baseURL = "http://www.omdbapi.com/";
     const apiKey = "95869d44";
     const page = this.state.page;
-    console.log(`${baseURL}?apikey=${apiKey}&${typeOfSearch}=${search}&page=${page}&type=movie`)
     return `${baseURL}?apikey=${apiKey}&${typeOfSearch}=${search}&page=${page}&type=movie`
 }
 
@@ -51,7 +52,6 @@ class App extends React.Component {
     fetch(this.createUrl('s', this.state.query)).
       then(response => response.json()).
       then(body => {
-        console.log(body)
         this.state.page===1?
           (this.setState({results: body.Search})):
           (this.setState({results: this.state.results.concat(body.Search)}))
@@ -65,7 +65,6 @@ class App extends React.Component {
       query: query,
       page: 1
     },this.fetchResults)
-    console.log('hello' + query);
   }
 
 
@@ -73,7 +72,6 @@ class App extends React.Component {
     this.setState({
       selectedMovie:selectedMovie
     })
-    console.log('ffff' + selectedMovie)
   }
 
   receiveMoreMovies() {
@@ -96,7 +94,7 @@ class App extends React.Component {
     }
     this.setState({
       favouritesObject:favObject
-    })
+    },localStorage.setItem('reactFavourites', JSON.stringify(this.state.favouritesObject)))
   }
 
   render(){
@@ -105,11 +103,12 @@ class App extends React.Component {
         <div className="search">
           <div className="search__inner-div">
             <Search receiveQuery={this.receiveQuery}/>
+            <h1>Favourites</h1>
             <h1>PHLX</h1>
           </div>
         </div>
         <div className="container">
-         <Results selectedMovie={this.state.selectedMovie} receiveMovie={this.receiveMovie} receiveMoreMovies={this.receiveMoreMovies} results={this.state.results} resultsLeft={this.state.resultsLeft} receiveFavourite={this.receiveFavourite}/>
+         <Results selectedMovie={this.state.selectedMovie} receiveMovie={this.receiveMovie} receiveMoreMovies={this.receiveMoreMovies} results={this.state.results} resultsLeft={this.state.resultsLeft} receiveFavourite={this.receiveFavourite} favObject={this.state.favouritesObject}/>
         </div>
       </div>
     )
