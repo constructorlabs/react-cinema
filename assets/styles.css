@@ -310,7 +310,6 @@ input[type=text]:blur {
 }
 
 .article__text a {
-    /* changed Sunday morning */
     text-decoration: none;
     font-weight: normal;
     list-style: none;
@@ -323,6 +322,7 @@ input[type=text]:blur {
     color: black;    
     list-style: none;
     border-radius: 0.2rem;
+    cursor: pointer;
 }
 
 .article__text a:hover {
@@ -415,19 +415,25 @@ input[type=text]:blur {
     margin: 0.5rem 0;
 }
 
-.page-button {
+.page__button-none, .page__button-selected {
     padding: 0 0.5rem;
     margin: 0 0.2rem;
-    background-color: var(--bright-color);
     border-radius: 3px;
     color: white;
     cursor: pointer;
     height: 28px;    
     filter: drop-shadow(0 0 3px rgb(255, 255, 255));
-
 }
 
-.page-button:hover {
+.page__button-none {
+    background-color: var(--bright-color);
+}
+
+.page__button-selected {
+    background-color: var(--dark-color);
+}
+
+.page__button-none:hover {
     background-color: var(--dark-color);
 }
 

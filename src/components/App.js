@@ -19,12 +19,18 @@ class App extends React.Component {
     this.receivePageNumber = this.receivePageNumber.bind(this)
 
     this.state = {
+      baseURL: 'http://www.omdbapi.com/?apikey=2454706d',
       searchQuery: '',
       searchDisplay: false,
-      results: []
+      results: [],
+      error: '',
+      currentMovie: false,
+      currentPage: '',
+      pages: ''
     }
   }
 
+  // receive user input from Search component
   receiveInput (text) {
     this.setState({
       searchQuery: text,
@@ -33,26 +39,27 @@ class App extends React.Component {
         if (text.length > 2) { 
           this.getQueriedMovies ()
         }
-      }
-    )
+      })
   }
 
+  // receive form submission from Search component
   receiveSubmit () {
     this.getQueriedMovies ()
   }
 
+  // receive focus event from Search component
   receiveFocus () {
-    this.setState({ 
-      searchDisplay: this.state.searchQuery.length > 0
-    })
+    this.setState({ searchDisplay: this.state.searchQuery.length > 0})
   }
 
+  // receive blur event from Search component
   receiveBlur () {
     this.setState({ searchDisplay: false })
   }
- 
+
+  // fetch movie data from API for searchQuery
   getQueriedMovies () {
-    const url = `http://www.omdbapi.com/?apikey=2454706d&s=${this.state.searchQuery}&page=${this.state.currentPage}`;
+    const url = `${this.state.baseURL}&s=${this.state.searchQuery}&page=${this.state.currentPage}`;
     fetch(url)
     .then(response => response.json())
     .then(body => {
@@ -66,6 +73,7 @@ class App extends React.Component {
     })
   }
 
+  // receive currentPage from Pagination component
   receivePageNumber (page) {
     this.setState({ 
       currentPage: page,
@@ -76,6 +84,7 @@ class App extends React.Component {
     })
   }
 
+  // receive currentMovieID from SearchResults component
   receiveMovieID (id) {
     this.setState({
       currentMovieID: id,
@@ -85,8 +94,9 @@ class App extends React.Component {
     })
   }
 
+  // fetch movie data from API for currentMovieID
   displayCurrentMovie () {
-    fetch(`http://www.omdbapi.com/?apikey=2454706d&i=${this.state.currentMovieID}`)
+    fetch(`${this.state.baseURL}&i=${this.state.currentMovieID}`)
     .then(response => response.json())
     .then(body => {
       this.setState({
@@ -97,6 +107,8 @@ class App extends React.Component {
   }
 
   render(){
+
+    /* set message for errors and invalid input */
     const qLength = this.state.searchQuery.length;
     let errorMsg = (this.state.error && qLength > 0) ? this.state.error : "";
     errorMsg = (qLength == 0 || qLength > 2) ? errorMsg : "Enter 3 or more letters";
@@ -105,8 +117,16 @@ class App extends React.Component {
       <div className="app">
         <div className="search-wrapper">
 
-          {(this.state.pages) ? <Pagination receivePageNumber={this.receivePageNumber} pages={this.state.pages}/> : <div className="pagination"></div>}
+          { /* render Pagination component for 10 or more total pages */ }
+          {(this.state.pages > 10 && qLength > 2) ? 
+          <Pagination 
+            receivePageNumber={this.receivePageNumber} 
+            pages={this.state.pages}
+          /> : 
+            <div className="pagination"></div>
+          }
 
+          { /* render Search component */ }
           <Search 
             receiveInput={this.receiveInput} 
             receiveSubmit={this.receiveSubmit} 
@@ -114,16 +134,29 @@ class App extends React.Component {
             receiveBlur={this.receiveBlur} 
           />
 
+          { /* render message for errors and invalid input or SearchResults component */ }
           {(errorMsg !== "" && this.state.searchDisplay) ?
-              <div className="error">{errorMsg}</div> :
-              (this.state.searchDisplay && <SearchResults searchDisplay={this.state.searchDisplay} resultsArray={this.state.results} receiveMovieID={this.receiveMovieID}/>)
+            <div className="error">{errorMsg}</div> :
+            (this.state.searchDisplay && 
+            <SearchResults 
+              searchDisplay={this.state.searchDisplay} 
+              resultsArray={this.state.results} 
+              receiveMovieID={this.receiveMovieID}
+            />)
           }
         
         </div>
 
         <div>
-          {(!this.state.currentMovie) ? <div className="loading-message">Find movies quickly and easily</div> : ""}
+
+          { /* if a movie has NOT been selected render a loading message */ }
+          {(!this.state.currentMovie) ? 
+            <div className="loading-message">Find movies quickly and easily</div> : ""
+          }
+          
+          {/* if a movie has been selected render MovieDisplay component */}
           {(this.state.currentMovie) && <MovieDisplay currentMovie={this.state.currentMovie}/>}
+
         </div>
       </div>
     )
