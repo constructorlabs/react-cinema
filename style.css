@@ -70,20 +70,28 @@ a {
     max-height: 3em;
     width: 100%;
 }
+.no--results {
+    background: pink;
+}
 .search__btn {
-	background:var(--bright-color);
+    background:var(--bright-color);
+    border: 1px solid var(--bright-color);
+    border-bottom-width: 0px;
 	text-transform: uppercase;
-	color: var(-dark-color);
+	color: var(--dark-color);
 	padding: 0.35em 0.75em;
-	border: none;
 	font-size: 1.5em;
 	text-decoration: none;
     cursor: pointer;
     width: 100%;	
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    transition: all 0.5s;
 }
 .search__btn:hover {
     background: var(--main-txt-color);
     color: var(--light-color);
+    border-color: var(--dark-color);
 }
 
 /* ==== MAIN ==== */
@@ -114,8 +122,8 @@ a {
 .moviesfeed__full {
     background-color: var(--main-txt-color); 
     background-repeat: no-repeat;
-    background-position: center center;
-    padding-top: 130%;
+    background-position: top center;
+    padding-top: 50%;
     background-size: cover;
     position: relative;
 }
@@ -169,7 +177,6 @@ a {
     right: 0px;
     bottom: auto;
     top: 0px;
-
 }
 .moviesfeed__full.details--open .moviesfeed__content,
 .moviesfeed__full.details--open .movie__title  {
@@ -178,8 +185,17 @@ a {
     height: auto;
    }
 .moviesfeed__full.details--open .movie__title {
-font-size: 1.75rem;
+    font-size: 1.75rem;
 }  
+/* .moviesfeed__full.details--open {
+    background-color: var(--main-txt-color); 
+    background-repeat: no-repeat;
+    background-position: center center;
+    padding-top: 0;
+    background-size: cover;
+    position: relative;
+} */
+
 
 /* paging */
 .paging {
@@ -229,7 +245,6 @@ font-size: 1.75rem;
         -o-transition: all .1s ease-in;
         transition: all .1s ease-in; */
     }
-
     #root, .maincontent, .search__form {
         width: 100%;
     }
@@ -251,15 +266,21 @@ font-size: 1.75rem;
     }
     .moviesfeed article {
         width: 25%;
+        order: 1;
     }
     .moviesfeed article.active {
         width: 100%;
+        order: 0;
     }
-    /* remove background image */
+    .moviesfeed__full{
+        padding-top: 130%;
+    }
+
     .moviesfeed__full.details--open {
-        background-size: auto; 
-        background-image: none;
+        background-size: 150px auto; 
         padding-top: 0; 
+        padding-left: 150px;
+        background-position: center left;
     }
     /* GRID PADDINGS */
     .moviesfeed__full {

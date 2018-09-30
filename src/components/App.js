@@ -6,11 +6,11 @@ import Paging from './Paging';
 class App extends React.Component {
   constructor(){
     super();
-
     this.state = {
       movieresults: [], 
       query: "",
-      page: 1
+      page: 1, 
+      noresults: ""
     }
     this.receiveQuery = this.receiveQuery.bind(this)
     this.receiveSubmit = this.receiveSubmit.bind(this)
@@ -26,7 +26,9 @@ class App extends React.Component {
       if(content.Response !=="False"  ) {
         this.setState({movieresults: content.Search, moviestotal: content.totalResults})
       } 
-      else { alert("oops")}
+      else { 
+        this.setState({noresults: "empty"});
+      }
       })
   }
 
@@ -36,6 +38,9 @@ class App extends React.Component {
   receiveSubmit() {
     this.fetchMovies()
   }
+  receiveResults() {
+    this.setState({noresults: noresults})
+  }  
   receiveMovies() {
     this.setState({movieresults: moviesresults})
     }   
@@ -49,7 +54,7 @@ class App extends React.Component {
     return (
       <main className="maincontent">
 
-      <Search receiveQuery={this.receiveQuery} receiveSubmit={this.receiveSubmit} query={this.state.query}/>
+      <Search receiveQuery={this.receiveQuery} receiveSubmit={this.receiveSubmit} query={this.state.query} noresults={this.receiveResults}/>
 
       <section className="movies">
         <Movies movieresults={this.state.movieresults} />
