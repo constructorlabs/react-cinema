@@ -144,7 +144,7 @@ class App extends React.Component {
             <div>
                 <Header />
                 <FavouritesList favouritesList={this.state.favourites} receiveFav={this.receiveFav} receiveFilmID={this.receiveFilmID} receiveMove={this.receiveMove} delFavClass={classes[0]} moveFavClass={classes[1]} titleClass={classes[2]} />
-                <Search receiveTitleQuery={this.receiveTitleQuery} receiveSearchHint={this.receiveSearchHint} hints={this.state.hints} />
+                <Search receiveTitleQuery={this.receiveTitleQuery} receiveSearchHint={this.receiveSearchHint} hints={this.state.hints} receiveFilmID={this.receiveFilmID} />
 
                 {this.state.films.length > 0 &&
                     <SearchResults films={this.state.films} totalFilms={this.state.totalFilms} receiveFilmID={this.receiveFilmID} receivePageNum={this.receivePageNum} currentPage={this.state.currentPage} />}

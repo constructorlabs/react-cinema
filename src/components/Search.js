@@ -11,6 +11,7 @@ class Search extends React.Component {
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.handleClick = this.handleClick.bind(this);
         this.setSearchHint = this.setSearchHint.bind(this);
     }
 
@@ -33,8 +34,9 @@ class Search extends React.Component {
         }
     }
 
-    handleClick(e) {
-
+    handleClick(e, film) {
+        console.log(`${film.imdbID} clicked`);
+        this.props.receiveFilmID(film.imdbID);
     }
 
     setSearchHint(string) {
@@ -50,7 +52,7 @@ class Search extends React.Component {
                     <ul className="search__hints">
                         {this.props.hints.map((hint, i) => {
                             if (i < 5) {
-                                return <SearchHint key={hint.imdbID} film={hint} />
+                                return <SearchHint key={hint.imdbID} film={hint} onClick={e => this.handleClick(e, hint)} />
                             }
                         })}
                     </ul>
