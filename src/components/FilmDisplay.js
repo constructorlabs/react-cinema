@@ -18,12 +18,14 @@ class FilmDisplay extends React.Component{
 
 
   componentWillReceiveProps(nextProps){
-      fetch(`https://newsapi.org/v2/everything?q="${nextProps.filmDetails.Title}"&sortBy=relevancy&pageSize=6&apiKey=9ed005ef4eb94baf913fce701c69972f`)
+      fetch(`https://newsapi.org/v2/everything?q="${nextProps.filmDetails.Title}"&sortBy=publishedAt&language=en&pageSize=6&apiKey=9ed005ef4eb94baf913fce701c69972f`)
       .then(response => response.json())
       .then(body => {
         this.setState({
           filmNews: body.articles
         })
+        console.log(body.articles[0].publishedAt)
+
       })
 
   }
@@ -65,7 +67,7 @@ class FilmDisplay extends React.Component{
           <span><a href="{this.props.filmDetails.Website}">Website</a></span>
           </div>
         <div className="film-display__news">
-          
+
           <h4>Recent News</h4>
           {this.state.filmNews.map(story => {
             return <NewsItem key={v4()} story={story} />
