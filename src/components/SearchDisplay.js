@@ -6,6 +6,14 @@ import SearchFilm from "./SearchFilm.js"
 class SearchDisplay extends React.Component{
   constructor(){
     super()
+
+    this.handlePagination = this.handlePagination.bind(this)
+  }
+
+  handlePagination(event){
+    event.preventDefault()
+    this.props.fetchSearchResults(this.props.searchString, this.props.searchPage + 1)
+
   }
 
 
@@ -15,6 +23,7 @@ class SearchDisplay extends React.Component{
         {this.props.searchResults.map(result => {
           return <SearchFilm key={result.imdbID} retrieveFilmId={this.props.retrieveFilmId} toggleDisplay={this.props.toggleDisplay} film={result}/>
         })}
+        <button onClick={this.handlePagination}>Next</button>
       </div>
     )
   }

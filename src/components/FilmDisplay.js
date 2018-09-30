@@ -16,6 +16,10 @@ class FilmDisplay extends React.Component{
     this.addToFaves = this.addToFaves.bind(this)
   }
 
+  componentDidMount(){
+
+  }
+
 
   componentWillReceiveProps(nextProps){
       fetch(`https://newsapi.org/v2/everything?q="${nextProps.filmDetails.Title}"&sortBy=publishedAt&language=en&pageSize=6&apiKey=9ed005ef4eb94baf913fce701c69972f`)
@@ -24,16 +28,15 @@ class FilmDisplay extends React.Component{
         this.setState({
           filmNews: body.articles
         })
-        console.log(body.articles[0].publishedAt)
-
       })
-
   }
 
   addToFaves(event){
     event.preventDefault()
     this.props.retrieveFave(this.props.filmDetails.imdbID)
   }
+
+
 
 
 

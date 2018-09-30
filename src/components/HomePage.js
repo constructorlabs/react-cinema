@@ -6,9 +6,6 @@ class HomePage extends React.Component{
     super()
   }
 
-  componentDidMount(){
-    this.props.populateFavourites()
-  }
 
   render(){
     return (
