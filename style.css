@@ -1,9 +1,18 @@
+html{
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 body{
     background: black;
     color: white;
+    margin: 30px 50px;
+    line-height: 1.4;
 }
 
-
+.container{
+    display: grid;
+}
 
 
 
@@ -20,11 +29,20 @@ form{
 
 .hero-heading {
     text-align:center;
-    color:lightblue;
+    color:red;
 }
 
 p.scroll-heading, h3.scroll-heading{
     text-align:center;
+}
+
+h3.scroll-heading{
+    font-size: 10px;
+}
+
+p.scroll-heading{
+    text-decoration: underline;
+    font-size: 18px;
 }
 
 h1.scroll-heading{
@@ -73,14 +91,31 @@ span{
     margin-top: 15px;
     display: flex;
     justify-content: center;
+    padding: 0.6rem 1.3rem;
+    text-transform: uppercase;
+    color: #0e2f44;
+    font-size: 0.8rem;
+   
+    margin: 10px 0;
+    padding: 5px 15px;
+    text-decoration: none;
+    
 }
 
 .load-button__next:hover{
     transform: scale(1.1);
+    background-color: #0e2f44;
+  color: #fff;
+  transition: 0.4s;
+  text-decoration: underline;
 }
 
 .load-button__prev:hover{
     transform: scale(1.1);
+    background-color: #0e2f44;
+  color: #fff;
+  transition: 0.4s;
+  text-decoration: underline;
 }
 
 @media screen and (min-width: 500px) {
@@ -96,6 +131,7 @@ span{
 }
 
     .posters{
+        
        width: 300px;
         margin:auto;
     
