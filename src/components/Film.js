@@ -5,7 +5,7 @@ import cx from 'classnames';
 class Film extends React.Component{
     constructor(){
         super();
-        this.state={moreFilmInfo: [], showSlider: false, trailerYoutubeInfo: [], test: [], placeholder: '/placeholder.jpg', failed: true, sliderClose: true};
+        this.state={moreFilmInfo: [], showSlider: false, trailerYoutubeInfo: [], test: [], placeholder: '/placeholder.jpg', failed: true,};
         this.fetchMoreInfo = this.fetchMoreInfo.bind(this);
         this.closeSliderFunction = this.closeSliderFunction.bind(this);
         // this.trailerVideo = this.trailerVideo.bind(this);
@@ -31,7 +31,7 @@ class Film extends React.Component{
              .then(([res1, res2, res3]) =>  Promise.all([res1.json(), res2.json(), res3.json()]))
             .then(([moreFilmInfo, trailerYoutubeInfo, test]) => this.setState({
                     moreFilmInfo: moreFilmInfo, 
-                    trailerYoutubeInfo: `http://www.youtube.com/embed/${trailerYoutubeInfo.results[0].key}?modestbranding=1&showinfo=0&rel=0`,
+                    trailerYoutubeInfo: `http://www.youtube.com/embed/${trailerYoutubeInfo.results[0].key}?modestbranding=1&rel=0&iv_load_policy=3&theme=light`,
                     test: test,
                     showSlider: true
                 })

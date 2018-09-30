@@ -6,7 +6,7 @@ class App extends React.Component {
   constructor() {
     super();
 
-    this.state = { films: [], pageNum: 1, currentSearchFlim: "love", unFound: {gif: '', p: ''}};
+    this.state = { films: [], pageNum: 1, currentSearchFlim: "love", unFound: {gif: '', h6: ''}, hideButtons: true};
     this.handleNext = this.handleNext.bind(this);
     this.handlePrevious = this.handlePrevious.bind(this);
     this.fetchIMDB = this.fetchIMDB.bind(this);
@@ -23,7 +23,7 @@ class App extends React.Component {
   }
 
   notFound(){
-   this.setState({unFound:{gif:'/oops.gif', p:"No results found"}});
+   this.setState({unFound:{gif:'/oops.gif', h6:"Terribly sorry, we couldn't find that"}});
   }
 
   handleNext() {
@@ -64,29 +64,46 @@ class App extends React.Component {
           this.notFound();
           alert("WHOOPS!");
           this.setState({ films:[]});
-          // this.setState({unfound:{gif: '', p: ''}})
+          // this.setState({unfound:{gif: '', h6: ''}})
         } else {
           console.log(films);
-          this.setState({ films: films.Search, unfound: {gif: '', p: ''}}); //unforund reset not working
+          this.setState({ films: films.Search, unfound: {gif: '', h6: ''}}); //unforund reset not working
           // this.setState({pageNum:1}); //pagenum reset not working
         }
       })
       // .catch(error => console.log("catch error", error));
   }
 
+  
+
+  // hideButtonsFunction(){
+  //   this.setState({showSlider: false})
+
+
+
   render() {
+
+ 
+    // const buttonsHider = cx('lower__buttons', {'lower__buttons__hidden': this.state.hidebuttons})
+
     return (
       <div>
-        <h1>Quelle Film</h1>
+        <a name="top"></a>
+        <span className="nav">
+        
         <Search receiveSearch={this.receiveSearch} />
+        </span>
         <div className="oops">
-        {this.state.unFound.p}
+        {this.state.unFound.h6}
         <img className="cry" src={this.state.unFound.gif}/> 
         </div>
         <Films films={this.state.films} />
         <div></div>
-        <button onClick={this.handleNext}>Next</button>
-        <button onClick={this.handlePrevious}>Back</button>
+        <div className="lower__buttons__wrapper">
+        <button className="lower__button__2" onClick={this.handlePrevious} href="#top">Back</button>
+        <button className="lower__button__1" onClick={this.handleNext} href="#top" >Next</button>
+        </div>
+        <a className="uparrow" href="#top">˄</a>
       </div>
     );
   }
