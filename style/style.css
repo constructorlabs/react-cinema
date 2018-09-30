@@ -14,8 +14,8 @@ body {
   font-family: var(--text-font);
 }
 
-/**********/
-/* header */
+/**************/
+/*** header ***/
 
 header {
   position: fixed;
@@ -49,11 +49,11 @@ header {
 }
 
 
-/***********/
-/* account */
+/***************/
+/*** account ***/
 
 .account {
-  background: rgba(0,0,0,0.6);
+  background: rgba(0,0,0,0.7);
   position: fixed;
   top: -50rem;
   width: 100%;
@@ -110,8 +110,8 @@ header {
   color: salmon;
 }
 
-/***************/
-/* search form */
+/*******************/
+/*** search form ***/
 
 .search {
   height: 100vh;
@@ -218,8 +218,8 @@ header {
 }
 
 
-/******************/
-/* search results */
+/**********************/
+/*** search results ***/
 
 .search__results {
   background-image: url('../assets/bg_cinema-seats.jpg');
@@ -266,7 +266,8 @@ header {
   order: 3;
 }
 
-/* page navigation */
+/*********************************/
+/*** search results pagination ***/
 
 .page__nav {
   background: white;
@@ -306,11 +307,23 @@ header {
   margin-right: 0;
 }
 
+
+/********************/
+/*** film details ***/
+
 .film-details__wrapper {
+  position:absolute;
+  top: 8rem;
+  background-image: url('../assets/bg_cinema-seats.jpg');
+  background-position: bottom;
+  background-size: cover;
+}
+
+.film-details{
   display: grid;
   grid-template-columns: 2fr 2fr 1fr;
   padding: 1rem;
-  margin: 2rem 0.5rem 0 0.5rem;
+  margin: 0.5rem;
   border: 1px solid lightgray;
   border-radius: 8px;
   background: whitesmoke;
