@@ -24,6 +24,10 @@ class Results extends React.Component {
         this.props.receiveMoreMovies()
     }
 
+//****************************************//
+// Splliting the results into 2 columns to stop result moving from left to right when more details are shown.
+// Odd and evens are split into each column to keep the ordering the same as omdb (first results at top of page)
+
     splitResults(column) {
         let leftSide = [];
         let rightSide = [];

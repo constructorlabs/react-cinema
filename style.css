@@ -20,15 +20,27 @@ body {
     align-items:center;
 }
 
-
-.search {
+.top {
     position:fixed;
     z-index: 10;
+    width:100%;
+    background: gainsboro;
+
+}
+
+.top__favourites {
+    margin:0;
+    padding:0;
+    text-align: right;
+    padding-right:10px;
+}
+.search {
+
     background: gainsboro;
     width:100%;
     display:flex;
     flex:1;
-    height:65px;
+    height:45px;
     padding:0px;
 }
 
@@ -38,7 +50,7 @@ body {
     flex-direction:row;
     height:25px;
     background: gainsboro;
-    margin:10px;
+    margin:0 10px;
     padding:10px;
 
 }
@@ -58,6 +70,22 @@ body {
     width: 100%;
     height: 300px;
     object-fit:cover;
+}
+
+.result__tab {
+    display:flex;
+    flex:1;
+    width:100%
+}
+
+.result__title-year {
+    display:flex;
+    flex:5;
+}
+
+.result__fav-star {
+    display:flex;
+    flex:1
 }
 
 .search-results {

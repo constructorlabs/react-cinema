@@ -24,9 +24,9 @@ class Result extends React.Component{
         return (
             <div className="result">
                 <img className="result__image" src={this.props.result.Poster} id={this.props.result.imdbID} onClick={this.handleClick} />
-                <p>
-                        <strong>{this.props.result.Title} ({this.props.result.Year})</strong>
-                        <i className={this.props.isFavourite?'movies__fav-icon fas fa-star fa-2x':'movies__fav-icon far fa-star fa-2x'} onClick={this.handleClickFavourite}></i>
+                <p className="result__tab">
+                        <strong className="result__title-year">{this.props.result.Title} ({this.props.result.Year})</strong>
+                        <i className={this.props.isFavourite?'result__fav-star fas fa-star fa-2x':'result__fav-star movies__fav-icon far fa-star fa-2x'} onClick={this.handleClickFavourite}></i>
                 </p>
                 {this.props.showInfo ? <Movie movie={this.props.result} imdbID={this.props.result.imdbID} /> : null}
             </div>

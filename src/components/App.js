@@ -27,6 +27,9 @@ class App extends React.Component {
     this.updateFavouritesArray = this.updateFavouritesArray.bind(this)
   }
 
+//****************************************//
+// Setting up local storage - putting any existing local storage into state
+
   componentWillMount() {
     let favObject = JSON.parse(localStorage.getItem('reactFavourites'))
 
@@ -35,16 +38,18 @@ class App extends React.Component {
         favouritesObject : favObject
       })
     }
-    else {
-      console.log(false)
-      console.log(this.state.favouritesObject)
-    }
   }
+
+//****************************************//
+// creates an array of favourites. This is necessary to show the amount (.length) of favourites on top bar.
 
   componentDidMount() {
     this.updateFavouritesArray();
   }
 
+
+//****************************************//
+// Fetching data from omdb API
 
   // builds the url for omdb api request
   createUrl(typeOfSearch, search) {
@@ -66,6 +71,11 @@ class App extends React.Component {
       })
   }
 
+
+//****************************************//
+// Receive search query from Search componenent
+
+
   receiveQuery(query) {
     this.setState({
       query: query,
@@ -73,6 +83,8 @@ class App extends React.Component {
     },this.fetchResults)
   }
 
+//****************************************//
+// Receive selected movie from Result component
 
   receiveMovie(selectedMovie) {
     this.setState({
@@ -80,12 +92,18 @@ class App extends React.Component {
     })
   }
 
+//****************************************//
+// Request to add another page of results (sent from Results component)
+
   receiveMoreMovies() {
     this.setState({
       page:this.state.page+1
     },this.fetchResults)
 
   }
+
+//****************************************//
+// Add a movie to favourites object (App state)
 
   receiveFavourite(result) {
     const favObject = this.state.favouritesObject
@@ -101,6 +119,9 @@ class App extends React.Component {
     this.updateFavouritesArray();
   }
 
+//****************************************//
+// Create an array of favourites from favourites object. This is used to update the App/result state which will then show favourites instead of search
+
   updateFavouritesArray() {
     console.log(this.state.favouritesObject)
     this.state.favouritesObject.hasOwnProperty('test')?delete this.state.favouritesObject.test:null
@@ -112,23 +133,31 @@ class App extends React.Component {
     })
   }
 
+//****************************************//
+// By setting the state of result to the favourites array favourites will now be shown instead of search results
+
   showFavourites() {
     this.setState({
-      results:this.state.favouritesArray
+      results:this.state.favouritesArray,
+      resultsLeft:0
     })
   }
 
   render(){
     return (
       <div className="app">
-        <div className="search">
-          <div className="search__inner-div">
-            <Search receiveQuery={this.receiveQuery}/>
-            <h1 onClick={this.showFavourites}>Favourites - {this.state.favouritesLength} - </h1>
-            <h1>PHLX</h1>
+        <div className="top">
+        <p className="top__favourites" onClick={this.showFavourites}>Favourites ({this.state.favouritesLength})</p>
+          <div className="search">
+            <div className="search__inner-div">
+              <Search receiveQuery={this.receiveQuery}/>
+              <h1>PHLX</h1>
+            </div>
           </div>
         </div>
+
         <div className="container">
+
          <Results selectedMovie={this.state.selectedMovie} receiveMovie={this.receiveMovie} receiveMoreMovies={this.receiveMoreMovies} results={this.state.results} resultsLeft={this.state.resultsLeft} receiveFavourite={this.receiveFavourite} favObject={this.state.favouritesObject}/>
         </div>
       </div>
