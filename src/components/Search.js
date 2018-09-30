@@ -8,7 +8,7 @@ class Search extends React.Component {
     super();
     this.state = { text: '',
                    previewDisplayed: false,
-                   previewDebounce: false };
+                   debounceActive: false };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -20,16 +20,19 @@ class Search extends React.Component {
     this.setState({text: textValue});
     
     if (textValue.length >= 3) {
-      const previewDebounceOld = this.state.previewDebounce;
-      if (!previewDebounceOld) {
-        this.setState({ previewDisplayed: true,
-                        previewDebounce: true });
-        setTimeout(() => this.setState({ previewDebounce: false }), 1000);
+      const debounceActive = this.state.debounceActive;
+      if (!debounceActive) {
+        this.setState({ debounceActive: true });
+        console.log('debounce active!');
+        setTimeout(() => {
+          this.setState({ debounceActive: false });
+          console.log('debounce inactive'); }, 2000);
       }
-      this.props.receiveSearch(textValue,'preview');   
-      }
+      this.setState({previewDisplayed: true});
+      this.props.receiveSearch(textValue,'preview');
+    }
     else {
-        this.setState({previewDisplayed: false});
+      this.setState({previewDisplayed: false});
     }
   }
 
