@@ -5,8 +5,9 @@ import cx from 'classnames';
 class Film extends React.Component{
     constructor(){
         super();
-        this.state={moreFilmInfo: [], showSlider: false, trailerYoutubeInfo: [], test: [], placeholder: '/placeholder.jpg', failed: true};
-        this.fetchMoreInfo= this.fetchMoreInfo.bind(this);
+        this.state={moreFilmInfo: [], showSlider: false, trailerYoutubeInfo: [], test: [], placeholder: '/placeholder.jpg', failed: true, sliderClose: true};
+        this.fetchMoreInfo = this.fetchMoreInfo.bind(this);
+        this.closeSliderFunction = this.closeSliderFunction.bind(this);
         // this.trailerVideo = this.trailerVideo.bind(this);
 
         // this.fallback = () => {
@@ -79,14 +80,17 @@ class Film extends React.Component{
 
    //end of fetches 
 
+   closeSliderFunction(){
+    this.setState({showSlider: false})
 
+   }
 
     render() {
 
         // if (this.state.failed) {
-        //     return <img src={this.props.fallbackSrc} />;
+        //     return <img src={this.state.fallbackSrc} />;
         //   } else {
-        //     return <img src={this.props.src} onError={this.fallback} />;
+        //     return <img src={this.state.src} onError={this.fallback} />;
         //   }
 
         //   const url = 'https://media.giphy.com/media/l2JJDrvnFUEboRgSQ/giphy.gif';
@@ -121,11 +125,11 @@ class Film extends React.Component{
                 
                 <div className={sliderView}>
                 <div>
-                    {/* <h4 className={sliderClose}>X</h4> */}
+                    <h4 onClick={this.closeSliderFunction}>X</h4>
                     <p>{this.state.moreFilmInfo.Plot}</p>
                     {/* <p>{this.state.test.Plot}</p> */}
                     {/* <iframe src="http://www.youtube.com/embed/gQ0uSh2Hgcs?modestbranding=1&showinfo=0&rel=0" width="560" height="315" frameborder="0"></iframe> */}
-                    <iframe src={this.state.trailerYoutubeInfo} width="560" height="315" frameborder="0"></iframe>
+                    <iframe className="trailer" src={this.state.trailerYoutubeInfo} frameborder="0"></iframe>
                     {/* <iframe src=`http://www.youtube.com/embed/${this.state.trailerYoutubeInfo.results[0].key}` width="560" height="315" frameborder="0"></iframe> */}
                     <p>{this.state.trailerYoutubeInfo.id}</p>
                     </div>

@@ -77,11 +77,12 @@
 }
 
 .film_results{
-  width: 200px;
+  
   margin: 40px;
 }
 
 .film__titles{
+  width: 220px;
 margin-bottom:20px;
 height: 60px;
 }
@@ -98,7 +99,8 @@ height: 60px;
   }
 
   .film img {
-    width: 200px;
+    height: 360px;
+    width:230px;
     /* width: 100%; */
  border-radius: 15px 15px 15px 15px;
  -moz-border-radius: 15px 15px 15px 15px;
@@ -121,12 +123,19 @@ box-shadow: 10px 10px 46px -1px rgba(0,0,0,0.5);
   opacity:0.7;
 
 }
+.trailer{
+  width:100vw;
+  height: 56.25vw;
+  opacity: 1;
+  z-index: 2;
+  background-color: #000;
+}
 
 .cry {
   width: 800px;
 }
 .oops {
-  width: 800px;
+  width: 100%;
 }
 
 
@@ -140,7 +149,7 @@ box-shadow: 10px 10px 46px -1px rgba(0,0,0,0.5);
     transition:bottom 0.5s;
     margin-right:0px;
     opacity: 0.9;
-    z-index: 2;
+    z-index: 1;
 
   }
 

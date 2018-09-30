@@ -27,18 +27,22 @@ class App extends React.Component {
   }
 
   handleNext() {
-    console.log(this.state.pageNum);
+    
     // this.setState(prevState =>Object.assign({}, prevState, { pageNum: prevState.pageNum + 1 }))
     // this.setState(prevState => ({...prevState, pageNum: prevState.pageNum + 1}));
-
-    this.setState( prevState => ({pageNum: prevState.pageNum + 1}))
-    this.receiveSearch(this.state.currentSearchFlim)
+    // this.setState({pageNum: this.state.pageNum + 1})
+    // this.setState( prevState => ({pageNum: prevState.pageNum + 1}))
+    // this.receiveSearch(this.state.currentSearchFlim)
+    this.setState({pageNum:this.state.pageNum + 1}, () => this.receiveSearch(this.state.currentSearchFlim))
+    
   }
 
   handlePrevious() {
     // event.preventDefault();
-    this.setState({pageNum: this.state.pageNum - 1})
-    this.receiveSearch(this.state.currentSearchFlim)
+    // this.setState({pageNum: this.state.pageNum - 1})
+    // this.receiveSearch(this.state.currentSearchFlim)
+    this.setState({pageNum:this.state.pageNum - 1}, () => this.receiveSearch(this.state.currentSearchFlim))
+    
   }
 
   receiveSearch(filmSearchQuery) {
@@ -60,9 +64,11 @@ class App extends React.Component {
           this.notFound();
           alert("WHOOPS!");
           this.setState({ films:[]});
+          // this.setState({unfound:{gif: '', p: ''}})
         } else {
           console.log(films);
-          this.setState({ films: films.Search });
+          this.setState({ films: films.Search, unfound: {gif: '', p: ''}}); //unforund reset not working
+          // this.setState({pageNum:1}); //pagenum reset not working
         }
       })
       // .catch(error => console.log("catch error", error));
