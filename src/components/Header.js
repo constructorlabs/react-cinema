@@ -6,7 +6,7 @@ class Header extends React.Component {
         return (
             <header>
                 <h1 id="title">The Reel Thing</h1>
-                <button className="btn btn__account"><i className="fas fa-user-circle"></i></button>
+                <button className="btn btn__account"><i className="fas fa-heart"></i></button>
             </header>
         )
     }

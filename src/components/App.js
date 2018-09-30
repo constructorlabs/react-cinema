@@ -12,6 +12,7 @@ class App extends React.Component {
         this.state = {
             query: "",
             currentPage: 1,
+            hints: [],
             films: [],
             totalFilms: 0,
             filmDetails: {},
@@ -74,10 +75,9 @@ class App extends React.Component {
             .then(response => response.json())
             .then(body => {
                 console.log(body.Search)
-                // this.setState({
-                //     films: body.Search,
-                //     totalFilms: body.totalResults
-                // })
+                this.setState({
+                    hints: body.Search
+                })
             })
             .catch(error => {
                 alert(error);
@@ -138,11 +138,13 @@ class App extends React.Component {
 
         const classes = ["btn btn__delete", "btn btn__move--up", "favourites__list__film__title"];
 
+        console.log(this.state.hints);
+
         return (
             <div>
                 <Header />
                 <FavouritesList favouritesList={this.state.favourites} receiveFav={this.receiveFav} receiveFilmID={this.receiveFilmID} receiveMove={this.receiveMove} delFavClass={classes[0]} moveFavClass={classes[1]} titleClass={classes[2]} />
-                <Search receiveTitleQuery={this.receiveTitleQuery} receiveSearchHint={this.receiveSearchHint} />
+                <Search receiveTitleQuery={this.receiveTitleQuery} receiveSearchHint={this.receiveSearchHint} hints={this.state.hints} />
 
                 {this.state.films.length > 0 &&
                     <SearchResults films={this.state.films} totalFilms={this.state.totalFilms} receiveFilmID={this.receiveFilmID} receivePageNum={this.receivePageNum} currentPage={this.state.currentPage} />}

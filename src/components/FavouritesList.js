@@ -15,7 +15,6 @@ class FavouritesList extends React.Component {
         } else if (e.target.classList.value == this.props.titleClass) {
             this.props.receiveFilmID(film.imdbID)
         } else {
-            console.log(`move this item up`);
             this.props.receiveMove(film);
         }
     };
