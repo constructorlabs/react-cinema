@@ -83,6 +83,19 @@ class Film extends React.Component{
    closeSliderFunction(){
     this.setState({showSlider: false})
 
+
+    // function to pause trailer video on close
+    var iframe = element.querySelector( 'iframe');
+    var video = element.querySelector( 'video' );
+    console.log(iframe);
+	if ( iframe ) {
+		var iframeSrc = iframe.src;
+		iframe.src = iframeSrc;
+	}
+	if ( video ) {
+		video.pause();
+	}
+
    }
 
     render() {
