@@ -2,6 +2,83 @@
     margin: 0;
 }
 
+.nav-bar {
+    display: flex;
+    justify-content: center;
+    height: 50px;
+    align-items: center;
+    background-color: #98c9a8;
+    justify-content: space-between 
+}
+
+.search {
+    display: flex;
+    height: 34px;
+    padding: 8px;
+    background-color: #74977f
+}
+
+.search__input {
+    flex: 1;
+}
+
+.nav-bar__logo {
+    width: 50px;
+    height: 100%;
+    background-color: #455a4c;
+}
+
+.nav-bar__title {
+    background-color: #aee2c0;
+}
+
+
+/* Favourites Menu */
+
+.nav-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.nav-dropdown__fav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    width: 50px;
+    background-color: #455a4c;
+}
+
+.nav-dropdown-icon {
+    width: 25px;
+    height: 25px;
+}
+
+.nav-dropdown__content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    z-index: 1;
+}
+
+.nav-dropdown:hover .nav-dropdown__content{
+    display: block;
+    flex-direction: column;
+    justify-content: space-between;
+    align-content: space-between;
+}
+
+.favorite-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: space-between;
+}
+
 .movies-container {
     display: flex;
     flex-wrap: wrap;

@@ -26,7 +26,7 @@ class Search extends React.Component {
     render() {
         return (
             <form className="search" onSubmit={this.handleSubmit}>
-                <input className="seach__input" name="search" placeholder="Search for Movies..." onChange={this.handleChange} />
+                <input className="search__input" name="search" placeholder="Search for Movies..." onChange={this.handleChange} />
                 <button className="search__btn">Search</button>
             </form>
         )
