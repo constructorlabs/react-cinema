@@ -18,8 +18,10 @@ class MovieDisplay extends React.Component {
         const movie = this.props.currentMovie;
         const ignore = ["Website", "Poster", "Title", "Plot", "Response", "Ratings"];
         const imdbURL = `https://www.imdb.com/title/${movie.imdbID}`;
-        const imgURL = (!movie.Poster || movie.Poster === "N/A") ? "assets/no-image.png" : movie.Poster;
+        const imgURL = (!movie.Poster || movie.Poster === "N/A") ? "./assets/no-image.png" : movie.Poster;
         const noPlot = !movie.Plot || movie.Plot === "N/A";
+
+        // console.log(typeof movie)
 
         const classes = cx({
             "article__text-full": this.state.textDisplay,
@@ -60,7 +62,9 @@ class MovieDisplay extends React.Component {
                             {
                                 (!movie.Website || movie.Website === "N/A") || <li><a href={movie.Website} target="_blank">Visit website</a></li>
                             } 
-                            <li><a href={imdbURL} target="_blank">View details on IMDB</a></li>
+                            {
+                                movie && <li><a href={imdbURL} target="_blank">View details on IMDB</a></li>
+                            }
                         </ul>
                     </div>   
                 </div>

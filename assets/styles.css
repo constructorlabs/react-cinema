@@ -560,5 +560,16 @@ input[type=text]:blur {
     .article__text li  {
         line-height: 2rem;
     }
+
+    .loading-message {
+        padding: 4rem 2rem;
+        font-weight: 700;
+        font-size: 3rem;
+        line-height: 3rem;
+        text-align: center;
+        color: var(--bright-color);
+        filter: drop-shadow(3px 3px 5px rgb(255, 255, 255));
+        min-height: 650px
+    }
     
 }

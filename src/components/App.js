@@ -154,12 +154,12 @@ class App extends React.Component {
         <div>
 
           { /* if a movie has NOT been selected render a loading message */ }
-          {(!this.state.currentMovie) ? 
+          {(this.state.searchQuery === "") ? 
             <div className="loading-message">Find movies quickly and easily</div> : ""
           }
           
           {/* if a movie has been selected render MovieDisplay component */}
-          {(this.state.currentMovie) && <MovieDisplay currentMovie={this.state.currentMovie}/>}
+          {(this.state.searchQuery !== "") && <MovieDisplay currentMovie={this.state.currentMovie}/>}
 
         </div>
       </div>
