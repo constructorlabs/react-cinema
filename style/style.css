@@ -51,6 +51,9 @@ header {
   margin-right: 0.25rem;
 }
 
+.btn__account--active {
+    color: orangered;
+}
 
 /* account */
 

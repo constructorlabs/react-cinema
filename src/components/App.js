@@ -1,4 +1,5 @@
-import React from 'react';
+import React from "react";
+import cx from "classnames"
 import Header from './Header';
 import Search from './Search';
 import SearchResults from './SearchResults';
@@ -16,6 +17,7 @@ class App extends React.Component {
             films: [],
             totalFilms: 0,
             filmDetails: {},
+            showFavs: false,
             favourites: []
         }
 
@@ -23,6 +25,7 @@ class App extends React.Component {
         this.receiveFilmID = this.receiveFilmID.bind(this);
         this.receivePageNum = this.receivePageNum.bind(this);
         this.receiveMove = this.receiveMove.bind(this);
+        this.receiveFavListState = this.receiveFavListState.bind(this);
         this.receiveFav = this.receiveFav.bind(this);
         this.receiveSearchHint = this.receiveSearchHint.bind(this);
         this.searchByTitle = this.searchByTitle.bind(this);
@@ -74,7 +77,6 @@ class App extends React.Component {
         fetch(`http://www.omdbapi.com/?apikey=507b4100&type=movie&s=${string}&page=${pageNum}`)
             .then(response => response.json())
             .then(body => {
-                console.log(body.Search)
                 this.setState({
                     hints: body.Search
                 })
@@ -92,6 +94,12 @@ class App extends React.Component {
         this.setState({
             currentPage: num
         }, () => this.searchByTitle(this.state.query, this.state.currentPage));
+    }
+
+    receiveFavListState(boolean) {
+        this.setState({
+            showFavs: boolean
+        });
     }
 
     receiveFav(obj) {
@@ -137,13 +145,17 @@ class App extends React.Component {
         });
 
         const classes = ["btn btn__delete", "btn btn__move--up", "favourites__list__film__title"];
-
-        console.log(this.state.hints);
+        const favsDisplay = cx("account", {
+            "account--active": this.state.showFavs
+        });
+        const accountState = cx("btn btn__account", {
+            "btn__account--active": this.state.showFavs
+        })
 
         return (
             <div>
-                <Header />
-                <FavouritesList favouritesList={this.state.favourites} receiveFav={this.receiveFav} receiveFilmID={this.receiveFilmID} receiveMove={this.receiveMove} delFavClass={classes[0]} moveFavClass={classes[1]} titleClass={classes[2]} />
+                <Header receiveFavListState={this.receiveFavListState} accountState={accountState} />
+                <FavouritesList favouritesList={this.state.favourites} receiveFav={this.receiveFav} receiveFilmID={this.receiveFilmID} receiveMove={this.receiveMove} favsDisplay={favsDisplay} delFavClass={classes[0]} moveFavClass={classes[1]} titleClass={classes[2]} />
                 <Search receiveTitleQuery={this.receiveTitleQuery} receiveSearchHint={this.receiveSearchHint} hints={this.state.hints} receiveFilmID={this.receiveFilmID} />
 
                 {this.state.films.length > 0 &&

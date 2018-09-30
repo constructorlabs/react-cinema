@@ -23,7 +23,6 @@ class Search extends React.Component {
 
     handleChange(e) {
         if (e.target.value.length >= 3) {
-            console.log(e.target.value.length);
             this.setState({
                 search: e.target.value
             }, () => this.setSearchHint(this.state.search));
@@ -35,7 +34,6 @@ class Search extends React.Component {
     }
 
     handleClick(e, film) {
-        console.log(`${film.imdbID} clicked`);
         this.props.receiveFilmID(film.imdbID);
     }
 

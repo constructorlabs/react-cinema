@@ -22,7 +22,7 @@ class FavouritesList extends React.Component {
 
     render() {
         return (
-            <section id="account" className="account--active">
+            <section id="account" className={this.props.favsDisplay}>
                 <div id="favourites">
                     <h3 id="favourites__title">Your favourites</h3>
                     <ul id="favourites__list" >
