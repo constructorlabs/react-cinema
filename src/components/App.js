@@ -47,6 +47,7 @@ class App extends React.Component {
       page: this.state.page + 1
     }, () => this.fetchMovies(this.state.userSearch,this.setState.page))
    window.scrollTo(0,1050)
+   
   }
 
   handlePrevClick(){

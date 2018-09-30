@@ -9,6 +9,7 @@ class Displayresults extends React.Component {
     this.state ={
         info: {},
         MovieInfoHeading: ''
+        
     }
   }
 
@@ -28,6 +29,7 @@ class Displayresults extends React.Component {
       Director: `Director: ${body.Director}`,
       Genre: `Genre: ${body.Genre}`,
       Runtime: `Runtime: ${body.Runtime}`,
+      star: <i className='star-icon' class="fas fa-star"></i>
     }))
   }
   
@@ -40,11 +42,11 @@ class Displayresults extends React.Component {
             <h1 className='scroll-heading'>{this.props.movie.Title} ({this.props.movie.Year})</h1>
             <span>Click For Movie Info</span>
          <img onClick={this.fetchFilmInfo} className='posters' src={this.props.movie.Poster} /> 
-            <p>{this.state.Plot} </p>
-            <p>{this.state.imdbRating}</p>
-            <p>{this.state.Director}</p>
-            <p>{this.state.Genre}</p>
-            <p>{this.state.Runtime}</p>
+            <p className='movie-info'>{this.state.Plot} </p>
+            <p className='movie-info'>{this.state.imdbRating}{this.state.star}</p>
+            <p className='movie-info'>{this.state.Director}</p>
+            <p className='movie-info'>{this.state.Genre}</p>
+            <p className='movie-info'>{this.state.Runtime}</p>
             
               
             <a onClick={this.handleClick}><i class="fas fa-heart heart-icon"><span className='add-to'>Add To Favourites</span></i></a>

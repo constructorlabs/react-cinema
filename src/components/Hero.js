@@ -38,7 +38,7 @@ class Hero extends React.Component {
       <img  onClick={this.handleClick} className='hero-image' src={this.state.movie.Poster} />
       </div>
        <div className='hero-video'>
-            <iframe  width="560" height="315" src="https://www.youtube.com/embed/xLCn88bfW1o?autoplay=1"  frameBorder="0" allowFullScreen></iframe>
+            <iframe  width="560" height="315" src="https://www.youtube.com/embed/xLCn88bfW1o?autoplay=1&mute=1&enablejsapi=1"  frameBorder="0" allowFullScreen></iframe>
        </div>
       </div>
     );
