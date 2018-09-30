@@ -11,7 +11,7 @@ class Favourite extends React.Component {
   }
 
   handleClick(event) {
-    this.props.receiveMovie(this.props.favData);
+    this.props.receiveMovie(this.props.favData, 'fromFavs');
   }
 
   handleFavUp(event) {

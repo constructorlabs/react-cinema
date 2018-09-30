@@ -67,20 +67,20 @@ class App extends React.Component {
       apiQuery = `http://www.omdbapi.com/?apikey=eee5954b&s=${query}&type=movie`;
       this.fetchData(apiQuery, type);
     }
-
-    
   }
 
-  receiveMovie(movie) {
+  receiveMovie(movie, source) {
     const apiQuery = `http://www.omdbapi.com/?apikey=eee5954b&i=${movie.imdbID}`;
     this.fetchData(apiQuery, 'detail');
+    if (source === 'fromFavs') {
+      setTimeout(() => this.setState({ favsDisplayed: false }), 500);
+    }
   }
 
   fetchData(apiQuery,type) {
     fetch(apiQuery)
     .then(response => response.json())
     .then(body => {
-      console.log(body);
 
       if (type === 'results') {
         if (body.Response === 'True') { 
