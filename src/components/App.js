@@ -80,7 +80,6 @@ class App extends React.Component {
     fetch(apiQuery)
     .then(response => response.json())
     .then(body => {
-      console.log(body);
 
       if (type === 'results') {
         if (body.Response === 'True') { 
