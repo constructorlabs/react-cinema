@@ -53,14 +53,14 @@ header {
 /*** account ***/
 
 .account {
-  background: rgba(0,0,0,0.7);
+  background: rgba(0,0,0,0.8);
   position: fixed;
   top: -50rem;
   width: 100%;
   z-index: 5;
   transition: top 1s;
   box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.5);
-  color: antiquewhite;
+  color: white;
 }
 
 .account.account--active {
@@ -368,8 +368,8 @@ header {
   font-size: 1.5rem;
 }
 
-.btn__fav--active {
-  color: red;
+.btn__fav--active, .btn__fav:hover {
+  color: salmon;
 }
 
 .film-details__poster {

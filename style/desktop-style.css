@@ -13,64 +13,75 @@
     font-size: 2rem;
     margin-right: 2rem;
   }
+  
+  .account {
+    left: 75%;
+    width: 25%;
+  }
 
-.search {
-  grid-template-columns: 1fr 50vw 1fr;
-}
+  .search {
+    grid-template-columns: 1fr 50vw 1fr;
+  }
 
   .search--minified{
   display:grid;
   grid-template-columns: 1fr 40% 8% 1fr;
-/*   grid-template-rows: min-content; */
   grid-template-areas: 
     ". a b ."
     ". c . .";
-/*   height: 10rem; */
-/*   padding: 4.5rem 0.5rem 0.5rem 0.5rem; */
-/*   flex-direction: row; */
-/*   position:relative; */
 }
   
+/**********************/
+/*** search results ***/
 
-
-
-.search--minified .search__hints{
-  width: 85%;
+.search__results {
+  display:flex;
+  flex-direction:column;
+  justify-content: space-between;
+  align-content: flex-start;
+  height: calc(100vh - 10rem);
+  background-image: url('../assets/bg_cinema-seats.jpg');
+  background-position: bottom;
+  background-size: cover;
 }
-  /* search results */
-  .search-results__page {
-    width: 85vw;
-    margin: 0 auto;
-    padding: 1rem;
-    grid-template-columns: repeat(5, 20%);
-    justify-content: space-around;
-  }
+
+.search__results__page {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(1rem, 15rem));
+  grid-template-rows: min-content min-content;
+  grid-row-gap: 0rem;
+  overflow-y: unset;
+  padding: 2rem 1rem;
+/*   width: 90px; */
+  margin: auto;
+}
 
   .film {
     display: flex;
     flex-direction: column;
     flex: 1;
     justify-self: center;
-    margin: 0 0.5rem;
-    width: 18vw;
+    margin: 0;
+    width: 15rem;
   }
 
   .film__title {
-    width: 13vw;
-    font-size: 1.3rem;
+    width: 10rem;
+    font-size: 1.1rem;
+    margin-top: 0.5rem;
   }
 
   .film__poster {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
-    width: 13vw;
-    height: 20vw;
+    width: 10rem;
+    height: 16rem;
     border: 6px solid white;
     object-fit: cover;
     transition: all 0.5s;
   }
 
   .film__poster:hover {
-    border-color: orangered;
+    border-color: yellowgreen;
   }
 
   #page-nav {
@@ -81,79 +92,68 @@
 
   /*. film details */
 
-  #film-details {
-    background-image: url(/src/bg_popcorn.jpg);
-    background-size: cover;
-    padding: 5rem 0 1rem 0;
-    margin-bottom: 0;
-  }
+  /*. film details */
 
-  .film-details__wrapper {
-    width: 65vw;
-    margin: 0 auto;
-    padding-top: 1rem;
-    grid-template-columns: 22vw max-content 1fr;
-    grid-template-rows: repeat(5, min-content) 1fr;
-  }
+.film-details__wrapper {
+  position:absolute;
+  top: 10rem;
+  height: 100vw;
+  background: rgba(65,0,0,0.75);
+  background-position: bottom;
+  background-size: cover;
+}
+
+.film-details__wrapper--closed{
+  display:none;
+}
+
+.film-details{
+  display: grid;
+  grid-template-columns: 5fr 4fr 1fr 2fr;
+  padding: 1.5rem 1rem;
+  margin: 5rem auto;
+  border: 1px solid lightgray;
+  border-radius: 8px;
+  background: whitesmoke;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+  width: 50%;
+}
 
   .film-details__title {
     font-size: 2.3rem;
     border-top: 5px solid black;
     padding-top: 0.25rem;
-    width: 35vw;
+    width: 25vw;
   }
 
   .btn__fav {
-    margin: 0 0.5rem 0.25rem;
+    margin: 1rem 0.5rem 0.25rem;
     font-size: 1.2rem;
     justify-self: end;
     align-self: start;
-    transition: padding 0.2s;
-  }
-
-  .btn__fav:hover {
-    padding: 0.5rem 1rem;
   }
 
   .film-details__poster {
-    grid-column: 1 / span 1;
-    grid-row: 1 / span 8;
-    width: 20vw;
+    width: 70%;
+    margin-left: 2rem;
     justify-self: stretch;
     border: none;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
   }
-  .film-details__wrapper h4 {
-    grid-column: 2 / span 2;
-    margin-bottom: 0.5rem;
-    align-self: end;
-  }
-  h4.film-details__director {
-    grid-column: 2 / span 2;
-    align-self: start;
-    margin-bottom: 0.25rem;
-  }
-
-  .film-details__meta {
-    font-size: 1.2rem;
-    font-style: italic;
-    margin-top: 0.5rem;
-    grid-column: 2 / span 2;
-  }
 
   .film-details__plot,
   .film-details__actors {
-    grid-column: 2 / span 2;
-    width: 30vw;
-    font-family: serif;
-    margin-top: 0;
-    font-size: 1rem;
+    width: 70%;
+  } 
+  
+  .film-details__rating__score {
+    margin-top: 1rem;
   }
-
-  .film-details__ratings__imdb {
-    grid-column: 2 / span 2;
-    margin: 1rem 0;
-    font-size: 1.2rem;
+  
+  .film-details__rating__bar {
+    width: 15vw;
+    height: 1.5rem;
+    margin: 1.5rem 1rem;
   }
 
   .film-details__wrapper h4 {
