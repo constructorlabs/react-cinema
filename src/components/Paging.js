@@ -30,7 +30,6 @@ class Paging extends React.Component {
       
       <span className="paging__count">Page: {this.props.currentPage}</span>
       
-
       {this.props.currentPage < totalpages ? <a onClick={this.handleClickNext} className="paging__next">&rarr;</a> : null}
 
     </nav>

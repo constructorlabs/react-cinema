@@ -165,7 +165,7 @@ a {
     }
 .movie__title {
     margin: 0;
-    padding: calc( 0.5 * var(--main-padding) );
+    padding: calc( 1 * var(--main-padding) );
     background-color: rgba(0, 0, 0, 0.75);
 }
 .movie__title em {
@@ -184,6 +184,12 @@ a {
     text-transform: uppercase;
     background-color: var(--bright-color); 
     color: var(--dark-color); 
+}
+.moviesfeed__rating {
+    background: var(--bright-color); 
+    padding: 0.5rem;
+    display: inline-block;
+    text-transform: uppercase
 }
 
 /* show-hide */
@@ -291,11 +297,19 @@ a {
     }
 
     .moviesfeed__full.details--open {
-        background-size: 150px auto; 
+        background-size: auto 100%; 
+        background-color: var(--light-color);
         padding-top: 0; 
-        padding-left: 150px;
+        padding-left: 25%;
         background-position: center left;
     }
+    .moviesfeed__details-list {
+        padding-right: 20%;
+    }
+    .moviesfeed__full.details--open .movie__title em {
+        display: block;
+    }
+
     /* GRID PADDINGS */
     .moviesfeed__full {
         margin-right: var(--main-padding);

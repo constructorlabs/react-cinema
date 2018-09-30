@@ -60,7 +60,7 @@ class Movie extends React.Component {
           <div className="moviesfeed__content">
           
             <header className="movie__header">
-            <h3 className="movie__title"><span>{this.props.movie.Title} - <em>{this.props.movie.Year}</em></span></h3>
+            <h3 className="movie__title"><span>{this.props.movie.Title}&nbsp;&nbsp;<em>{this.props.movie.Year}</em></span></h3>
             </header>
             
             <a onClick={this.handleClick} href="#" className="btn moviesfeed__btn">
