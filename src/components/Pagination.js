@@ -20,9 +20,8 @@ class Pagination extends React.Component {
     render () {
 
         const totalPages = this.props.pages || 1;
-        const totalButtons = Math.floor(totalPages / 10) + 1;
+        const totalButtons = Math.ceil(totalPages / 10);
         const totalArray = (max, n=1) => new Array(max).fill().map(e => e = n++);
-        
         return (
             <div>
                 {
