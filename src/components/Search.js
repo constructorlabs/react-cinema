@@ -18,7 +18,7 @@ class Search extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        this.props.toggleMinify()
+        this.props.toggleMinify();
         this.props.receiveTitleQuery(this.state.search);
 
     }
@@ -44,6 +44,7 @@ class Search extends React.Component {
     }
 
     render() {
+
         const minifiedClass = cx("search", {
             "search--minified": this.props.isMinified
         });
