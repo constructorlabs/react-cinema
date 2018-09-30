@@ -1,5 +1,6 @@
 import React from "react";
 import SearchHint from "./SearchHint";
+import cx from "classnames";
 
 class Search extends React.Component {
     constructor() {
@@ -17,6 +18,7 @@ class Search extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
+        this.props.toggleMinify()
         this.props.receiveTitleQuery(this.state.search);
 
     }
@@ -42,8 +44,12 @@ class Search extends React.Component {
     }
 
     render() {
+        const minifiedClass = cx("search", {
+            "search--minified": this.props.isMinified
+        });
+
         return (
-            <form className="search search--minified" onSubmit={this.handleSubmit}>
+            <form className={minifiedClass} onSubmit={this.handleSubmit}>
                 <input onChange={this.handleChange} type="text" name="query" id="search__input" className="search__input" placeholder="Search for a film title..." autoFocus="autofocus" />
                 {(this.props.hints != undefined && this.props.hints.length > 0) &&
                     <ul className="search__hints">

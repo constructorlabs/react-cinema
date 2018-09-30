@@ -17,6 +17,7 @@ class App extends React.Component {
             films: [],
             totalFilms: 0,
             isClosed: true,
+            isMinified: false,
             filmDetails: {},
             showFavs: false,
             favourites: []
@@ -32,6 +33,7 @@ class App extends React.Component {
         this.searchByTitle = this.searchByTitle.bind(this);
         this.searchByID = this.searchByID.bind(this);
         this.toggleVisible = this.toggleVisible.bind(this);
+        this.toggleMinify = this.toggleMinify.bind(this);
     }
 
     searchByTitle(query, pageNum = 1) {
@@ -147,6 +149,12 @@ class App extends React.Component {
         });
     }
 
+    toggleMinify() {
+        this.setState({
+            isMinified: !this.state.isMinified
+        })
+    }
+
 
     render() {
 
@@ -166,7 +174,7 @@ class App extends React.Component {
             <React.Fragment>
                 <Header receiveFavListState={this.receiveFavListState} accountState={accountState} />
                 <FavouritesList favouritesList={this.state.favourites} receiveFav={this.receiveFav} receiveFilmID={this.receiveFilmID} receiveMove={this.receiveMove} favsDisplay={favsDisplay} delFavClass={classes[0]} moveFavClass={classes[1]} titleClass={classes[2]} />
-                <Search receiveTitleQuery={this.receiveTitleQuery} receiveSearchHint={this.receiveSearchHint} hints={this.state.hints} receiveFilmID={this.receiveFilmID} />
+                <Search receiveTitleQuery={this.receiveTitleQuery} receiveSearchHint={this.receiveSearchHint} hints={this.state.hints} receiveFilmID={this.receiveFilmID} toggleMinify={this.toggleMinify} isMinified={this.state.isMinified} />
 
                 {this.state.films.length > 0 &&
                     <SearchResults films={this.state.films} totalFilms={this.state.totalFilms} receiveFilmID={this.receiveFilmID} receivePageNum={this.receivePageNum} currentPage={this.state.currentPage} toggleVisible={this.toggleVisible} />}
