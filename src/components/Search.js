@@ -19,10 +19,10 @@ class Search extends React.Component {
 
   render(){
     return (
-        <div >
-        <form onSubmit={this.handleSubmit} className="search" id="search">
+        <div className="search">
+        <form onSubmit={this.handleSubmit} className="search__wrapper" id="search">
           <input onChange={this.handleChange} className="search__input" name="search" placeholder="Beam me up Scotty" />
-          <button className="btn search__btn">Go</button>
+          <button className="search__btn">Go</button>
         </form>
       </div>
     )

@@ -33,8 +33,9 @@ class Film extends React.Component{
                     trailerYoutubeInfo: `http://www.youtube.com/embed/${trailerYoutubeInfo.results[0].key}?modestbranding=1&showinfo=0&rel=0`,
                     test: test,
                     showSlider: true
-                }))
-               .catch(error => console.log("catch error", error));
+                })
+                
+                );
                 
             }
              
@@ -42,23 +43,22 @@ class Film extends React.Component{
 
 // Multiple fetches ->
 
-    fetchMoreInfo(){ //default for now
-        const movieURL = `https://www.omdbapi.com/?i=${this.props.film.imdbID}&apikey=73071eff`; 
-        fetch(movieURL) 
-        .then(function(response) {
+    // fetchMoreInfo(){ //default for now
+    //     const movieURL = `https://www.omdbapi.com/?i=${this.props.film.imdbID}&apikey=73071eff`; 
+    //     fetch(movieURL) 
+    //     .then(function(response) {
             
-            return response.json();
-        })
-        .then(moreFilmInfo=> {
-          this.setState({moreFilmInfo: moreFilmInfo, showSlider: true})
-            // console.log(find);
-        }
-        )
-        .catch(error=> {
-            displayErrorToUser3(`${error} ahhhh server problem`);
-        }
-        );
-    }  
+    //         return response.json();
+    //     })
+    //     .then(moreFilmInfo=> {
+    //       this.setState({moreFilmInfo: moreFilmInfo, showSlider: true})
+    //         // console.log(find);
+    //     }
+    //     );
+    //     // .catch(function(error) {
+    //     //     displayErrorToUser3(`${error} ahhhh server problem`);
+    //     // });
+    //   }  
 
     //   trailerVideo(){ //default for now
     //     const ytURL = `https://api.themoviedb.org/3/movie/${this.props.film.imdbID}/videos?api_key=8aed3c92a5c6ef5e792ffaf51ac22616&language=en-US`; 
@@ -97,15 +97,18 @@ class Film extends React.Component{
 
         //Slider Toggle
         const sliderView = cx('hidden', {'moreInfo': this.state.showSlider})
-        const sliderClose = cx('moreinfo', {'hidden': this.state.showSlider})
+        // const sliderClose = cx('moreinfo', {'hidden': this.state.showSlider})
         
         return (
            
             <div className="film" >
-                <h2>{this.props.film.Title}</h2>
-                
-                <img onClick={this.fetchMoreInfo} id={this.props.film.imdbID} onError={this.state.placeholder} src={this.props.film.Poster} alt=""/>
-                
+                <div className="film_results">
+                <div className="film__titles">
+                    <h2>{this.props.film.Title}</h2>
+                    <h3>{this.props.film.Year}</h3>
+                </div>
+                    <img onClick={this.fetchMoreInfo} id={this.props.film.imdbID} onError={this.state.placeholder} src={this.props.film.Poster} alt=""/>
+                </div>
 
                  {/* <h2>Broken image:</h2> 
             <img src={brokenUrl} fallbackSrc={fallbackUrl}/>
@@ -118,7 +121,7 @@ class Film extends React.Component{
                 
                 <div className={sliderView}>
                 <div>
-                    <h4 className={sliderClose}>X</h4>
+                    {/* <h4 className={sliderClose}>X</h4> */}
                     <p>{this.state.moreFilmInfo.Plot}</p>
                     {/* <p>{this.state.test.Plot}</p> */}
                     {/* <iframe src="http://www.youtube.com/embed/gQ0uSh2Hgcs?modestbranding=1&showinfo=0&rel=0" width="560" height="315" frameborder="0"></iframe> */}

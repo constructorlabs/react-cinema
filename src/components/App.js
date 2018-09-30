@@ -6,9 +6,9 @@ class App extends React.Component {
   constructor() {
     super();
 
-    this.state = { films: [], pageNum: 1, currentSearchFlim: "love" };
+    this.state = { films: [], pageNum: 1, currentSearchFlim: "love", unFound: {gif: '', p: ''}};
     this.handleNext = this.handleNext.bind(this);
-
+    this.handlePrevious = this.handlePrevious.bind(this);
     this.fetchIMDB = this.fetchIMDB.bind(this);
     // this.filmSearch = this.filmSearch.bind(this);
     // this.IMDBData= this.IMDBData.bind(this);
@@ -19,17 +19,25 @@ class App extends React.Component {
 
   componentDidMount() {
     this.receiveSearch(this.state.currentSearchFlim);
+    
   }
 
-  notFound() {
-    console.log("notFound");
+  notFound(){
+   this.setState({unFound:{gif:'/oops.gif', p:"No results found"}});
   }
 
   handleNext() {
     console.log(this.state.pageNum);
     // this.setState(prevState =>Object.assign({}, prevState, { pageNum: prevState.pageNum + 1 }))
     // this.setState(prevState => ({...prevState, pageNum: prevState.pageNum + 1}));
+
     this.setState( prevState => ({pageNum: prevState.pageNum + 1}))
+    this.receiveSearch(this.state.currentSearchFlim)
+  }
+
+  handlePrevious() {
+    // event.preventDefault();
+    this.setState({pageNum: this.state.pageNum - 1})
     this.receiveSearch(this.state.currentSearchFlim)
   }
 
@@ -38,6 +46,7 @@ class App extends React.Component {
     // this.setState(prevState => Object.assign({}, prevState, { currentSearchFlim: filmSearchQuery}))
     const searchURL = `https://www.omdbapi.com/?s=${filmSearchQuery}&page=${this.state.pageNum}&apikey=73071eff`;
     this.fetchIMDB(searchURL);
+    
   }
 
   // Initial Search Fetch
@@ -49,22 +58,29 @@ class App extends React.Component {
       .then(films => {
         if (films.Response === "False") {
           this.notFound();
-          console.log("WHOOPS!");
-          this.setState({ error: films.Search });
+          alert("WHOOPS!");
+          this.setState({ films:[]});
         } else {
           console.log(films);
           this.setState({ films: films.Search });
         }
       })
-      .catch(error => console.log("catch error", error));
+      // .catch(error => console.log("catch error", error));
   }
 
   render() {
     return (
       <div>
+        <h1>Quelle Film</h1>
         <Search receiveSearch={this.receiveSearch} />
+        <div className="oops">
+        {this.state.unFound.p}
+        <img className="cry" src={this.state.unFound.gif}/> 
+        </div>
         <Films films={this.state.films} />
+        <div></div>
         <button onClick={this.handleNext}>Next</button>
+        <button onClick={this.handlePrevious}>Back</button>
       </div>
     );
   }
