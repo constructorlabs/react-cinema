@@ -1,6 +1,7 @@
 import React from 'react';
 import Movie from './Movie';
 import FavMovie from './FavMovie';
+import cx from 'classnames';
 
 
 
@@ -10,7 +11,8 @@ class Movies extends React.Component{
     super();
     this.state={
       favList:[],
-      displayFav:false
+      displayFav:false,
+
     }
     this.receiveFavClick = this.receiveFavClick.bind(this);
     this.handleClick = this.handleClick.bind(this);

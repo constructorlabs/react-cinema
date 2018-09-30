@@ -2,7 +2,8 @@
 //url = `http://www.omdbapi.com/?i=${id}&plot=full&apikey=d2807699`
 
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+import cx from 'classnames';
 
 
 class Movie extends React.Component{
@@ -10,7 +11,8 @@ class Movie extends React.Component{
     super();
     this.state ={
       movieDetails:{},
-      showDetails:false
+      showDetails:false,
+      on:false
     }
 
     this.handleClick = this.handleClick.bind(this);
@@ -28,6 +30,9 @@ class Movie extends React.Component{
 
   handleFavClick(){
     this.props.receiveFavClick(this.props.id)
+    this.setState({
+      on:!this.state.on
+    })
   }
 
   fetchMovieDetails(){
@@ -46,11 +51,12 @@ class Movie extends React.Component{
   }
 
   render(){
+    const classes=cx('material-icons md-24',{'fav_on':this.state.on});
     return(
       <div className='movie' id={this.props.id}>
         <h2>{this.props.title}</h2>
         <h3>{this.props.year}</h3>
-        <div><FontAwesomeIcon icon="star" onClick={this.handleFavClick}/></div>
+        <i onClick={this.handleFavClick} className={classes}>star_border</i>
         <img onClick={this.handleClick} src={this.props.image}/>
 
         {this.state.showDetails?

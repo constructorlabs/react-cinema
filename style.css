@@ -90,10 +90,9 @@ h2,h3{
   padding:0.5em;
 }
 
-svg{
-  color: green;
+.fav_on{
+  color:green
 }
-
 /*form{
   display: grid;
   grid-template-columns: 40% 40% 20%;
