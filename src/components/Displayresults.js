@@ -5,17 +5,18 @@ class Displayresults extends React.Component {
   constructor(){
     super()
     this.fetchFilmInfo = this.fetchFilmInfo.bind(this)
-    
+    this.handleClick = this.handleClick.bind(this)
     this.state ={
         info: {},
         MovieInfoHeading: ''
     }
   }
 
+  handleClick(){
 
+  }
 
   fetchFilmInfo(){
-
     fetch(`http://www.omdbapi.com/?apikey=8d5ab09&i=${this.props.movie.imdbID}`)
     .then(response => response.json())
     .then(body => 
@@ -27,9 +28,6 @@ class Displayresults extends React.Component {
       Director: `Director: ${body.Director}`,
       Genre: `Genre: ${body.Genre}`,
       Runtime: `Runtime: ${body.Runtime}`,
-      
-      
-
     }))
   }
   
@@ -47,6 +45,10 @@ class Displayresults extends React.Component {
             <p>{this.state.Director}</p>
             <p>{this.state.Genre}</p>
             <p>{this.state.Runtime}</p>
+            
+              
+            <a onClick={this.handleClick}><i class="fas fa-heart heart-icon"><span className='add-to'>Add To Favourites</span></i></a>
+            
         </div>
     );
   }

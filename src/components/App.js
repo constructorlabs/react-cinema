@@ -63,7 +63,9 @@ class App extends React.Component {
     return (
       <div className="container">
         <h1 className='welcome-heading'>The Internet's Biggest Collections Of Movies</h1>
-      
+        <ul>
+            <li><a>Favourites</a><i class="fa fa-chevron-down"></i></li>
+        </ul>
        <Search  receiver={this.receiveSearch}/>
        {/* add a ternary to show hero if no movie search and if movie is search, no hero */}
        <Hero />

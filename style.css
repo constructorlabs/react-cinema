@@ -10,11 +10,16 @@ body{
     line-height: 1.4;
 }
 
-.container{
-    display: grid;
+
+li{
+    list-style-type: none;
+    
 }
 
-
+ul{
+    display:flex;
+    justify-content: flex-end;
+}
 
 .welcome-heading{
     display:flex;
@@ -30,6 +35,7 @@ form{
 .hero-heading {
     text-align:center;
     color:red;
+    text-shadow: #fff;
 }
 
 p.scroll-heading, h3.scroll-heading{
@@ -43,6 +49,7 @@ h3.scroll-heading{
 p.scroll-heading{
     text-decoration: underline;
     font-size: 18px;
+    text-shadow: red;
 }
 
 h1.scroll-heading{
@@ -53,6 +60,10 @@ h1.scroll-heading{
 span{
     display:flex;
     justify-content: center;
+}
+
+.add-to{
+    font-size: 10px;
 }
 
 .hero-image {
@@ -118,11 +129,18 @@ span{
   text-decoration: underline;
 }
 
+.heart-icon{
+    display:flex;
+    justify-content: center;
+    font-size: 30px;
+}
+
 @media screen and (min-width: 500px) {
     
 h1.scroll-heading{
     display: flex;
     justify-content: center;
+    color: lightgrey;
 }
 
 span{
@@ -139,8 +157,22 @@ span{
  
     .posters:hover{
      transform: scale(1.1);
+     
  }
 
+ .results:hover{
+    
+    background:#fff;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 1),
+                0 0 20px rgba(255, 255, 255, 1),
+                0 0 30px rgba(255, 255, 255, 1),
+                0 0 0 75px rgba(255, 255, 255, 0.05),
+                0 0 0 60px rgba(255, 255, 255, 0.05),
+                0 0 0 45px rgba(255, 255, 255, 0.05),
+                0 0 0 30px rgba(255, 255, 255, 0.05),
+                0 0 0 75px rgba(255, 255, 255, 0.05)
+
+ }
  .hero-landing{
     display:flex;
     justify-content: center;
@@ -166,6 +198,18 @@ p{
     padding: 5px;
     text-align: center;
 }
+
+
+.heart-icon{
+    font-size: 45px;
+    color: lightgrey;
+}
+
+.heart-icon:hover{
+    color: red;
+    transform: scale(1.1);
+}
+
 
 
 

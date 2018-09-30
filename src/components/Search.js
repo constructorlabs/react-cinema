@@ -25,13 +25,15 @@ constructor(){
 
   render(){
     return (
-     
+        
           <form onSubmit={this.handleSubmit}>
               <input type='text' placeholder='Search For A Movie..' onChange={this.handleChange}/>
-              <button  type='submit'>Search..</button>
+              <button  type='submit'>Search..</button>   
           </form>
+       
     );
   }
 }
 
 export default Search;
+
