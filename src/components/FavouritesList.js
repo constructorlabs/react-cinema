@@ -22,10 +22,10 @@ class FavouritesList extends React.Component {
 
     render() {
         return (
-            <section id="account" className={this.props.favsDisplay}>
+            <section className={this.props.favsDisplay}>
                 <div id="favourites">
-                    <h3 id="favourites__title">Your favourites</h3>
-                    <ul id="favourites__list" >
+                    <h3 className="favourites__title">Your favourites</h3>
+                    <ul className="favourites__list" >
                         {this.props.favouritesList.map(film => {
                             return <Favourite key={film.imdbID} details={film} delFavClass={this.props.delFavClass} moveFavClass={this.props.moveFavClass} titleClass={this.props.titleClass} onClick={e => this.handleClick(e, film)} />
                         })}

@@ -43,8 +43,7 @@ class Search extends React.Component {
 
     render() {
         return (
-            <form id="search" onSubmit={this.handleSubmit}>
-                <label htmlFor="search__input" className="search__label">What are you looking for?</label>
+            <form className="search search--minified" onSubmit={this.handleSubmit}>
                 <input onChange={this.handleChange} type="text" name="query" id="search__input" className="search__input" placeholder="Search for a film title..." autoFocus="autofocus" />
                 {(this.props.hints != undefined && this.props.hints.length > 0) &&
                     <ul className="search__hints">

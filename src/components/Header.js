@@ -18,7 +18,7 @@ class Header extends React.Component {
     render() {
         return (
             <header>
-                <h1 id="title">The Reel Thing</h1>
+                <h1 className="title">The Reel Thing</h1>
                 <button onClick={this.handleClick} className={this.props.accountState}><i className="fas fa-heart"></i></button>
             </header>
         )
