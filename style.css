@@ -106,6 +106,9 @@ h2,h3{
   color:green
 }
 
+.favLightOff{
+  color:black
+}
 
 @media(min-width:768px) {
   .movies{

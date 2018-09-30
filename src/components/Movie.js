@@ -50,8 +50,10 @@ class Movie extends React.Component{
 
   }
 
+
   render(){
-    const classes=cx('material-icons md-24',{'fav_on':this.state.on});
+    const classes=cx('material-icons md-24',{'fav_on':this.state.on&&this.props.favLightOn});
+
     return(
       <div className='movie' id={this.props.id}>
         <h2>{this.props.title}</h2>

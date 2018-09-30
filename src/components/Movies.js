@@ -16,10 +16,12 @@ class Movies extends React.Component{
     this.state={
       favList:[],
       displayFav:false,
+      favLightOn:true
 
     }
     this.receiveFavClick = this.receiveFavClick.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.receiveDeleteClick = this.receiveDeleteClick.bind(this);
   }
 
   receiveFavClick(id){
@@ -28,14 +30,28 @@ class Movies extends React.Component{
         const newMovie=this.props.movies.filter(movie => movie.imdbID == id)
         this.state.favList.length==0?this.setState({favList:newMovie}):
         this.setState({
-          favList: this.state.favList.concat(newMovie)
+          favList: this.state.favList.concat(newMovie),
+          favLightOn:true
         },()=>localStorage.setItem("favList", JSON.stringify(this.state.favList))
-        )
+      )
     } else {
         this.setState({
-          favList: this.state.favList.filter(movie => movie.imdbID !== id)
+          favList: this.state.favList.filter(movie => movie.imdbID !== id),
+          favLightOn:true
       }, ()=>localStorage.setItem('favList',JSON.stringify(this.state.favList))
     )}
+  }
+
+  receiveDeleteClick(id){
+    this.setState({
+      favList: this.state.favList.filter(movie => movie.imdbID !== id),
+      favLightOn:false
+  }, ()=>localStorage.setItem('favList',JSON.stringify(this.state.favList))
+);
+
+
+
+
   }
 
 
@@ -55,12 +71,12 @@ class Movies extends React.Component{
         {this.state.displayFav?<ul className='favorite__list'>
           {localFavList.map(fav => {
             return  <FavMovie title={fav.Title}
-              year={fav.Year} key={fav.imdbID}/>
+              year={fav.Year} id={fav.imdbID} key={fav.imdbID} receiveDeleteClick={this.receiveDeleteClick}/>
             })}
         </ul>:""}
         <div className='movies' >
 
-        {this.props.movies==undefined? <img src="https://media.giphy.com/media/IO3NC6rAktKrC/giphy.gif"/>
+        {this.props.movies==undefined? <img src="https://media.giphy.com/media/2LbsnnLhaHUnC/giphy.gif"/>
         : this.props.movies.map(movie => {
 
           return  <Movie
@@ -69,6 +85,7 @@ class Movies extends React.Component{
             key={movie.imdbID}
             id={movie.imdbID}
             image={movie.Poster}
+            favLightOn={this.state.favLightOn}
             receiveFavClick={this.receiveFavClick}
             />
         })}
