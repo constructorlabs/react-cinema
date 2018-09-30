@@ -37,7 +37,6 @@ body {
     padding: 0;
     background-color: var(--content-color);
     background-image: url("popcorn-bg-smaller-brighter.png");
-    /* https://images.hellogiggles.com/uploads/2017/11/11045621/picture-of-movie-popcorn-photo.jpg */
 }
 
 .loading-message {
@@ -55,7 +54,7 @@ body {
 header {
     display: flex;
     flex-direction: row;
-    flex: 1;
+    /* flex: 1; */
     justify-content: center;
     /* position: fixed; */
     top: 0;
@@ -252,9 +251,8 @@ input[type=text]:blur {
     font-size: 2.2rem;
     background-color:rgb(227, 227, 227);
     color:  var(--bright-color);
-    padding: 1rem 2rem;
-    height: 30%;
-    margin: 0;    
+    padding: 1.5rem;
+    height: 30%;  
     text-decoration: none;
     border-bottom: 1px solid #ddd;
     background: #eee;
@@ -297,7 +295,7 @@ input[type=text]:blur {
     font-size: 1rem;
     background: #fff;
     color: black;
-    padding: 0 2rem 2rem 2rem;
+    padding: 1.5rem;
     margin: 0;
     list-style: none;
 }
@@ -318,7 +316,7 @@ input[type=text]:blur {
     display: initial;
     background-color: #ddd;
     padding: 0.5em 1rem 0.5rem 1rem;
-    margin-top: 2.5em 1rem 1.5rem 1rem;
+    margin: 1.5em 0 0 0;
     line-height: 3rem;
     color: black;    
     list-style: none;
@@ -357,7 +355,7 @@ input[type=text]:blur {
 
 .footer {
     display: flex;
-    flex: 1;
+    /* flex: 1; */
     flex-direction: column;
     text-align: center;
     margin: 0;
@@ -365,7 +363,6 @@ input[type=text]:blur {
     line-height: 2rem;
     background-color: var(--footer-color);
     color:white;
-
     padding: 0;
   }
   
@@ -382,7 +379,6 @@ input[type=text]:blur {
   
   .footer__contact a {
     font-weight: 700;
-    /* border-bottom: solid 0.1em #ff2108; */
     padding: 0.2rem 0.3rem 0.1rem 0.3rem;
     background: #666;
     text-decoration: none;
@@ -397,7 +393,6 @@ input[type=text]:blur {
   .footer__contact a:hover {
     text-decoration-line: none;
     background:  var(--bright-color);
-    /* outline: solid 0.1rem white; */
     color:white;
   }
 
@@ -410,10 +405,10 @@ input[type=text]:blur {
     overflow: auto;
     white-space: nowrap;
     width: 100%;
-    height: 65px;
+    height: 60px;
     max-width: 300px;
-    padding: 0.5rem 0;
-    margin: 0.5rem 0;
+    padding: 0 0 0.5rem 0;
+    margin: 0 0 0.5rem 0;
 }
 
 .page__button-none, .page__button-selected {
@@ -440,6 +435,18 @@ input[type=text]:blur {
 
   @media (min-width: 768px) {
  
+    /* You will see in the css for mobile I have removed the flex context of 1 for header and footer. I find that vertical things (columns) are rather more complex it is probably preferable to pad the footer and the header so they naturally receive the kind of height you want */
+    
+    #root {
+        min-height: auto;
+       
+    } 
+
+    /* #root{
+        display: flex;
+        flex-direction: row;
+        vertical-align: top;
+    } */
 
     .results-list, input {
         /* width: 100%;
@@ -454,13 +461,6 @@ input[type=text]:blur {
         padding-top: 1rem;
         padding-bottom: 1rem;
     }
-
-    #root{
-        display: flex;
-        flex-direction: row;
-        vertical-align: top;
-    }
-
    
     .app {
         display: flex;
@@ -473,16 +473,19 @@ input[type=text]:blur {
         margin: 2em;
     }
 
+    /* delete .search-wrapper? */
+
     .search-wrapper {
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
-        min-height: 800px;
+        min-height: 650px;
     }
 
     .article__main {
         width: 100%;
-        min-width: 350px;
+        /* min-width: 350px; */
+        min-height: 650px;
         max-width: 350px;
         margin: 0 0 0 2rem;
     }

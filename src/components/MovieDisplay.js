@@ -6,15 +6,11 @@ class MovieDisplay extends React.Component {
     constructor () {
         super()
         this.toggleTextDisplay = this.toggleTextDisplay.bind(this)
-        this.state = {
-            textDisplay: false
-        }
+        this.state = { textDisplay: false }
     }
 
     toggleTextDisplay () {
-        this.setState ({
-            textDisplay: !this.state.textDisplay
-        })
+        this.setState ({ textDisplay: !this.state.textDisplay })
     }
 
     render () {
@@ -24,14 +20,6 @@ class MovieDisplay extends React.Component {
         const imdbURL = `https://www.imdb.com/title/${movie.imdbID}`;
         const imgURL = (!movie.Poster || movie.Poster === "N/A") ? "assets/no-image.png" : movie.Poster;
         const noPlot = !movie.Plot || movie.Plot === "N/A";
-
-        function createMarkup(string) {
-            return {__html: string};
-        }
-
-        function createPlotHTML() {
-            return <div dangerouslySetInnerHTML={createMarkup('<h3>Plot</h3>')} />;
-        }
 
         const classes = cx({
             "article__text-full": this.state.textDisplay,
@@ -54,7 +42,7 @@ class MovieDisplay extends React.Component {
                 </div>
                 <div className="article__text">
                     { (noPlot) || <SetInnerHTML>{"<h3>Plot</h3>"}</SetInnerHTML>}
-                    {(noPlot) || movie.Plot}
+                    { (noPlot) || movie.Plot}
                     <div><a onClick={this.toggleTextDisplay}>More details below...</a></div>
                     <div className={classes}>
                         <ul>
@@ -70,7 +58,7 @@ class MovieDisplay extends React.Component {
                             }
 
                             {
-                                (movie.Website && movie.Website !== "N/A") ? <li><a href={movie.Website} target="_blank">Visit website</a></li> : ""
+                                (!movie.Website || movie.Website === "N/A") || <li><a href={movie.Website} target="_blank">Visit website</a></li>
                             } 
                             <li><a href={imdbURL} target="_blank">View details on IMDB</a></li>
                         </ul>
