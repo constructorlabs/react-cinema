@@ -268,33 +268,42 @@ header {
 
 /* page navigation */
 
-#page-nav {
+.page__nav {
+  background: white;
   display: flex;
   justify-content: center;
-  font-size: 0.9rem;
+  align-items: center;
 }
 
-.btn__prev{
-  font-weight: bold;
+.btn__prev, .btn__next{
+  font-size: 1.5rem;
+  color: yellowgreen;
   margin-right: 2rem;
 }
 
-.page-current{
-    margin: 0.5rem 0.25rem 0 0.5rem;
-    max-width: 2rem;
+.page__nav p{
+  margin-top: 1rem;
 }
 
-.page-current input{
+.page__current{
+    margin: 0rem 0.25rem;
+    max-width: 2.25rem;
+}
+
+.page__current input{
   max-width: inherit;
-  border: 1px solid light gray;
+  border: 1px solid lightgray;
+  border-radius: 3px;
   text-align: center;
   font-size: 1.1rem;
   font-weight: bold;
-  color:orangered;
+  color:salmon;
+  padding: 0 0 2px 0;
 }
 
 .btn__next{
   margin-left:2rem;
+  margin-right: 0;
 }
 
 .film-details__wrapper {

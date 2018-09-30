@@ -43,10 +43,10 @@ class Pagination extends React.Component {
         const totalPages = Math.ceil(this.props.totalFilms / this.props.filmsPerPage)
 
         return (
-            <nav id="page-nav" onClick={this.handleClick}>
-                <button className="btn btn__prev">&larr;</button>
-                <p className="page-num">Page</p> <form className="page-current" onSubmit={this.handleSubmit}><input onChange={this.handleChange} type="text" value={this.state.currentPage} /></form> <p>of <span className="page-total">{totalPages}</span></p>
-                <button className="btn btn__next">&rarr;</button>
+            <nav className="page__nav" onClick={this.handleClick}>
+                <button className="btn btn__prev"><i class="fas fa-chevron-circle-left"></i></button>
+                <p>Page</p> <form className="page__current" onSubmit={this.handleSubmit}><input onChange={this.handleChange} type="text" value={this.state.currentPage} /></form> <p>of <span className="page__total">{totalPages}</span></p>
+                <button className="btn btn__next"><i class="fas fa-chevron-circle-right"></i></button>
             </nav>
         )
     }
