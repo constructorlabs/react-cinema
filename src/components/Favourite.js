@@ -1,12 +1,12 @@
 import React from 'react';
 
-function Favourite(props) {
+function Favourite({ moveFavUp, moveFavDown, receiveMovie, favData }) {
 
   return (
      <div className='fav'>
-        <i className="fas fa-sort-up" onClick={event => props.moveFavUp(props.favData)}></i>
-        <i className="fas fa-sort-down" onClick={event => props.moveFavDown(props.favData)}></i>
-        <a className='fav__title' onClick={event => props.receiveMovie(props.favData, 'fromFavs')}>{props.favData.Title}</a>
+        <i className="fas fa-sort-up" onClick={event => moveFavUp(favData)}></i>
+        <i className="fas fa-sort-down" onClick={event => moveFavDown(favData)}></i>
+        <a className='fav__title' onClick={event => receiveMovie(favData, 'fromFavs')}>{favData.Title}</a>
       </div>
   );
 }

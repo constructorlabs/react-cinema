@@ -1,14 +1,14 @@
 import React from 'react';
 
-function Preview(props) {
+function Preview({ receiveMovie, hidePreview, movieData }) {
   
   function handleClick(event) {
-    props.receiveMovie(props.movieData);
-    props.hidePreview();
+    receiveMovie(movieData);
+    hidePreview();
   }
 
   return (
-    <div className='preview' onClick={handleClick}>{props.movieData.Title}</div>       
+    <div className='preview' onClick={handleClick}>{movieData.Title}</div>       
   );
 }
 
