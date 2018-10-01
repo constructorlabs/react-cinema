@@ -2,6 +2,8 @@ import React from 'react';
 import Preview from './Preview';
 import cx from 'classnames';
 
+let debounceTimer;
+
 class Search extends React.Component {
 
   constructor() {
@@ -20,17 +22,20 @@ class Search extends React.Component {
     this.setState({text: textValue});
     
     if (textValue.length >= 3) {
-      const debounceActive = this.state.debounceActive;
-      if (!debounceActive) {
+
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(() => {
+        this.setState({ debounceActive: false });
+        this.setState({previewDisplayed: true});
+        this.props.receiveSearch(textValue,'preview');
+        console.log('debounce inactive'); }, 1000);
+
+      if (!this.state.debounceActive) {
         this.setState({ debounceActive: true });
         console.log('debounce active!');
-        setTimeout(() => {
-          this.setState({ debounceActive: false });
-          console.log('debounce inactive'); }, 2000);
-      }
-      this.setState({previewDisplayed: true});
-      this.props.receiveSearch(textValue,'preview');
+       }
     }
+
     else {
       this.setState({previewDisplayed: false});
     }
@@ -46,6 +51,7 @@ class Search extends React.Component {
     this.props.receiveSearch(this.state.text, 'results');
     this.setState({ text: '',
                     previewDisplayed: false });
+    clearTimeout(debounceTimer);
   }
 
   render() {
