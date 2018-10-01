@@ -12,7 +12,7 @@ class Movie extends React.Component{
     this.state ={
       movieDetails:{},
       showDetails:false,
-      on:false
+
     }
 
     this.handleClick = this.handleClick.bind(this);
@@ -30,9 +30,7 @@ class Movie extends React.Component{
 
   handleFavClick(){
     this.props.receiveFavClick(this.props.id)
-    this.setState({
-      on:!this.state.on
-    })
+    
   }
 
   fetchMovieDetails(){
@@ -52,7 +50,12 @@ class Movie extends React.Component{
 
 
   render(){
-    const classes=cx('material-icons md-24',{'fav_on':this.state.on&&this.props.favLightOn});
+    let check={fav_on:false};
+
+    this.props.favList.find(movie => movie.imdbID==this.props.id)? check={fav_on:true}:
+    check={fav_on:false}
+
+    const classes=cx('material-icons md-24',check);
 
     return(
       <div className='movie' id={this.props.id}>

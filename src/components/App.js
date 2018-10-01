@@ -28,6 +28,8 @@ class App extends React.Component {
 
   }
 
+  
+
   receivePageChange(value) {
     const newPage = this.state.page + parseInt(value);
 

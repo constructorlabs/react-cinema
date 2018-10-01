@@ -16,7 +16,7 @@ class Movies extends React.Component{
     this.state={
       favList:[],
       displayFav:false,
-      favLightOn:false
+
 
     }
     this.receiveFavClick = this.receiveFavClick.bind(this);
@@ -24,20 +24,25 @@ class Movies extends React.Component{
     this.receiveDeleteClick = this.receiveDeleteClick.bind(this);
   }
 
+  componentDidMount(){
+    const storageString = window.localStorage.getItem('favList');
+    const localFavList = !storageString ? []: JSON.parse(storageString)
+    this.setState({
+      favList: localFavList,
+    })
+  }
+
   receiveFavClick(id){
 
     if(this.state.favList.filter(movie => movie.imdbID==id).length == 0){
-        const newMovie=this.props.movies.filter(movie => movie.imdbID == id)
-        this.state.favList.length==0?this.setState({favList:newMovie}):
+        const newMovie=this.props.movies.filter(movie => movie.imdbID == id);
         this.setState({
           favList: this.state.favList.concat(newMovie),
-          favLightOn:true
         },()=>localStorage.setItem("favList", JSON.stringify(this.state.favList))
       )
     } else {
         this.setState({
           favList: this.state.favList.filter(movie => movie.imdbID !== id),
-          favLightOn:true
       }, ()=>localStorage.setItem('favList',JSON.stringify(this.state.favList))
     )}
   }
@@ -45,13 +50,9 @@ class Movies extends React.Component{
   receiveDeleteClick(id){
     this.setState({
       favList: this.state.favList.filter(movie => movie.imdbID !== id),
-      favLightOn:false
+
   }, ()=>localStorage.setItem('favList',JSON.stringify(this.state.favList))
 );
-
-
-
-
   }
 
 
@@ -84,8 +85,9 @@ class Movies extends React.Component{
             year={movie.Year}
             key={movie.imdbID}
             id={movie.imdbID}
+            favList={this.state.favList}
             image={movie.Poster}
-            favLightOn={this.state.favLightOn}
+
             receiveFavClick={this.receiveFavClick}
             />
         })}
