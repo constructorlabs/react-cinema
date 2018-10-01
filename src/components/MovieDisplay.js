@@ -14,13 +14,14 @@ class MovieDisplay extends React.Component {
     }
 
     render () {
-
-        const movie = this.props.currentMovie;
+        // ignore these properties when looping through all the keys so they don't display in the content 
         const ignore = ["Website", "Poster", "Title", "Plot", "Response", "Ratings"];
+        const movie = this.props.currentMovie;
         const imdbURL = `https://www.imdb.com/title/${movie.imdbID}`;
         const imgURL = (!movie.Poster || movie.Poster === "N/A") ? "./assets/no-image.png" : movie.Poster;
         const noPlot = !movie.Plot || movie.Plot === "N/A";
-
+        
+        // toggle the visibility of the search results display
         const classes = cx({
             "article__text-full": this.state.textDisplay,
             "article__text-none": !this.state.textDisplay

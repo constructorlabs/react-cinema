@@ -16,7 +16,8 @@
 }
 
 html {
-    scroll-behavior:smooth
+    scroll-behavior:smooth;
+    background-color: var(--footer-color);
 }
 
 body {
@@ -26,7 +27,7 @@ body {
     font-size: 1rem;
     line-height: 1.7rem;
     letter-spacing: 0.02rem;
-    background-color: rgb(0, 0, 0);
+    background-color: var(--dark-color);
 }
 
 .content {
@@ -364,10 +365,12 @@ input[type=text]:blur {
     background-color: var(--footer-color);
     color:white;
     padding: 0;
+    border: 0;
   }
   
   .footer__contact {
     text-align: center;
+    border: 0;
   }
 
   .pad-top {
@@ -380,7 +383,6 @@ input[type=text]:blur {
   .footer__contact a {
     font-weight: 700;
     padding: 0.2rem 0.3rem 0.1rem 0.3rem;
-    background: #666;
     text-decoration: none;
   }
   
@@ -435,18 +437,9 @@ input[type=text]:blur {
 
   @media (min-width: 768px) {
  
-    /* You will see in the css for mobile I have removed the flex context of 1 for header and footer. I find that vertical things (columns) are rather more complex it is probably preferable to pad the footer and the header so they naturally receive the kind of height you want */
-    
     #root {
         min-height: auto;
-       
     } 
-
-    /* #root{
-        display: flex;
-        flex-direction: row;
-        vertical-align: top;
-    } */
 
     .results-list, input {
         /* width: 100%;
