@@ -8,11 +8,7 @@ class Movie extends React.Component {
   }
 
   handleClick(){
-    const isFavourite = this.props.favourites.find( currentFavourite => {
-      return currentFavourite.imdbID === this.props.movie.imdbID;
-    });
-
-    if(isFavourite){
+    if(this.props.isFavourite){
       this.props.removeFromFavourites(this.props.movie);
     } else {
       this.props.addFavourites(this.props.movie);
@@ -20,15 +16,11 @@ class Movie extends React.Component {
   }
 
   render(){
-    const isFavourite = this.props.favourites.find( currentFavourite => {
-      return currentFavourite.imdbID === this.props.movie.imdbID;
-    });
-
     return (
       <li>
         <h2>{this.props.movie.Title}</h2>
         <div>
-          <button onClick={this.handleClick}>{ isFavourite ? 'Remove from favourites' : 'Add to favourites'}</button>
+          <button onClick={this.handleClick}>{ this.props.isFavourite ? 'Remove from favourites' : 'Add to favourites'}</button>
         </div>
         <img src={this.props.movie.Poster} />
       </li>

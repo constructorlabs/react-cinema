@@ -6,9 +6,15 @@ class Movies extends React.Component {
     return (
       <ul>
         {this.props.movies.map( movie => {
+
+          const isFavourite = this.props.favourites.find( currentFavourite => {
+            return currentFavourite.imdbID === movie.imdbID;
+          });
+
           return (
             <Movie
               key={movie.imdbID}
+              isFavourite={isFavourite}
               favourites={this.props.favourites}
               movie={movie}
               addFavourites={this.props.addFavourites}
