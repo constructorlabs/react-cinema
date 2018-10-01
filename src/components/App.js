@@ -21,7 +21,7 @@ class App extends React.Component {
             hasFired: false,
             filmDetails: {},
             showFavs: false,
-            favourites: []
+            favourites: [],
         }
 
         this.receiveTitleQuery = this.receiveTitleQuery.bind(this);
@@ -35,6 +35,12 @@ class App extends React.Component {
         this.searchByID = this.searchByID.bind(this);
         this.toggleVisible = this.toggleVisible.bind(this);
         this.toggleMinify = this.toggleMinify.bind(this);
+    }
+
+    componentDidMount() {
+        this.setState({
+            favourites: JSON.parse(window.localStorage.getItem("favourites"))
+        })
     }
 
     searchByTitle(query, pageNum = 1) {
@@ -118,14 +124,14 @@ class App extends React.Component {
             favourites.unshift(obj);
             this.setState({
                 favourites: favourites
-            });
+            }, () => window.localStorage.setItem("favourites", JSON.stringify(this.state.favourites)));
         } else {
             const fav = favourites.find(isFav);
             const index = favourites.indexOf(fav);
             favourites.splice(index, 1);
             this.setState({
                 favourites: favourites
-            });
+            }, () => window.localStorage.setItem("favourites", JSON.stringify(this.state.favourites)));
         }
     }
 
