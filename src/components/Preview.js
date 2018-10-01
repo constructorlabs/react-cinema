@@ -1,23 +1,15 @@
 import React from 'react';
 
-class Preview extends React.Component {
-
-  constructor() {
-      super();
-
-      this.handleClick = this.handleClick.bind(this);
-  }  
-
-  handleClick(event) {
-    this.props.receiveMovie(this.props.movieData);
-    this.props.hidePreview();
+function Preview(props) {
+  
+  function handleClick(event) {
+    props.receiveMovie(props.movieData);
+    props.hidePreview();
   }
 
-  render() {
-    return (
-        <div className='preview' onClick={this.handleClick}>{this.props.movieData.Title}</div>       
-    );
-  }
+  return (
+    <div className='preview' onClick={handleClick}>{props.movieData.Title}</div>       
+  );
 }
 
 export default Preview;

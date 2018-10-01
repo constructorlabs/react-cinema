@@ -1,15 +1,12 @@
 import React from 'react';
 import Favourite from './Favourite';
 
-class Favourites extends React.Component {
+function Favourites(props) {
 
-  render() {
-    return (
-      <div className={this.props.classes}>
-        {this.props.favourites.map(favourite => <Favourite key={favourite.imdbID} favData={favourite} moveFavUp={this.props.moveFavUp} moveFavDown={this.props.moveFavDown} receiveMovie={this.props.receiveMovie}/>)}       
-      </div>
-    );
-  }
+  return (
+    <div className={props.classes}>
+      {props.favourites.map(favourite => <Favourite key={favourite.imdbID} favData={favourite} moveFavUp={props.moveFavUp} moveFavDown={props.moveFavDown} receiveMovie={props.receiveMovie}/>)}       
+    </div>);
 }
 
 export default Favourites;
