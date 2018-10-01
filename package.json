@@ -17,6 +17,8 @@
     ]
   },
   "dependencies": {
+    "classname": "0.0.0",
+    "classnames": "^2.2.6",
     "react": "^16.2.0",
     "react-dom": "^16.2.0"
   },

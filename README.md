@@ -1,58 +1,33 @@
-# React Cinema
+# Now Playing 
 
-Let's revisit our first project where we built a movie search engine using the Open Movie Database. This time we want to implement it using React. It should be a Single Page App, that is all the functionality should be on a single page, rather switch between multiple pages.
+This project, titled Now Playing, has been created as a means for movie fans to search for information on films, be it their favourites or ones they simply wish to see. Now playing also allows for the compilation and curation of the users favourite films, where they are able to store and sort titles for reference.
 
-Before starting to code produce a diagram using pen and paper of your application which shows both layout and a tree diagram of the components.
+**Design Objectives**
 
-What are some of the components you are going to need? Which components will fetch data and how will that data be displayed? Which components will store state and how will they pass data to other components? Which components should be re-used? Rather than re-implementing your previous solution again have a think about what you have learned in the past week and how you can apply it here.
+This project was created with the purpose of implimenting React and React Components to create a modular user interface, with parts that we are able to re-use or re-constitute as the needs of the user change, or as the trends of user interfaces progress.
 
-You can start coding once your plan has been checked by a TA or instructor.
+**Searching for films**
 
-## The brief
+Now Playing allows users to search for films by using their search terms to make queries with the [Open Movie Database](http://www.omdbapi.com), a large external API that stores details about possibly every film. From there, should a user wish to know more about a particular film, Now Playing makes a seperate API call to the Open Movie Database, searching for the film by its IMDB id. This then returns more details information about the film, which is then displayed to the user. For this project it was important to establish components that made as few API calls as possible to accomodate for as many connection speeds as possible.
 
-We want to create a movie search engine. To power it we will use the [Open Movie Database](http://www.omdbapi.com) API.
+**Pagination** 
 
-To start using the OMDB API you will first need to sign up with them to receive and API key. The key issued to you will allow you 1000 requests per day and you will need to include this key as part of every request.
+Now Playing automatically generates functionality that allows the user to search through all returned results, 10 results to a page. As this initial API call is made, Now Playing takes the number of results, divides it by the number of results returned per page, and shows the user what page they are viewing out of how many they can view. Previous projects that have implimented pagination generated as many buttons as pages, which can clutter the page view. Now Playing instead displays arrows that allow the user to move forwards or backwards one page at a time, clearing up the page visually.
 
-To get started, fork and clone this repo. Please submit a pull request after your first commit and push commits regularly.
+**Favourites Feature**
 
-You should complete as many of the following tasks as you can.
+Now Playing allows the user to store and curate a list of their favourite films. Each returned search item has a button on it that, when pressed, passes the film information into the Favourites component, and stores that information in Local Storage within the browser so that the user's favourites persist between page refreshes. 
 
-- [ ] Work using mobile first, that is create the mobile version first and add tablet and desktop versions after.
-- [ ] Create an HTML page which should have a `form` at the top which contains a text input and a submit button. Below it should have a placeholder element for the returned results.
-- [ ] Use JavaScript to capture the `submit` event in your search form, extract the query string from the text input and use that to make an API call to the Open Movie Database API to search for films which match the query string using `fetch`. `console.log` the results
-- [ ] Display the data returned by the API including title, year and poster picture
+As of now, functionality is in place that allows the user to remove individual films from their favourites, or to clear their entire favourties list. These features are subject to a CSS bug at present that closes the favourites menu when a button is pressed. Equally, the buttons that move films up and down in the favourites list is working to an extent, but has a bug with its conditional logic that needs revising as it causes replication in list items in some cases.
 
-**Movie details**
+**Future goals and improvements**
 
-- [ ] Adjust your layout to create room for a detailed view of movie information
-- [ ] Capture clicks on your movie results items and use that information to make another request to the API for detailed movie information. Using event delegation will help you here. `console.log` the returned result
-- [ ] Display the detailed movie result in the in the details view you created earlier
-- [ ] Make your design responsive and ensure it looks great at different screen widths
+- Improve favourites functionality so that it is implimented fully with no bugs.
 
-**Your own feature**
+- Create a search preview feature that lets the user see what some of the possible returned search items will be ahead of them submitting a search.
 
-- [ ] Implement any feature you would find useful or interesting
+- Import film trailers where available
 
-**Stretch goals**
+- Create provisions for more user errors i.e. submitting a blank search, submitting an incorrect search.
 
-- [ ] Implement pagination so that users can navigate between all movies in search results rather than just the first ten
-- [ ] Create a favourites list. It's up to you how you would add items to favourites. You could add a button or otherwise. Display a list of favourites somewhere on your page.
-- [ ] Make the favourites list sortable. Add `up` and `down` buttons to your favourites which on click will move the result in relevant direction
-- [ ] Save favourites locally using `localStorage` so that favourites persist in browser after refresh
-- [ ] Let's create a search preview. It should listen for input events and submit a search request with current query string. Display the search preview results in an absolute positioned container just below the search box.  
-Hint: You may want to kick of the searching after at least 3 characters have been typed.
-
-## Objectives
-
-* We want to see great looking webpages that work well at all screen widths
-* Your code should have consistent indentation and sensible naming
-* Use lots of concise, reusable functions with a clear purpose
-* Add code comments where it is not immediately obvious what your code does
-* Your code should not throw errors and handle edge cases gracefully. For example not break if server fails to return expected results
-* Use BEM methodology to style your page
-* Try to use pure functions as much as possible, but keep in mind it will not be possible to make all functions pure.
-
-## README.md
-
-When finished, include a README.md in your repo. Someone who is not familiar with the project should be able to look at it and understand what it is and what to do with it. Explain functionality created, mention any outstanding issues and possible features you would include if you had more time. List technologies used to create the app. Include a screenshot of your app in the README.
+- Improve pagination so that the user can both go between pages one at a time and go to a page of thier choosing.
