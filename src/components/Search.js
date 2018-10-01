@@ -25,14 +25,12 @@ class Search extends React.Component {
     if (textValue.length >= 3) {
 
       debounceTimer = setTimeout(() => {
-        this.setState({ debounceActive: false });
-        this.setState({previewDisplayed: true});
-        this.props.receiveSearch(textValue,'preview');
-        console.log('debounce inactive'); }, 1000);
+        this.setState({ debounceActive: false,
+                        previewDisplayed: true });
+        this.props.receiveSearch(textValue,'preview'); }, 1000);
 
       if (!this.state.debounceActive) {
         this.setState({ debounceActive: true });
-        console.log('debounce active!');
        }
     }
 

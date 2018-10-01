@@ -78,7 +78,6 @@ class App extends React.Component {
   }
 
   fetchData(apiQuery,type) {
-    console.log(apiQuery);
     fetch(apiQuery)
     .then(response => response.json())
     .then(body => {
