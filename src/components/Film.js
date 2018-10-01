@@ -138,8 +138,12 @@ class Film extends React.Component{
                 
                 <div className={sliderView}>
                 <div>
-                    <h4 onClick={this.closeSliderFunction}>X</h4>
+                    <h4 className="closer" onClick={this.closeSliderFunction}>X</h4>
+                    <p className="more__info__title">{this.state.moreFilmInfo.Title}</p>
+                    <div className="more__info__text">
+                    <p> {this.state.moreFilmInfo.Genre}</p>
                     <p>{this.state.moreFilmInfo.Plot}</p>
+                    </div>
                     {/* <p>{this.state.test.Plot}</p> */}
                     {/* <iframe src="http://www.youtube.com/embed/gQ0uSh2Hgcs?modestbranding=1&showinfo=0&rel=0" width="560" height="315" frameborder="0"></iframe> */}
                     <iframe className="trailer" src={this.state.trailerYoutubeInfo} frameborder="0"></iframe>

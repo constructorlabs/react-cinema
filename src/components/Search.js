@@ -20,9 +20,11 @@ class Search extends React.Component {
   render(){
     return (
         <div className="search">
-        <h1>Quelle Film</h1>
+        <a href="./"><h1>Quelle Films</h1></a>
+
+        {/* <h1>Quelle Films</h1> */}
         <form onSubmit={this.handleSubmit} className="search__wrapper" id="search">
-          <input onChange={this.handleChange} className="search__input" name="search" placeholder=" Just returning videotapes" />
+          <input onChange={this.handleChange} className="search__input" name="search" placeholder="Just returning videotapes" />
           <button className="search__btn">Go</button>
         </form>
       </div>

@@ -62,7 +62,7 @@ class App extends React.Component {
       .then(films => {
         if (films.Response === "False") {
           this.notFound();
-          alert("WHOOPS!");
+          // alert("WHOOPS!");
           this.setState({ films:[]});
           // this.setState({unfound:{gif: '', h6: ''}})
         } else {

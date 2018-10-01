@@ -11,10 +11,17 @@
 
   }
 
+  a{
+
+
+
+  }
 
   body{
     display:flex;
     justify-content: center;
+    /* max-width:1400px; */
+
     
     /* background-color: beige; */
   }
@@ -71,6 +78,7 @@
   border-radius: 10px 0px 0px 10px;
   -moz-border-radius: 10px 0px 0px 10px;
   -webkit-border-radius: 10px 0px 0px 10px;
+  font-size: 10px;
 }
 
 .search__btn {
@@ -113,6 +121,7 @@ height: 60px;
   }
 
   .film img {
+    cursor:pointer;
     height: 360px;
     width:230px;
     /* width: 100%; */
@@ -173,11 +182,36 @@ box-shadow: 10px 10px 46px -1px rgba(0,0,0,0.5);
   background-color: #000;
 }
 
+.more__info__text{
+font-size:10px;
+margin-bottom: 30px;
+}
+
+.more__info__title{
+  margin-bottom: 10px;
+
+}
+
 .cry {
   width: 100%;
 }
+
+.cry img{
+  padding-bottom;20px;
+
+
+}
 .oops {
+  padding-top: 20px;
+  /* padding-bottom: 20px; */
   width: 100%;
+  position: center;
+  text-align: center;
+  /* display:flex; */
+  /* justify-content: center; */
+
+
+
 }
 
 h6{
@@ -196,11 +230,21 @@ h6{
     margin-right:0px;
     opacity: 0.9;
     z-index: 1;
+    animation: bounce 1s;
 
+
+
+  }
+  .closer{
+    
+    
+    text-align:right;
+    margin: 25px;
   }
 
   .moreInfo{
 bottom: 0;
+animation: bounce 1s;
   }
 
 
@@ -273,8 +317,25 @@ bottom: 0;
       
   }
 
+  /* Large devices (desktops, 960px and up) */
+@media (min-width: 960px) {
+
   
+  .trailer{
+    width:80vw;
+    height: 41.25vw;
+    margin-left: 10vw;
+    margin-right: 10vw;
 
+  }
 
+  .more__info__text{
+    margin-left: 10vw;
+    margin-right: 10vw;
+    }
+.more__info__title{
+  margin-left: 10vw;
+    margin-right: 10vw;
+}
 
-
+}
