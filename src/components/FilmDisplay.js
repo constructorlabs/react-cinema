@@ -16,9 +16,6 @@ class FilmDisplay extends React.Component{
     this.addToFaves = this.addToFaves.bind(this)
   }
 
-  componentDidMount(){
-
-  }
 
 
   componentWillReceiveProps(nextProps){

@@ -1,58 +1,72 @@
 # React Cinema
 
-Let's revisit our first project where we built a movie search engine using the Open Movie Database. This time we want to implement it using React. It should be a Single Page App, that is all the functionality should be on a single page, rather switch between multiple pages.
 
-Before starting to code produce a diagram using pen and paper of your application which shows both layout and a tree diagram of the components.
 
-What are some of the components you are going to need? Which components will fetch data and how will that data be displayed? Which components will store state and how will they pass data to other components? Which components should be re-used? Rather than re-implementing your previous solution again have a think about what you have learned in the past week and how you can apply it here.
+## About
 
-You can start coding once your plan has been checked by a TA or instructor.
+This project involved building a movie search engine using the OMDB api with React, as opposed to vanilla DOM manipulation.
 
-## The brief
 
-We want to create a movie search engine. To power it we will use the [Open Movie Database](http://www.omdbapi.com) API.
+I believe I achieved the principal goals of the project. You can search for films, have results displayed and select one of these results for further information.
 
-To start using the OMDB API you will first need to sign up with them to receive and API key. The key issued to you will allow you 1000 requests per day and you will need to include this key as part of every request.
+As an additional feature I used previous experience of working with newsAPI to also display recent news items about the film. This is still buggy and will show unrelated results.
 
-To get started, fork and clone this repo. Please submit a pull request after your first commit and push commits regularly.
+I have included a means of adding favourites via local storage.
 
-You should complete as many of the following tasks as you can.
+I have a very simple form of pagination in place.
 
-- [ ] Work using mobile first, that is create the mobile version first and add tablet and desktop versions after.
-- [ ] Create an HTML page which should have a `form` at the top which contains a text input and a submit button. Below it should have a placeholder element for the returned results.
-- [ ] Use JavaScript to capture the `submit` event in your search form, extract the query string from the text input and use that to make an API call to the Open Movie Database API to search for films which match the query string using `fetch`. `console.log` the results
-- [ ] Display the data returned by the API including title, year and poster picture
+I missed the stretch goals of:
+* being able to reorder favourites
+* having a search preview
 
-**Movie details**
 
-- [ ] Adjust your layout to create room for a detailed view of movie information
-- [ ] Capture clicks on your movie results items and use that information to make another request to the API for detailed movie information. Using event delegation will help you here. `console.log` the returned result
-- [ ] Display the detailed movie result in the in the details view you created earlier
-- [ ] Make your design responsive and ensure it looks great at different screen widths
 
-**Your own feature**
 
-- [ ] Implement any feature you would find useful or interesting
+## Known issues
 
-**Stretch goals**
+#### Search issues
 
-- [ ] Implement pagination so that users can navigate between all movies in search results rather than just the first ten
-- [ ] Create a favourites list. It's up to you how you would add items to favourites. You could add a button or otherwise. Display a list of favourites somewhere on your page.
-- [ ] Make the favourites list sortable. Add `up` and `down` buttons to your favourites which on click will move the result in relevant direction
-- [ ] Save favourites locally using `localStorage` so that favourites persist in browser after refresh
-- [ ] Let's create a search preview. It should listen for input events and submit a search request with current query string. Display the search preview results in an absolute positioned container just below the search box.  
-Hint: You may want to kick of the searching after at least 3 characters have been typed.
+I've just not made allowances for fetch not receiving results. This should be easily fixed.
 
-## Objectives
+#### Content not loading in
 
-* We want to see great looking webpages that work well at all screen widths
-* Your code should have consistent indentation and sensible naming
-* Use lots of concise, reusable functions with a clear purpose
-* Add code comments where it is not immediately obvious what your code does
-* Your code should not throw errors and handle edge cases gracefully. For example not break if server fails to return expected results
-* Use BEM methodology to style your page
-* Try to use pure functions as much as possible, but keep in mind it will not be possible to make all functions pure.
+sometimes when clicking through to a new film details, the filmDisplay page will display before the actual details have loaded in. I'm sure this could be rectified with lifecycle methods.
 
-## README.md
+#### Favourites
 
-When finished, include a README.md in your repo. Someone who is not familiar with the project should be able to look at it and understand what it is and what to do with it. Explain functionality created, mention any outstanding issues and possible features you would include if you had more time. List technologies used to create the app. Include a screenshot of your app in the README.
+Currently, favourites are working. However the order changes on refresh. I found this much more confusing to implement in React, due to async issues with setting state, though I think I have tidied this up somewhat.
+
+#### Responsive design
+
+Again, I tend to leave this til last, and run out of time.
+
+
+#### Unrelated news results
+
+This is likely always to be an issue for some films, currently it searches for the film title in all sources. This causes issues with films with fairly ordinary names (i.e Taxi Driver). I believe it could be fixed with some tweaking, to search for other parameters (director/writer) in these cases. Also limiting the sources that newsAPI searches to Entertainment publications.
+
+## Further Plans
+
+#### Further news functionality
+
+Similar to last week, I had hoped to add a means of tracking new news stories.
+
+Below: last week's ReadMe re: this functionality
+> Due to the favourite functionality, I was hoping to keep track of news stories. This would mean that the main page favourites display would have icons representing the amount of new news stories related to a film since that film's page was last visited.
+
+> I feel this could be achieved with the newsAPI and saving dates of visits saved to local storage. Along with set intervals for news refreshes, I think this would be quite an interesting feature. Unfortunately I was constrained by time and would want to refactor the code before attempting this.
+
+Whilst I could visualise how I would implement this last week, I've struggled to plan for this with react - I believe it would require better knowledge of lifecycle functions, and for me to have a more streamlined implementations of favourites.
+
+There are some artifacts of abandoned attempts at this in my code. this.state.favourites in App.js currently holds both the IMDB id, and a lastVisited date (though currently this just holds the date when it was added to favourites, I again had difficulty with updating this property when a favourite was clicked upon)
+
+#### Missed stretch goals
+
+I believe these are all achievable, though ordering favourites may throw some difficulty, as currently they do not display in a fixed order every time the favourites display is rendered. I'm sure this is easily fixed.
+
+
+#### Summary
+
+Quite disappointed that I couldn't implement any further features on this project compared to last week. Think this is due to a combination of both not yet feeling as comfortable with React as I did with vanilla JS DOM manipulation and poor motivation this weekend.
+
+I have however recreated (aside from odd quirks of CSS) last weeks project in React, and feel more comfortable with linking components together.

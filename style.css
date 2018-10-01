@@ -308,3 +308,69 @@ nav > div {
     transform: rotate(45deg);
     -webkit-transform: rotate(45deg);
 }
+
+
+
+
+a:link{
+  color: #136CB2;
+  text-decoration: none;
+}
+a:hover{
+  color: black;
+}
+
+a:visited{
+  color: #70579D;
+}
+
+.fa-star{
+  height: 1.7rem;
+  font-size: 1.9rem;
+  margin-left: 1rem;
+
+}
+
+.add-favourite-button:hover,
+.add-favourite-button:active{
+  color: #F89B0A;
+}
+
+
+@media only screen and (min-width: 768px) {
+  .landing-page{
+    margin: 0rem 12rem;
+  }
+
+  .favourites-container{
+    width: 40vw;
+  }
+
+  .search{
+    width: 40%;
+    right: 0;
+    position: absolute;
+  }
+
+  .nav-search{
+    position: relative;
+  }
+
+  .film-display__news-container{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    padding: 0.5rem;
+    background-color: #FBFBFC;
+    margin: 0rem 10rem;
+  }
+
+  .film-container{
+    background-color: black;
+  }
+
+  .film-display{
+    margin: 0rem 10rem;
+  }
+
+}
