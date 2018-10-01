@@ -18,6 +18,7 @@ class App extends React.Component {
             totalFilms: 0,
             isClosed: true,
             isMinified: false,
+            hasFired: false,
             filmDetails: {},
             showFavs: false,
             favourites: []
@@ -56,7 +57,8 @@ class App extends React.Component {
             .then(response => response.json())
             .then(body => {
                 this.setState({
-                    filmDetails: body
+                    filmDetails: body,
+                    hints: []
                 }, () => this.toggleVisible())
             })
             .catch(error => {
@@ -150,9 +152,13 @@ class App extends React.Component {
     }
 
     toggleMinify() {
-        this.setState({
-            isMinified: !this.state.isMinified
-        })
+        if (this.state.hasFired == false) {
+            this.setState({
+                isMinified: !this.state.isMinified
+            }, () => this.setState({
+                hasFired: !this.state.hasFired
+            }));
+        }
     }
 
 

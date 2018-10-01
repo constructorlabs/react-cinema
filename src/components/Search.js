@@ -7,7 +7,7 @@ class Search extends React.Component {
         super();
 
         this.state = {
-            search: ""
+            search: "",
         }
 
         this.handleSubmit = this.handleSubmit.bind(this);
