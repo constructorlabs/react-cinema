@@ -54,6 +54,16 @@ p {
     border-radius: 3px;
     border: none;
     cursor: pointer;
+    border: 0;
+    border-radius: 3px;
+    background-color: #C5CAE9;
+    line-height: 1.5;
+    cursor: pointer;
+    font-size: 0.95em;
+}
+
+.search__btn:hover {
+    background-color: rgb(159, 163, 189);
 }
 
 .nav-bar__logo {
@@ -94,6 +104,7 @@ p {
     padding: 10px 15px;
     line-height: 2.5em;
     z-index: 2;
+    font-size: 1.1em;
 }
 
 .nav-dropdown:hover .fav_menu {
@@ -148,7 +159,7 @@ p {
 }
 
 .poster-container__image:hover {
-    box-shadow: 1px 1px 4px 1px rgb(15, 15, 15);
+    box-shadow: 0px 0px 3px 3px rgb(15, 15, 15);
 }
 
 .poster-container {
@@ -266,6 +277,11 @@ p {
     cursor: pointer;
     margin: 5px;
     height: 2em;
+    font-size: 0.95em;
+}
+
+.page-buttons:hover {
+    background-color: rgb(159, 163, 189);
 }
 
 /* Tablet Layout */
@@ -275,7 +291,6 @@ p {
         font-size: 18px;
     }
     h1 {
-        color: green;
     }
 
     .movie-info__poster__image {
@@ -310,7 +325,6 @@ p {
         font-size: 20px;
     }
     h1 {
-        color: red;
     }
     .movie-info__poster__image {
         width: 20vw;
