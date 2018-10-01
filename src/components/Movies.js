@@ -16,7 +16,7 @@ class Movies extends React.Component{
     this.state={
       favList:[],
       displayFav:false,
-      favLightOn:true
+      favLightOn:false
 
     }
     this.receiveFavClick = this.receiveFavClick.bind(this);
