@@ -20,7 +20,6 @@ class Search extends React.Component {
         e.preventDefault();
         this.props.toggleMinify();
         this.props.receiveTitleQuery(this.state.search);
-
     }
 
     handleChange(e) {

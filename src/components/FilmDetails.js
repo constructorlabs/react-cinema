@@ -9,18 +9,14 @@ class FilmDetails extends React.Component {
     }
 
     handleClick(e) {
-        if (e.target.classList.value == "btn btn__close") {
+        if (e.currentTarget.classList.value == "btn btn__close") {
             this.props.toggleVisible();
         } else {
             this.props.receiveFav(this.props.filmDetails);
         }
     }
 
-
-
-
     render() {
-
         const ratingsStyle = {
             backgroundImage: `linear-gradient(to right, orangered, orangered ${this.props.filmDetails.imdbRating * 10}%, rgba(0, 0, 0, 0) ${this.props.filmDetails.imdbRating * 10}%`
         }
@@ -33,7 +29,6 @@ class FilmDetails extends React.Component {
         const wrapperClass = cx("film-details__wrapper", {
             "film-details__wrapper--closed": this.props.isClosed
         });
-
 
         return (
             <div className={wrapperClass}>
