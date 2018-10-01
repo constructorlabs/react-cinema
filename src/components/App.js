@@ -103,9 +103,6 @@ class App extends React.Component {
                           resultsDisplayed: true,
                           detailDisplayed: false,
                           nextPageFetchInProgress: false }); }
-        else {
-
-        } 
       }
 
       else if (type === 'detail') {
@@ -114,9 +111,6 @@ class App extends React.Component {
                           resultsDisplayed: false,
                           detailDisplayed: true,
                           movieNotFound: false }); }
-        else {
-          
-        }
       }
 
       else if (type === 'preview') {
@@ -126,7 +120,6 @@ class App extends React.Component {
           this.setState({ preview: [] });
         }  
       }
-
     });
   }
 
