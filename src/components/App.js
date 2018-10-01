@@ -27,10 +27,8 @@ class App extends React.Component {
     this.fetchMovies = this.fetchMovies.bind(this);
     this.receiveMovie = this.receiveMovie.bind(this);
     this.toggleFavourite = this.toggleFavourite.bind(this);
-    this.receivePageNumber = this.receivePageNumber.bind(this);
-    this.handleFavMenuClick = this.handleFavMenuClick.bind(this);
-    this.handleFavMenuChange = this.handleFavMenuChange.bind(this);
     this.deleteFavourite = this.deleteFavourite.bind(this);
+    this.receivePageNumber = this.receivePageNumber.bind(this);
   }
 
   receiveQuery(query) {
@@ -74,7 +72,8 @@ class App extends React.Component {
 
   receivePageNumber(pageNum) {
     this.setState({
-      currentPage: pageNum
+      currentPage: pageNum,
+      renderInfo: false,
     }, () => this.fetchMovies())
 
   }
@@ -124,9 +123,9 @@ class App extends React.Component {
           <div className="nav-bar">
             <div className="nav-bar__logo"></div>
             <h1 className="nav-bar__title">Movie Search</h1>
-
+            <Search className="search-top" receiveQuery={this.receiveQuery} />
             <div className="nav-dropdown">
-              <div className="nav-dropdown__fav" onClick={this.handleFavMenuClick} onMouseOver={this.handleFavMenuChange}>
+              <div className="nav-dropdown__fav">
                 <img className="nav-dropdown-icon" src="src/images/favouritesFolder.png" />
               </div>
               <div className="fav_menu">
@@ -136,14 +135,15 @@ class App extends React.Component {
             </div>
 
           </div>
-          <Search receiveQuery={this.receiveQuery} />
+          <Search className="search-bottom" receiveQuery={this.receiveQuery} />
         </header>
 
         {!this.state.renderInfo ? null : <Info toggleFavourite={this.toggleFavourite} info={this.state.info} favourites={this.state.favourites} movieIsFav={this.state.movieIsFav} />}
         {/* {this.state.loading ? (console.log("still loading")) : <Movies receiveMovie={this.receiveMovie} moviesArray={this.state.movies} />} */}
-        {this.state.loading === undefined ? console.log("movies is loading") : <Movies receiveMovie={this.receiveMovie} moviesArray={this.state.movies} />}
+        {this.state.query != '' ? <div className="search-text"><p>Search Results for <span className="search-text__query">{this.state.query}</span>...</p></div> : null}
+        <Movies receiveMovie={this.receiveMovie} moviesArray={this.state.movies} />
         {/* {console.log("loadingStatus" + this.state.loading)} */}
-        <Pagination receivePageNumber={this.receivePageNumber} currentPage={this.state.currentPage} totalResults={this.state.totalResults} totalPages={this.state.totalPages} />
+        {this.state.query != '' ? <Pagination receivePageNumber={this.receivePageNumber} currentPage={this.state.currentPage} totalResults={this.state.totalResults} totalPages={this.state.totalPages} /> : null}
 
       </main>
 

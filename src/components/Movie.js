@@ -11,6 +11,10 @@ class Movie extends React.Component {
         this.props.receiveMovie(this.props.id);
     }
 
+    componentDidMount() {
+        window.scrollTo(0, 0);
+    }
+
     render() {
         return (
             // TODO - create movie card with image container

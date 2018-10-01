@@ -13,6 +13,11 @@ h1 {
     font-size: 1.5em;
 }
 
+p {
+    font-size: 0.9em;
+    line-height: 1.5em;
+}
+
 .nav-bar {
     display: flex;
     justify-content: center;
@@ -22,8 +27,15 @@ h1 {
     justify-content: space-between
 }
 
-.search {
+.search-bottom {
     display: flex;
+    height: 34px;
+    padding: 0.5em;
+    background-color: #1A237E;
+}
+
+.search-top {
+    display: none;
     height: 34px;
     padding: 0.5em;
     background-color: #1A237E;
@@ -81,7 +93,7 @@ h1 {
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     padding: 10px 15px;
     line-height: 2.5em;
-
+    z-index: 2;
 }
 
 .nav-dropdown:hover .fav_menu {
@@ -101,13 +113,23 @@ h1 {
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
-
 }
 
 .fav-delete {
     width: 12px;
     height: 12px;
     padding-right: 5px;
+}
+
+.search-text {
+    padding: 1em 1em 0.8em 1em;
+    color: #6B6B6B;
+    font-weight: 100;
+}
+
+.search-text__query {
+    font-weight: 700;
+    color: black;
 }
 
 .movies-container {
@@ -123,6 +145,10 @@ h1 {
     display: flex;
     flex-direction: column;
     padding-left: 0.3em;
+}
+
+.poster-container__image:hover {
+    box-shadow: 1px 1px 4px 1px rgb(15, 15, 15);
 }
 
 .poster-container {
@@ -145,6 +171,22 @@ h1 {
     height: 4.2em;
 }
 
+.background-image {
+    height: 60vw;
+    width: 100vw;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    z-index: -1;
+
+}
+
+.background-image__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 .info-container__title {
     overflow: hidden;
     max-height: calc(2.4em + 5px);
@@ -152,6 +194,48 @@ h1 {
 
 .info-container__year {
     color: #6B6B6B;
+}
+
+.movie-info {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding-top: 3em;
+    position: relative;
+    padding-bottom: 2em;
+}
+
+.fav-btn {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    padding: 15px;
+}
+
+.movie-info__title {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    height: 3em;
+    font-weight: 900;
+    font-size: 1.8em;
+}
+
+.movie-info__year {
+    color: #6B6B6B;
+    align-self: flex-start;
+    padding-bottom: 0.7em;
+    font-size: 0.8em;
+    font-weight: 200;
+}
+
+.movie-info__poster__image {
+    width: 40vw;
+    border-radius: 0.4em;
+    box-shadow: 1px 1px 5px 1px rgb(15, 15, 15);
 }
 
 .pagination {
@@ -181,6 +265,7 @@ h1 {
     line-height: 1.5;
     cursor: pointer;
     margin: 5px;
+    height: 2em;
 }
 
 /* Tablet Layout */
@@ -192,6 +277,30 @@ h1 {
     h1 {
         color: green;
     }
+
+    .movie-info__poster__image {
+        width: 25vw;
+    }
+    .background-image {
+        height: 30vw;
+    }
+    .movie {
+        width: calc((100vw / 4) - 1.25em);
+        padding-left: 1em;
+    }
+    .poster-container {
+        width: 100%;
+        height: calc(100vw / 4 * 1.3);
+    }
+    .info-container__title {
+        max-height: calc(2.6em + 5px);
+    }
+    .info-container {
+        font-size: 0.9em;
+        line-height: 2em;
+        padding: 5px;
+        height: 5.4em;
+    }
 }
 
 /* Desktop Layout */
@@ -202,5 +311,50 @@ h1 {
     }
     h1 {
         color: red;
+    }
+    .movie-info__poster__image {
+        width: 20vw;
+    }
+    .background-image {
+        height: 25vw;
+    }
+    .movie {
+        width: calc((100vw / 5) - 2.8em);
+        padding-left: 1em;
+    }
+    .poster-container {
+        width: 100%;
+        height: calc(100vw / 5.1 * 1.2);
+    }
+    .info-container__title {
+        max-height: calc(2.6em + 5px);
+    }
+    .info-container {
+        font-size: 0.9em;
+        line-height: 2em;
+        padding: 5px;
+        height: 5.4em;
+    }
+    .movies-container {
+        margin-left: 4em;
+        margin-right: 5em;
+    }
+    .search-top {
+        display: flex;
+        flex: 3;
+        padding: 0 60px;
+    }
+    .nav-bar {
+        height: 4em;
+    }
+    .search-bottom {
+        display: none;
+    }
+    .nav-bar__title {
+        flex: 1;
+    }
+    .nav-dropdown-icon {
+        width: 30px;
+        height: 30px;
     }
 }

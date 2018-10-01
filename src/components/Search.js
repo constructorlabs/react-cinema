@@ -21,11 +21,12 @@ class Search extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
         this.props.receiveQuery(this.state.query);
+        document.querySelector(".search__input").value = "";
     }
 
     render() {
         return (
-            <form className="search" onSubmit={this.handleSubmit}>
+            <form className={this.props.className} onSubmit={this.handleSubmit}>
                 <input className="search__input" name="search" placeholder="Search for Movies..." onChange={this.handleChange} />
                 <button className="search__btn">Search</button>
             </form>
