@@ -119,6 +119,7 @@ header {
   grid-template-columns: 1fr min-content 1fr;
   grid-template-rows: 40vh min-content auto;
   grid-template-areas:
+    ". d ."
     ". a ."
     ". c ."
     ". b .";
@@ -130,7 +131,12 @@ header {
 }
 
 .search__label {
-  display:none;
+  grid-area: d;
+  align-self: end;
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 1rem;
 }
 
 .search__input {
@@ -194,6 +200,10 @@ header {
   padding: 4.5rem 0.5rem 0.5rem 0.5rem;
   flex-direction: row;
   position:relative;
+}
+
+.search--minified .search__label {
+    display: none;
 }
 
 .search--minified .search__input{
