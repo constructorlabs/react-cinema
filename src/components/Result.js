@@ -1,26 +1,19 @@
 import React from 'react';
 
-class Result extends React.Component {
-
-  constructor() {
-    super();
-    this.handleClick = this.handleClick.bind(this);
+function Result (props) {
+  
+  function handleClick(event) {
+    props.getDetail(props.result.imdbID,'fromResults');
   }
 
-  handleClick(event) {
-    this.props.getDetail(this.props.result.imdbID,'fromResults');
-  }
-
-  render() {
-    return (
-      <article className='result' onClick={this.handleClick}>
-        <div className='result__wrapper'>
-          <img className='result__poster' src={this.props.result.Poster} alt=''></img>
-          <h6 className='result__title'>{this.props.result.Title} ({this.props.result.Year})</h6>
-        </div>
-      </article>
-    );
-  }
+  return (
+    <article className='result' onClick={handleClick}>
+      <div className='result__wrapper'>
+        <img className='result__poster' src={props.result.Poster} alt=''></img>
+        <h6 className='result__title'>{props.result.Title} ({props.result.Year})</h6>
+      </div>
+    </article>
+  );
 }
 
 export default Result;
