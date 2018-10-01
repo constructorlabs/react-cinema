@@ -20,10 +20,10 @@ class Search extends React.Component {
   handleChange(event) {
     const textValue = event.target.value;
     this.setState({text: textValue});
-    
+    clearTimeout(debounceTimer);
+
     if (textValue.length >= 3) {
 
-      clearTimeout(debounceTimer);
       debounceTimer = setTimeout(() => {
         this.setState({ debounceActive: false });
         this.setState({previewDisplayed: true});
