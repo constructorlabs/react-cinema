@@ -1,12 +1,8 @@
 # React Cinema
 
-Let's revisit our first project where we built a movie search engine using the Open Movie Database. This time we want to implement it using React. It should be a Single Page App, that is all the functionality should be on a single page, rather switch between multiple pages.
+TODO: Write README.md
 
-Before starting to code produce a diagram using pen and paper of your application which shows both layout and a tree diagram of the components.
-
-What are some of the components you are going to need? Which components will fetch data and how will that data be displayed? Which components will store state and how will they pass data to other components? Which components should be re-used? Rather than re-implementing your previous solution again have a think about what you have learned in the past week and how you can apply it here.
-
-You can start coding once your plan has been checked by a TA or instructor.
+<!-- Let's revisit our first project where we built a movie search engine using the Open Movie Database. This time we want to implement it using React. It should be a Single Page App, that is all the functionality should be on a single page, rather switch between multiple pages.
 
 ## The brief
 
@@ -55,4 +51,4 @@ Hint: You may want to kick of the searching after at least 3 characters have bee
 
 ## README.md
 
-When finished, include a README.md in your repo. Someone who is not familiar with the project should be able to look at it and understand what it is and what to do with it. Explain functionality created, mention any outstanding issues and possible features you would include if you had more time. List technologies used to create the app. Include a screenshot of your app in the README.
+When finished, include a README.md in your repo. Someone who is not familiar with the project should be able to look at it and understand what it is and what to do with it. Explain functionality created, mention any outstanding issues and possible features you would include if you had more time. List technologies used to create the app. Include a screenshot of your app in the README. -->

@@ -19,7 +19,8 @@
   "dependencies": {
     "classnames": "^2.2.6",
     "react": "^16.2.0",
-    "react-dom": "^16.2.0"
+    "react-dom": "^16.2.0",
+    "react-transition-group": "^1.2.1"
   },
   "devDependencies": {
     "babel-loader": "^7.1.3",

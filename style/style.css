@@ -338,6 +338,16 @@ header {
   width:100%;
 }
 
+.example-appear {
+  opacity: 0.01;
+}
+
+.example-appear.example-appear-active {
+  opacity: 1;
+  transition: opacity 1s ease-in;
+}
+
+
 .film-details__wrapper--closed{
   display:none;
 }
