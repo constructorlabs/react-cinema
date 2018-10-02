@@ -13,6 +13,7 @@ class Pagination extends React.Component {
         this.setState({ activePage: pageNumber });
     }
 
+    // toggle selected button for pages
     getClass(pageNumber) {
         return (pageNumber === this.state.activePage) ? "page__button-selected" : "page__button-none"
     }
@@ -21,14 +22,22 @@ class Pagination extends React.Component {
 
         const totalPages = this.props.pages || 1;
         const totalButtons = Math.ceil(totalPages / 10);
+        // create an array of numbers between 1 and totalButtons
         const totalArray = (max, n=1) => new Array(max).fill().map(e => e = n++);
         return (
             <div>
                 {
+                // display page n of max pages
                 // (totalButtons > 1) && (<div>Page currentPage of {totalButtons}</div>)
                 }
                 <div className="pagination">
                     { 
+
+                    // why isn't it possible to do a for loop here?
+                    // for (let i=0; i<totalButtons; i++) {
+                    // }
+
+                    // generate page buttons
                     totalArray(totalButtons).map(item => {
                         return  <div 
                                     key={item} 

@@ -134,7 +134,7 @@ class App extends React.Component {
             receiveBlur={this.receiveBlur} 
           />
 
-          { /* render message for errors and invalid input or SearchResults component */ }
+          { /* render message for errors or invalid input for SearchResults component */ }
           {(errorMsg !== "" && this.state.searchDisplay) ?
             <div className="error">{errorMsg}</div> :
             (this.state.searchDisplay && 
@@ -158,6 +158,7 @@ class App extends React.Component {
           {(this.state.searchQuery !== "") && <MovieDisplay currentMovie={this.state.currentMovie}/>}
 
         </div>
+
       </div>
     )
   }

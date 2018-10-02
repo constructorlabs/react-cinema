@@ -442,9 +442,6 @@ input[type=text]:blur {
     } 
 
     .results-list, input {
-        /* width: 100%;
-        min-width:450px;
-        max-width:600px; */
         width: 100%;
         min-width:350px;
         max-width:350px;

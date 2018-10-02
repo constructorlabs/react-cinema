@@ -28,8 +28,10 @@ class MovieDisplay extends React.Component {
           })
           
         return (
-
+            
             <div className="article__main">
+            {/* render HTML for displaying movie info */}
+
                 <div className="article__image-mobile">
                 { movie && <img src={imgURL} className="article__image__src"></img>}
                 </div>
@@ -47,7 +49,7 @@ class MovieDisplay extends React.Component {
                     { movie && <div><a onClick={this.toggleTextDisplay}>More details below...</a></div>}
                     <div className={classes}>
                         <ul>
-                            {
+                            { // display details which ar not set to "N/A"
                                 Object.keys(movie)
                                 .filter(n => ignore.indexOf(n) < 0)
                                 .reduce((acc, item) => {
