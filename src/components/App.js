@@ -52,10 +52,10 @@ class App extends React.Component {
     }
 
     else if (type === 'resultsInfinite') {
-      const nextPageFetchInProgress = this.state.nextPageFetchInProgress;
+      const {nextPageFetchInProgress} = this.state;
       if (!nextPageFetchInProgress) {
         const page = this.state.page + 1;
-        this.setState({ page: page,
+        this.setState({ page,
                         nextPageFetchInProgress: true });
         apiQuery = `http://www.omdbapi.com/?apikey=eee5954b&s=${query}&page=${page}&type=movie`;
         this.fetchData(apiQuery, type);
@@ -84,13 +84,13 @@ class App extends React.Component {
 
       if (type === 'results') {
         if (body.Response === 'True') { 
-          this.setState({ results: body.Search.filter(item=>item.Poster !== "N/A"),
+          this.setState({ results: body.Search.filter(item=>item.Poster !== 'N/A'),
                           resultsDisplayed: true,
                           detailDisplayed: false,
                           newSearchInProgress: false,
                           movieNotFound: false }); }
         else {
-          if (body.Error === "Movie not found!") {
+          if (body.Error === 'Movie not found!') {
             this.setState({ movieNotFound: true });
           }
         }            
@@ -98,7 +98,7 @@ class App extends React.Component {
 
       else if (type === 'resultsInfinite') {
         if (body.Response === 'True') { 
-          this.setState({ results: this.state.results.concat(body.Search.filter(item=>item.Poster !== "N/A")),
+          this.setState({ results: this.state.results.concat(body.Search.filter(item=>item.Poster !== 'N/A')),
                           resultsDisplayed: true,
                           detailDisplayed: false,
                           nextPageFetchInProgress: false }); }

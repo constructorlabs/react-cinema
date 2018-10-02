@@ -13,6 +13,11 @@ module.exports = {
         test: /\.js$/,
         exclude: /(node_modules)/,
         loader: require.resolve('babel-loader')
+      },
+      {
+        test: /\.js$/,
+        exclude: /(node_modules)/,
+        loader: require.resolve('eslint-loader')
       }
     ]
   }
