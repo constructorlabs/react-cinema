@@ -29,6 +29,7 @@ class App extends React.Component {
     this.toggleFavourite = this.toggleFavourite.bind(this);
     this.deleteFavourite = this.deleteFavourite.bind(this);
     this.receivePageNumber = this.receivePageNumber.bind(this);
+    this.clickFavouriteItem = this.clickFavouriteItem.bind(this);
   }
 
   receiveQuery(query) {
@@ -48,7 +49,6 @@ class App extends React.Component {
     } else {
       this.setState({ movieIsFav: false, renderInfo: true })
     }
-
   }
 
   toggleFavourite(info) {
@@ -68,6 +68,10 @@ class App extends React.Component {
     const newFavourites = this.state.favourites.filter(favourite => imdbId.imdbID !== favourite.imdbID)
     this.setState({ favourites: newFavourites, movieIsFav: false });
     localStorage.favourites = (JSON.stringify(newFavourites));
+  }
+
+  clickFavouriteItem(favourite) {
+    console.log("****" + favourite.imdbID)
   }
 
   receivePageNumber(pageNum) {
@@ -112,9 +116,6 @@ class App extends React.Component {
 
 
   render() {
-    // console.log("render")
-
-
     return (
 
       <main>
@@ -130,7 +131,7 @@ class App extends React.Component {
               </div>
               <div className="fav_menu">
                 <h3 className="fav-menu__title">My Favourites</h3>
-                {this.state.favourites.map(favourite => <Favourites key={favourite.imdbID} id={favourite.imdbID} favourite={favourite} deleteFavourite={this.deleteFavourite} />)}
+                {this.state.favourites.map(favourite => <Favourites key={favourite.imdbID} id={favourite.imdbID} favourite={favourite} deleteFavourite={this.deleteFavourite} clickFavouriteItem={this.clickFavouriteItem}/>)}
               </div>
             </div>
 

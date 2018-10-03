@@ -6,6 +6,7 @@ html {
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
     background-color: #e0dee6;
+    color: #1d1d1d;
 }
 
 h1 {
@@ -59,7 +60,7 @@ p {
     background-color: #C5CAE9;
     line-height: 1.5;
     cursor: pointer;
-    font-size: 0.95em;
+    font-size: 0.8em;
 }
 
 .search__btn:hover {
