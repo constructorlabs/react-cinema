@@ -4,6 +4,10 @@ import SearchResults from './SearchResults.js';
 import MovieDisplay from './MovieDisplay.js';
 import Pagination from './Pagination.js';
 
+// Rather than storing searchDisplay in state, 
+// it might be better to compute it in the render method as it's a derived property 
+// which depends on the searchQuery value.
+
 class App extends React.Component {
   constructor(){
 
@@ -21,7 +25,7 @@ class App extends React.Component {
     this.state = {
       baseURL: 'http://www.omdbapi.com/?apikey=2454706d',
       searchQuery: '',
-      searchDisplay: false,
+      searchDisplay: 'blurred',
       results: [],
       error: '',
       currentMovie: false,
@@ -34,7 +38,7 @@ class App extends React.Component {
   receiveInput (text) {
     this.setState({
       searchQuery: text,
-      searchDisplay: text.length > 0
+      searchDisplay: 'focused'
     }, () => {
         if (text.length > 2) { 
           this.getQueriedMovies ()
@@ -49,12 +53,12 @@ class App extends React.Component {
 
   // receive focus event from Search component
   receiveFocus () {
-    this.setState({ searchDisplay: this.state.searchQuery.length > 0})
+    this.setState({ searchDisplay: 'focused'})
   }
 
   // receive blur event from Search component
   receiveBlur () {
-    this.setState({ searchDisplay: false })
+    this.setState({ searchDisplay: 'blurred' })
   }
 
   // fetch movie data from API for searchQuery
@@ -65,7 +69,7 @@ class App extends React.Component {
     .then(body => {
       this.setState({
         error: body.Error,
-        searchDisplay: true,
+        searchDisplay: 'focused',
         results: body.Search,
         pages: body.totalResults
       })
@@ -77,7 +81,7 @@ class App extends React.Component {
   receivePageNumber (page) {
     this.setState({ 
       currentPage: page,
-      searchDisplay: false,
+      searchDisplay: 'blurred',
       currentMovie: false
     }, () => {
         this.getQueriedMovies ()
@@ -88,7 +92,7 @@ class App extends React.Component {
   receiveMovieID (id) {
     this.setState({
       currentMovieID: id,
-      searchDisplay: false 
+      searchDisplay: 'blurred'
     }, () => {
         this.displayCurrentMovie ()
     })
@@ -113,6 +117,9 @@ class App extends React.Component {
     let errorMsg = (this.state.error && qLength > 0) ? this.state.error : "";
     errorMsg = (qLength == 0 || qLength > 2) ? errorMsg : "Enter 3 or more letters";
 
+    const searchDisplayOn = (this.state.searchDisplay === 'focused') && (this.state.searchQuery.length > 0)
+
+
     return (
       <div className="app">
         <div className="search-wrapper">
@@ -135,11 +142,11 @@ class App extends React.Component {
           />
 
           { /* render message for errors or invalid input for SearchResults component */ }
-          {(errorMsg !== "" && this.state.searchDisplay) ?
+          {(errorMsg !== "" && searchDisplayOn) ?
             <div className="error">{errorMsg}</div> :
-            (this.state.searchDisplay && 
+            (searchDisplayOn && 
             <SearchResults 
-              searchDisplay={this.state.searchDisplay} 
+              searchDisplay={searchDisplayOn} 
               resultsArray={this.state.results} 
               receiveMovieID={this.receiveMovieID}
             />)

@@ -44,7 +44,7 @@ class MovieDisplay extends React.Component {
                     { movie && <img src={imgURL} className="article__image__src"></img>}
                 </div>
                 <div className="article__text">
-                    { (noPlot) || <SetInnerHTML>{"<h3>Plot</h3>"}</SetInnerHTML>}
+                    { (noPlot) || <h3>Plot</h3>}
                     { (noPlot) || movie.Plot}
                     { movie && <div><a onClick={this.toggleTextDisplay}>More details below...</a></div>}
                     <div className={classes}>

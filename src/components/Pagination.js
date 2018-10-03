@@ -33,10 +33,6 @@ class Pagination extends React.Component {
                 <div className="pagination">
                     { 
 
-                    // why isn't it possible to do a for loop here?
-                    // for (let i=0; i<totalButtons; i++) {
-                    // }
-
                     // generate page buttons
                     totalArray(totalButtons).map(item => {
                         return  <div 
