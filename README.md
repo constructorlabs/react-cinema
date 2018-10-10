@@ -4,7 +4,7 @@
 ![Screenshot](./assets/react-cinema-screenshot-ipad.png) 
 
 ## Objective > what does it do?
-**moiew** is a movie search engine app. It displays search results efficiently, giving the user full details of movies quickly. It has a responsive layout for mobile and desktop screen sizes giving a user-freindly experience.
+**moiew** is a movie search engine app. It displays search results efficiently, giving the user full details of movies quickly. It has a responsive layout for mobile and desktop screen sizes giving a user-friendly experience.
 
 ## Functionality > How does it work?
 + The app first captures the search input and fetches data that matches the input from the [Open Movie Database](http://www.omdbapi.com) API. 
@@ -28,17 +28,18 @@
 + Used CSS to style the UI
 
 ## Features
-+ Responsive search preview - results update with each letter typed. Initial search results are shown below the search box
-+ Smart pagination allows users to quickly navigate all pages of search results
++ Responsive search preview - results are updated each time a letter  is entered and shown below the search box
++ Smart pagination allows users to quickly navigate all pages of the search results
 + Form validation gives the user feedback and details of results:
-> + if the search input is more than 3 letters
+> + if the search input is more or less than 3 letters
 > + if the search input has returned a valid result or not
-> + How many results and pages of results found
+> + How many results and pages of results have been found
 
 ## Problems and errors to be fixed
 + Improve the desktop view for better responsiveness
 
 ## Desired features with more time
++ Allow users to mark movies as favourites and use localStorage to save the favourites into a sortable list
++ Added a featured movies section
 + Include infinate scrolling with the initial results
 + Use the [Youtube API](https://developers.google.com/youtube/v3/) to load a trailer into the detailed results area
-+ Use Localstorage to create a sortable favourites list
