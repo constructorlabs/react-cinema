@@ -12,12 +12,14 @@
 + Each link has a unique ID which is used to identify the selected movie from the API.
 + Each time a movie is selected, the title, poster image, description and other details are displayed
 
-> [View 'movie' repo on Github](https://github.com/rolandjlevy/react-cinema)
+> [View 'moview' repo on Github](https://github.com/rolandjlevy/react-cinema)
 
 ## Technology used
 + Open Movie Database API
 + React
 + CSS
++ Classnames
++ Flex-box
 
 ## Stages of development
 +  Set up API and read the **Open Movie Database API** documentation 
