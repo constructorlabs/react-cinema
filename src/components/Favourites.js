@@ -8,7 +8,7 @@ class Favourites extends React.Component {
 
   render() {
     return (
-      <div className="favourites" id="favourites">
+      <div className="favourites__display" id="favourites">
         <ul>
           {this.props.favouritesList.map((film, index) => {
             return (

@@ -4,9 +4,6 @@ import Films from "./Films.js";
 import FilmImage from "./FilmImage.js";
 import Favourites from "./Favourites.js";
 
-//`http://www.omdbapi.com/?s=${film}&apikey=d213a5b1`
-//`http://www.omdbapi.com/?i=${singleFilmInfo}&apikey=d213a5b1`
-
 class App extends React.Component {
   constructor() {
     super();
@@ -68,20 +65,25 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <header className="header">
+        <div className="top__line">
           <h2 className="title">
             <b>Film Finder</b>
           </h2>
-        </header>
-        <Search
-          onSubmit={this.handleSubmit}
-          inputText={this.state.filmSearch}
-          handleChange={this.handleChange}
-        />
-        <Favourites
-          favouritesList={this.state.favouriteFilm}
-          removeFavouriteByIndex={this.removeFavouriteByIndex}
-        />
+          <div className="favourites__container">
+            <button className="favourites">❤️</button>
+            <Favourites
+              favouritesList={this.state.favouriteFilm}
+              removeFavouriteByIndex={this.removeFavouriteByIndex}
+            />
+          </div>
+
+          <Search
+            onSubmit={this.handleSubmit}
+            inputText={this.state.filmSearch}
+            handleChange={this.handleChange}
+          />
+        </div>
+
         <Films
           films={this.state.results}
           favourites={this.state.favouriteFilm}

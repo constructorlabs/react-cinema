@@ -1,6 +1,5 @@
 import React from "react";
 import FilmImage from "./FilmImage";
-//import FilmInfo from "./FilmInfo";
 
 class Films extends React.Component {
   constructor(props) {
