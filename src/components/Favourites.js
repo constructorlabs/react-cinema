@@ -12,7 +12,7 @@ class Favourites extends React.Component {
         <ul>
           {this.props.favouritesList.map((film, index) => {
             return (
-              <li>
+              <li key={index}>
                 {film}
                 <button
                   onClick={() => {

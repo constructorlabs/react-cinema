@@ -10,24 +10,33 @@ class App extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.handleNextPage = this.handleNextPage.bind(this);
+    this.handlePrevious = this.handlePrevious.bind(this);
     this.removeFavouriteByIndex = this.removeFavouriteByIndex.bind(this);
 
     this.state = {
       filmSearch: "",
       results: [],
-      favouriteFilm: []
+      favouriteFilm: [],
+      page: 1
     };
   }
+  allFilmSearch(filmSearch, page) {
+    fetch(
+      `http://www.omdbapi.com/?s=${filmSearch}&apikey=d213a5b1&page=${page}`
+    )
+      .then(function(response) {
+        return response.json();
+      })
 
-  componentDidMount() {}
-
-  handleClick(filmTitle) {
-    console.log(filmTitle);
-
-    const favouritesCopy = this.state.favouriteFilm.splice(0);
-    favouritesCopy.push(filmTitle);
-
-    this.setState({ favouriteFilm: favouritesCopy });
+      .then(body => {
+        console.log(body);
+        this.setState({ results: body.Search });
+        this.setState({ page: page });
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
   }
 
   handleChange(event) {
@@ -37,9 +46,17 @@ class App extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.allFilmSearch(this.state.filmSearch);
+    this.allFilmSearch(this.state.filmSearch, this.state.page);
   }
 
+  handleClick(filmTitle) {
+    console.log(filmTitle);
+
+    const favouritesCopy = this.state.favouriteFilm.splice(0);
+    favouritesCopy.push(filmTitle);
+
+    this.setState({ favouriteFilm: favouritesCopy });
+  }
   removeFavouriteByIndex(index) {
     console.log(index);
     const favouriteCopy = this.state.favouriteFilm.splice(0);
@@ -47,19 +64,19 @@ class App extends React.Component {
     this.setState({ favouriteFilm: favouriteCopy });
   }
 
-  allFilmSearch(filmSearch) {
-    fetch(`http://www.omdbapi.com/?s=${filmSearch}&apikey=d213a5b1`)
-      .then(function(response) {
-        return response.json();
-      })
+  handleNextPage(page) {
+    console.log("I'm being called");
+    this.setState({ page: page + 1 }, () =>
+      this.allFilmSearch(this.state.filmSearch, this.state.page)
+    );
+  }
 
-      .then(body => {
-        console.log(body);
-        this.setState({ results: body.Search });
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
+  handlePrevious(page) {
+    if (page > 1) {
+      this.setState({ page: page - 1 }, () =>
+        this.allFilmSearch(this.state.filmSearch, this.state.page)
+      );
+    }
   }
 
   render() {
@@ -89,6 +106,31 @@ class App extends React.Component {
           favourites={this.state.favouriteFilm}
           handleClick={this.handleClick}
         />
+
+        {this.state.results.length > 0 && (
+          <div>
+            <div className="next__page">
+              <button
+                className="next"
+                onClick={() => {
+                  this.handleNextPage(this.state.page);
+                }}
+              >
+                next
+              </button>
+            </div>
+            <div>
+              <button
+                disabled={this.state.page === 1}
+                onClick={() => {
+                  this.handlePrevious(this.state.page);
+                }}
+              >
+                previous
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     );
   }

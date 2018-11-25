@@ -6,14 +6,9 @@ class FilmImage extends React.Component {
 
     this.handleClick = this.handleClick.bind(this);
     this.retrieveFilm = this.retrieveFilm.bind(this);
-    this.handleNext = this.handleNext.bind(this);
-    // this.handlePrevious = this.handlePrevious.bind(this);
-    // this.notFound = this.notFound.bind(this);
     this.state = {
       click: false,
-      currentFilm: {},
-      currentPage: 1
-      // notFound: {}
+      currentFilm: {}
     };
   }
 
@@ -35,18 +30,6 @@ class FilmImage extends React.Component {
     this.setState({ click: !this.state.click });
     this.retrieveFilm(this.props.filmID);
   }
-
-  handleNext() {
-    this.setState({ pageNum: this.state.pageNum + 1 });
-  }
-
-  // handlePrevious() {
-  //   this.setState({ pageNum: this.state.pageNum - 1 });
-  // }
-
-  // handleNotFound() {
-  //   this.setState({ notFound });
-  // }
 
   render() {
     return (
