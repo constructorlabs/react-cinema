@@ -258,7 +258,7 @@ p {
     justify-content: center;
     align-items: center;
     height: 60px;
-    background-color: #1A237E;
+    background-color: rgb(55, 59, 112);
     color: white;
     font-size: 0.8em;
     padding: 5px;
