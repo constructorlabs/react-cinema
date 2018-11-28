@@ -193,7 +193,13 @@ class App extends React.Component {
                     accountState={accountState}
                 />
                 <FavouritesList favouritesList={this.state.favourites} receiveFav={this.receiveFav} receiveFilmID={this.receiveFilmID} receiveMove={this.receiveMove} favsDisplay={favsDisplay} delFavClass={classes[0]} moveFavClass={classes[1]} titleClass={classes[2]} />
-                <Search receiveTitleQuery={this.receiveTitleQuery} receiveSearchHint={this.receiveSearchHint} hints={this.state.hints} receiveFilmID={this.receiveFilmID} toggleMinify={this.toggleMinify} isMinified={this.state.isMinified} />
+                <Search
+                    receiveTitleQuery={this.receiveTitleQuery}
+                    receiveSearchHint={this.receiveSearchHint}
+                    hints={this.state.hints}
+                    receiveFilmID={this.receiveFilmID}
+                    toggleMinify={this.toggleMinify}
+                    isMinified={this.state.isMinified} />
 
                 {this.state.films.length > 0 &&
                     <SearchResults
