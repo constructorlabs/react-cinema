@@ -7,7 +7,7 @@
 
 > [View 'moview' repo on Github](https://github.com/rolandjlevy/moview)
 
-## Functionality > How does it work?
+## Functionality
 + The app first captures the search input and fetches data that matches the input from the [Open Movie Database](http://www.omdbapi.com) API. 
 + The app then uses React and CSS to display the data returned by the API as pages which are lists of 10 links per page. 
 + Each link has a unique ID which is used to identify the selected movie from the API.
