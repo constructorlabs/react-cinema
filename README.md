@@ -1,10 +1,11 @@
-# 'moview' movie search engine app
-
 ![Screenshot](./assets/react-cinema-screenshot-mobile.png) 
 ![Screenshot](./assets/react-cinema-screenshot-ipad.png) 
 
-## Objective > what does it do?
-**moiew** is a movie search engine app. It displays search results efficiently, giving the user full details of movies quickly. It has a responsive layout for mobile and desktop screen sizes giving a user-friendly experience.
+# 'moview'
+## A movie search enginee
+**Moview** is a movie search engine app which uses the Open Movie Database API. Enter a search term and see the search results instantly with full details of the movie. It has a responsive layout for mobile and desktop screen sizes giving a user-friendly experience.
+
+> [View 'moview' repo on Github](https://github.com/rolandjlevy/moview)
 
 ## Functionality > How does it work?
 + The app first captures the search input and fetches data that matches the input from the [Open Movie Database](http://www.omdbapi.com) API. 
@@ -12,7 +13,11 @@
 + Each link has a unique ID which is used to identify the selected movie from the API.
 + Each time a movie is selected, the title, poster image, description and other details are displayed
 
-> [View 'moview' repo on Github](https://github.com/rolandjlevy/react-cinema)
+## Installation
++ Clone this repo
++ Run `npm install` to install dependencies
++ Run `npm run dev` to create a development build with webpack
++ Open index.html file in browser
 
 ## Technology used
 + Open Movie Database API
@@ -20,27 +25,26 @@
 + CSS
 + Classnames
 + Flex-box
++ Webpack
 
 ## Stages of development
-+  Set up API and read the **Open Movie Database API** documentation 
-+  Created functionality for the initial search query
-+  Created smart pagination, with scrolling to see all results
-+  Retrieved the data for selected movie 
-+ Used React to display the poster image, year, IMDB rating, director, description etc...
++ Set up API and read the **Open Movie Database API** documentation 
++ Created functionality for the initial search query
++ Created smart pagination, with scrolling to see all results
++ Retrieved the data for selected movie 
++ Used React to display the poster image, year, IMDB rating, director and description
 + Used CSS to style the UI
 
 ## Features
-+ Responsive search preview - results are updated each time a letter  is entered and shown below the search box
++ Responsive search preview - results are updated each time a letter is entered and shown below the search box
 + Smart pagination allows users to quickly navigate all pages of the search results
 + Form validation gives the user feedback and details of results:
 > + if the search input is more or less than 3 letters
 > + if the search input has returned a valid result or not
 > + How many results and pages of results have been found
 
-## Problems and errors to be fixed
-+ Improve the desktop view for better responsiveness
-
 ## Desired features with more time
++ Improve the desktop view for better responsiveness
 + Allow users to mark movies as favourites and use localStorage to save the favourites into a sortable list
 + Added a featured movies section
 + Include infinate scrolling with the initial results

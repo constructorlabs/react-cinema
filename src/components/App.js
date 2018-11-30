@@ -4,10 +4,6 @@ import SearchResults from './SearchResults.js';
 import MovieDisplay from './MovieDisplay.js';
 import Pagination from './Pagination.js';
 
-// Rather than storing searchDisplay in state, 
-// it might be better to compute it in the render method as it's a derived property 
-// which depends on the searchQuery value.
-
 class App extends React.Component {
   constructor(){
 
@@ -111,6 +107,10 @@ class App extends React.Component {
   }
 
   render(){
+
+    // Rather than storing searchDisplay in state, 
+    // it might be better to compute it in the render method as it's a derived property 
+    // which depends on the searchQuery value.
 
     /* set message for errors and invalid input */
     const qLength = this.state.searchQuery.length;
