@@ -1,6 +1,6 @@
 # React Cinema
 
-A movie search enginer which uses the [Open Movie Database API](http://www.omdbapi.com/).
+A movie search enginer which uses the [Open Movie Database API](https://www.omdbapi.com/).
 
 ![ScreenShot](/screenshots/reactCinemaPc.png)
 

@@ -83,7 +83,7 @@ class App extends React.Component {
   }
 
   fetchMovies(query) {
-    return fetch(`http://www.omdbapi.com/?s=${this.state.query}&page=${this.state.currentPage}&apiKey=f155c772`)
+    return fetch(`https://www.omdbapi.com/?s=${this.state.query}&page=${this.state.currentPage}&apiKey=f155c772`)
       .then(data => data.json())
       .then(response => {
         this.setState({
@@ -99,7 +99,7 @@ class App extends React.Component {
   }
 
   fetchInfo(imdbId) {
-    return fetch(`http://www.omdbapi.com/?i=${imdbId}&plot=full&apiKey=f155c772`)
+    return fetch(`https://www.omdbapi.com/?i=${imdbId}&plot=full&apiKey=f155c772`)
       .then(data => data.json())
       .then(response => {
         this.setState({
