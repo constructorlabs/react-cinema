@@ -17,8 +17,9 @@ class App extends React.Component {
     this.receiveMovieID = this.receiveMovieID.bind(this)
     this.displayCurrentMovie = this.displayCurrentMovie.bind(this)
     this.receivePageNumber = this.receivePageNumber.bind(this)
-
+    
     this.state = {
+      baseURL: `http://www.omdbapi.com/?apikey=${process.env.API_KEY}`,
       searchQuery: '',
       searchDisplay: 'blurred',
       results: [],
@@ -27,8 +28,7 @@ class App extends React.Component {
       currentPage: '',
       pages: ''
     }
-
-    const baseURL = 'http://www.omdbapi.com/?apikey=2454706d';
+    console.log(process.env.API_KEY);
   }
 
   // receive user input from Search component
@@ -60,7 +60,7 @@ class App extends React.Component {
 
   // fetch movie data from API for searchQuery
   getQueriedMovies () {
-    const url = `${baseURL}&s=${this.state.searchQuery}&page=${this.state.currentPage}`;
+    const url = `${this.state.baseURL}&s=${this.state.searchQuery}&page=${this.state.currentPage}`;
     fetch(url)
     .then(response => response.json())
     .then(body => {
@@ -97,7 +97,7 @@ class App extends React.Component {
 
   // fetch movie data from API for currentMovieID
   displayCurrentMovie () {
-    fetch(`${baseURL}&i=${this.state.currentMovieID}`)
+    fetch(`${this.state.baseURL}&i=${this.state.currentMovieID}`)
     .then(response => response.json())
     .then(body => {
       this.setState({
