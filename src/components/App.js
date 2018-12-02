@@ -9,15 +9,15 @@ class App extends React.Component {
 
     super();
 
-    this.receiveInput = this.receiveInput.bind(this)
-    this.receiveSubmit = this.receiveSubmit.bind(this)
-    this.receiveFocus = this.receiveFocus.bind(this)
-    this.receiveBlur = this.receiveBlur.bind(this)
-    this.getQueriedMovies = this.getQueriedMovies.bind(this)
-    this.receiveMovieID = this.receiveMovieID.bind(this)
-    this.displayCurrentMovie = this.displayCurrentMovie.bind(this)
-    this.receivePageNumber = this.receivePageNumber.bind(this)
-    
+    this.receiveInput = this.receiveInput.bind(this);
+    this.receiveSubmit = this.receiveSubmit.bind(this);
+    this.receiveFocus = this.receiveFocus.bind(this);
+    this.receiveBlur = this.receiveBlur.bind(this);
+    this.getQueriedMovies = this.getQueriedMovies.bind(this);
+    this.receiveMovieID = this.receiveMovieID.bind(this);
+    this.displayCurrentMovie = this.displayCurrentMovie.bind(this);
+    this.receivePageNumber = this.receivePageNumber.bind(this);
+        
     this.state = {
       baseURL: `http://www.omdbapi.com/?apikey=${process.env.API_KEY}`,
       searchQuery: '',
@@ -28,7 +28,7 @@ class App extends React.Component {
       currentPage: '',
       pages: ''
     }
-    console.log(process.env.API_KEY);
+
   }
 
   // receive user input from Search component
@@ -60,6 +60,7 @@ class App extends React.Component {
 
   // fetch movie data from API for searchQuery
   getQueriedMovies () {
+    console.log(process.env);
     const url = `${this.state.baseURL}&s=${this.state.searchQuery}&page=${this.state.currentPage}`;
     fetch(url)
     .then(response => response.json())

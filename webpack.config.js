@@ -1,18 +1,22 @@
 const path = require('path');
-const webpack = require('webpack')
+const webpack = require('webpack');
 
 module.exports = {
   entry: './src/index.js',
   devtool: 'source-map',
   // node: {
-  //   fs: "empty"
+  //   fs: "empty",
+  //   process: false
   // },
   plugins: [
     // https://webpack.js.org/plugins/environment-plugin/
+    // new webpack.EnvironmentPlugin(['API_KEY']) or new webpack.EnvironmentPlugin({ API_KEY: '2454706d' })
     new webpack.DefinePlugin({
-      'process.env.API_KEY': JSON.stringify(process.env.API_KEY),
+      'process.env': {
+        NODE_ENV: JSON.stringify("development"),
+        API_KEY: JSON.stringify('2454706d')
+      }
     })
-    // new webpack.EnvironmentPlugin(['API_KEY'])
   ],
   output: {
     filename: 'bundle.js',
