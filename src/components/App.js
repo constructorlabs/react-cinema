@@ -19,7 +19,6 @@ class App extends React.Component {
     this.receivePageNumber = this.receivePageNumber.bind(this)
 
     this.state = {
-      baseURL: 'http://www.omdbapi.com/?apikey=2454706d',
       searchQuery: '',
       searchDisplay: 'blurred',
       results: [],
@@ -28,6 +27,8 @@ class App extends React.Component {
       currentPage: '',
       pages: ''
     }
+
+    const baseURL = 'http://www.omdbapi.com/?apikey=2454706d';
   }
 
   // receive user input from Search component
@@ -59,7 +60,7 @@ class App extends React.Component {
 
   // fetch movie data from API for searchQuery
   getQueriedMovies () {
-    const url = `${this.state.baseURL}&s=${this.state.searchQuery}&page=${this.state.currentPage}`;
+    const url = `${baseURL}&s=${this.state.searchQuery}&page=${this.state.currentPage}`;
     fetch(url)
     .then(response => response.json())
     .then(body => {
@@ -96,7 +97,7 @@ class App extends React.Component {
 
   // fetch movie data from API for currentMovieID
   displayCurrentMovie () {
-    fetch(`${this.state.baseURL}&i=${this.state.currentMovieID}`)
+    fetch(`${baseURL}&i=${this.state.currentMovieID}`)
     .then(response => response.json())
     .then(body => {
       this.setState({
@@ -118,7 +119,6 @@ class App extends React.Component {
     errorMsg = (qLength == 0 || qLength > 2) ? errorMsg : "Enter 3 or more letters";
 
     const searchDisplayOn = (this.state.searchDisplay === 'focused') && (this.state.searchQuery.length > 0)
-
 
     return (
       <div className="app">
