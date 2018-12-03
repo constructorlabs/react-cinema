@@ -5,9 +5,9 @@
 ## A movie search enginee
 **Moview** is a movie search engine app which uses the Open Movie Database API. Enter a search term and see the search results instantly with full details of the movie. It has a responsive layout for mobile and desktop screen sizes giving a user-friendly experience.
 
-> [View live demo](https://rlevy-moview.netlify.com)
+> [View the live demo](https://moview.herokuapp.com/)
 
-> [View repo on Github](https://github.com/rolandjlevy/moview)
+> [View the repo on Github](https://github.com/rolandjlevy/moview)
 
 ## Installation and set up
 + Clone this repo
