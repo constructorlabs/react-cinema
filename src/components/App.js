@@ -28,7 +28,6 @@ class App extends React.Component {
       currentPage: '',
       pages: ''
     }
-
   }
 
   // receive user input from Search component

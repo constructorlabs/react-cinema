@@ -1,20 +1,15 @@
 const path = require('path');
 const webpack = require('webpack');
+require('dotenv').config();
 
 module.exports = {
   entry: './src/index.js',
   devtool: 'source-map',
-  // node: {
-  //   fs: "empty",
-  //   process: false
-  // },
   plugins: [
-    // https://webpack.js.org/plugins/environment-plugin/
-    // new webpack.EnvironmentPlugin(['API_KEY']) or new webpack.EnvironmentPlugin({ API_KEY: '2454706d' })
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: JSON.stringify("development"),
-        API_KEY: JSON.stringify('2454706d')
+        // NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+        API_KEY: JSON.stringify(process.env.API_KEY)
       }
     })
   ],
