@@ -3,7 +3,7 @@
 
 # Moviewer
 ## A movie search enginee
-**Moview** is a movie search engine app which uses the Open Movie Database API. Enter a search term and see the search results instantly with full details of the movie. It has a responsive layout for mobile and desktop screen sizes giving a user-friendly experience.
+**Moviewer** is a movie search engine app which uses the Open Movie Database API. Enter a search term and see the search results instantly with full details of the movie. It has a responsive layout for mobile and desktop screen sizes giving a user-friendly experience.
 
 > [View the live demo](https://moviewer.herokuapp.com/)
 
