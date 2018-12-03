@@ -1,11 +1,11 @@
 ![Screenshot](./assets/react-cinema-screenshot-mobile.png) 
 ![Screenshot](./assets/react-cinema-screenshot-ipad.png) 
 
-# 'moview'
+# Moviewer
 ## A movie search enginee
 **Moview** is a movie search engine app which uses the Open Movie Database API. Enter a search term and see the search results instantly with full details of the movie. It has a responsive layout for mobile and desktop screen sizes giving a user-friendly experience.
 
-> [View the live demo](https://moview.herokuapp.com/)
+> [View the live demo](https://moviewer.herokuapp.com/)
 
 > [View the repo on Github](https://github.com/rolandjlevy/moview)
 
