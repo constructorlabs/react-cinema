@@ -1,14 +1,19 @@
 {
+
   "name": "moview",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "engines": {
+    "node": "11.3.0"
+  },
   "scripts": {
     "development": "cross-env NODE_ENV=development env-cmd .env webpack-dev-server --config ./webpack",
     "production": "cross-env NODE_ENV=production env-cmd .env webpack --config ./webpack",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack --mode development",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "heroku-postbuild": "npm run build"
   },
   "author": "",
   "license": "ISC",
