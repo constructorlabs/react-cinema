@@ -1,4 +1,3 @@
-// https://stackoverflow.com/questions/32815483/heroku-how-do-you-push-to-specific-app-if-you-have-multiple-apps-in-heroku
 {
   "name": "moview",
   "version": "1.0.0",
