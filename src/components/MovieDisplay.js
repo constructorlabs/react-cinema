@@ -1,6 +1,7 @@
 import React from 'react'; 
 import SetInnerHTML from './SetInnerHTML.js';
 import cx from "classnames"; 
+import noImage from '../images/no-image.png'
 
 class MovieDisplay extends React.Component {
     constructor () {
@@ -18,7 +19,7 @@ class MovieDisplay extends React.Component {
         const ignore = ["Website", "Poster", "Title", "Plot", "Response", "Ratings"];
         const movie = this.props.currentMovie;
         const imdbURL = `https://www.imdb.com/title/${movie.imdbID}`;
-        const imgURL = (!movie.Poster || movie.Poster === "N/A") ? "./assets/no-image.png" : movie.Poster;
+        const imgURL = (!movie.Poster || movie.Poster === "N/A") ? noImage : movie.Poster;
         const noPlot = !movie.Plot || movie.Plot === "N/A";
         
         // toggle the visibility of the search results display
