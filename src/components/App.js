@@ -26,7 +26,7 @@ class App extends React.Component {
       error: '',
       currentMovie: false,
       currentPage: '',
-      pages: ''
+      pages: 1,
     }
   }
 
