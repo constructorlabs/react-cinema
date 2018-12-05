@@ -19,7 +19,7 @@ class App extends React.Component {
     this.receivePageNumber = this.receivePageNumber.bind(this);
         
     this.state = {
-      baseURL: `http://www.omdbapi.com/?apikey=${process.env.API_KEY}`,
+      baseURL: `//www.omdbapi.com/?apikey=${process.env.API_KEY}`,
       searchQuery: '',
       searchDisplay: 'blurred',
       results: [],
