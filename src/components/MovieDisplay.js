@@ -1,11 +1,11 @@
 import React from 'react'; 
-import SetInnerHTML from './SetInnerHTML.js';
 import cx from "classnames"; 
-import noImage from '../images/no-image.png'
+// @ts-ignore
+import noImage from '../images/no-image.png';
 
 class MovieDisplay extends React.Component {
-    constructor () {
-        super()
+    constructor (props) {
+        super(props)
         this.toggleTextDisplay = this.toggleTextDisplay.bind(this)
         this.state = { textDisplay: false }
     }

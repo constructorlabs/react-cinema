@@ -1,8 +1,8 @@
 import React from 'react';
 
 class Pagination extends React.Component {
-    constructor () {
-        super()
+    constructor (props) {
+        super(props)
         this.handleClick = this.handleClick.bind(this)
         this.getClass = this.getClass.bind(this)
         this.state = { activePage: 1 }
@@ -23,7 +23,7 @@ class Pagination extends React.Component {
         const totalPages = this.props.pages || 1;
         const totalButtons = Math.ceil(totalPages / 10);
         // create an array of numbers between 1 and totalButtons
-        const totalArray = (max=1, n=1) => new Array(max).fill().map(e => e = n++);
+        const totalArray = (max=1, n=1) => new Array(max).fill(0).map(e => e = n++);
         return (
             <div>
                 {
@@ -37,7 +37,7 @@ class Pagination extends React.Component {
                     totalArray(totalButtons).map(item => {
                         return  <div 
                                     key={item} 
-                                    id={item} 
+                                    id={String(item)} 
                                     className={this.getClass(item)} 
                                     onClick={(event) => this.handleClick(item, event)}>
                                     {item}

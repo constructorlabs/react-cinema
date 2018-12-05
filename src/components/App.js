@@ -5,9 +5,9 @@ import MovieDisplay from './MovieDisplay.js';
 import Pagination from './Pagination.js';
 
 class App extends React.Component {
-  constructor(){
+  constructor(props){
 
-    super();
+    super(props);
 
     this.receiveInput = this.receiveInput.bind(this);
     this.receiveSubmit = this.receiveSubmit.bind(this);
