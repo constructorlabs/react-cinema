@@ -1,5 +1,5 @@
-![Screenshot](./assets/react-cinema-screenshot-mobile.png) 
-![Screenshot](./assets/react-cinema-screenshot-ipad.png) 
+![Screenshot](./src/images/react-cinema-screenshot-mobile.png) 
+![Screenshot](./src/images/react-cinema-screenshot-ipad.png) 
 
 # Moviewer
 ## A movie search enginee
