@@ -4,7 +4,7 @@ A movie search engine which uses the [Open Movie Database API](https://www.omdba
 
 [View live demo](https://movie-search.netlify.com/)
 
-![ScreenShot](/screenshots/reactCinemaPc.png)
+![ScreenShot](/screenshots/reactCinemaGithub.png)
 
 ## Technologies
 
