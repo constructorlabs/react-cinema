@@ -1,21 +1,15 @@
-import React from 'react';
-import Movie from './Movie'
+import React from "react";
+import Movie from "./Movie";
 
 class Movies extends React.Component {
-
-  render(){
-
+  render() {
     return (
-  
-        <div className="moviesfeed">
-
+      <div className="moviesfeed">
         {this.props.movieresults.map(movie => {
-          return <Movie movie={movie} key={movie.imdbID} />
-
-          })}
-        </div>
-    
-    )
+          return <Movie movie={movie} key={movie.imdbID} />;
+        })}
+      </div>
+    );
   }
 }
 
