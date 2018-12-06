@@ -1,5 +1,3 @@
-![Screenshot](./static/movie-screenshot-1.png)
-
 # Moudly Lemons
 
 _Lemon-inspired title referencing my favourite movie reviewing website_
@@ -23,3 +21,5 @@ Moudly Lemons is a single-page app built using React, powered by the [Open Movie
 - Visual cue to indicate when the search input is not filled
 - "Zombie" placeholders as fallback when no movie poster supplied
 - Page scroll functionality for viewing additional details (applied in mobile view only)
+
+![Screenshot](./static/movie-screenshot-1.png)
