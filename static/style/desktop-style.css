@@ -1,0 +1,165 @@
+@media (min-width: 1068px) {
+  
+  header {
+    height: 6rem;
+  }
+  .title {
+    font-size: 3.5rem;
+    max-width: 60%;
+    margin:auto;
+  }
+
+  .btn__account {
+    font-size: 2rem;
+    margin-right: 2rem;
+  }
+  
+  .account {
+    left: 75%;
+    width: 25%;
+  }
+
+  .search {
+    grid-template-columns: 1fr 50vw 1fr;
+  }
+
+  .search--minified{
+  display:grid;
+  grid-template-columns: 1fr 40% 8% 1fr;
+  grid-template-areas: 
+    ". a b ."
+    ". c . .";
+}
+  
+/**********************/
+/*** search results ***/
+
+.search__results {
+  display:flex;
+  flex-direction:column;
+  justify-content: space-between;
+  align-content: flex-start;
+  height: calc(100vh - 10rem);
+  background-image: url('../assets/bg_cinema-seats.jpg');
+  background-position: bottom;
+  background-size: cover;
+}
+
+.search__results__page {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(1rem, 15rem));
+  grid-template-rows: min-content min-content;
+  grid-row-gap: 0rem;
+  overflow-y: unset;
+  padding: 2rem 1rem;
+/*   width: 90px; */
+  margin: auto;
+}
+
+  .film {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-self: center;
+    margin: 0;
+    width: 15rem;
+  }
+
+  .film__title {
+    width: 10rem;
+    font-size: 1.1rem;
+    margin-top: 0.5rem;
+  }
+
+  .film__poster {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
+    width: 10rem;
+    height: 16rem;
+    border: 6px solid white;
+    object-fit: cover;
+    transition: all 0.5s;
+  }
+
+  .film__poster:hover {
+    border-color: yellowgreen;
+  }
+
+  #page-nav {
+    font-size: 1.5rem;
+    justify-content: center;
+    background: whitesmoke;
+  }
+
+  /*. film details */
+
+  /*. film details */
+
+.film-details__wrapper {
+  position:absolute;
+  top: 10rem;
+  height: 100vw;
+  background: rgba(65,0,0,0.75);
+  background-position: bottom;
+  background-size: cover;
+}
+
+.film-details__wrapper--closed{
+  display:none;
+}
+
+.film-details{
+  display: grid;
+  grid-template-columns: 5fr 4fr 1fr 2fr;
+  padding: 1.5rem 1rem;
+  margin: 5rem auto;
+  border: 1px solid lightgray;
+  border-radius: 8px;
+  background: whitesmoke;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+  width: 50%;
+}
+
+  .film-details__title {
+    font-size: 2.3rem;
+    border-top: 5px solid black;
+    padding-top: 0.25rem;
+    width: 25vw;
+  }
+
+  .btn__fav {
+    margin: 1rem 0.5rem 0.25rem;
+    font-size: 1.2rem;
+    justify-self: end;
+    align-self: start;
+  }
+
+  .film-details__poster {
+    width: 70%;
+    margin-left: 2rem;
+    justify-self: stretch;
+    border: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
+  }
+
+  .film-details__plot,
+  .film-details__actors {
+    width: 70%;
+  } 
+  
+  .film-details__rating__score {
+    margin-top: 1rem;
+  }
+  
+  .film-details__rating__bar {
+    width: 15vw;
+    height: 1.5rem;
+    margin: 1.5rem 1rem;
+  }
+
+  .film-details__wrapper h4 {
+    grid-column: 2 / span 2;
+    margin: 1rem 0 0.5rem 0;
+    align-self: end;
+    font-size: 1.4rem;
+  }
+}
