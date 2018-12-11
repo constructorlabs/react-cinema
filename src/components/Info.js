@@ -49,7 +49,7 @@ class Info extends React.Component {
                 </div>
                 <h2 className="movie-info__title">{this.props.info.Title}</h2>
                 <h3 className="movie-info__year">{this.props.info.Year}&nbsp;&nbsp;&nbsp;{this.props.info.Runtime}</h3>
-                <p>{this.props.info.Plot}</p>
+                <p className="movie-info__text">{this.props.info.Plot}</p>
             </div>
         )
     }

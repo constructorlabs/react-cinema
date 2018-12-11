@@ -211,14 +211,12 @@ p {
 }
 
 .movie-info {
-    padding: 10px;
+    margin: 4%;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    padding-top: 1%;
     position: relative;
-    padding-bottom: 2%;
 }
 
 .fav-btn {
@@ -233,21 +231,28 @@ p {
     align-items: center;
     text-align: center;
     justify-content: center;
-    height: 3em;
     font-weight: 900;
     font-size: 1.8em;
+    margin: 1rem;
+
 }
 
 .movie-info__year {
     color: rgb(184, 184, 184);
     align-self: flex-start;
-    padding-bottom: 0.7em;
+    margin: 0.5rem 0;
     font-size: 0.8em;
     font-weight: 500;
 }
 
+.movie-info__text {
+    margin-bottom: 2rem;
+    font-size: 0.9em;
+    font-weight: 300;
+}
+
 .movie-info__poster__image {
-    margin-top: 3rem;
+    margin-top: 4%;
     width: 40vw;
     border-radius: 0.4em;
     box-shadow: 1px 1px 5px 1px rgb(15, 15, 15);
