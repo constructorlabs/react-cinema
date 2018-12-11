@@ -1,17 +1,17 @@
-import React from 'react';
-import Search from './Search'
-import Movies from './Movies'
-import Info from './Info'
-import Pagination from './Pagination'
-import Favourites from './Favourites'
+import React from "react";
+import Search from "./Search";
+import Movies from "./Movies";
+import Info from "./Info";
+import Pagination from "./Pagination";
+import Favourites from "./Favourites";
 
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      query: '',
+      query: "",
       movies: [],
-      movieId: '',
+      movieId: "",
       info: {},
       favourites: [],
       currentPage: 1,
@@ -33,57 +33,68 @@ class App extends React.Component {
   }
 
   receiveQuery(query) {
-    this.setState({
-      query: query,
-      currentPage: 1,
-      renderInfo: false,
-      loading: true
-    }, this.fetchMovies)
-
+    this.setState(
+      {
+        query: query,
+        currentPage: 1,
+        renderInfo: false,
+        loading: true
+      },
+      this.fetchMovies
+    );
   }
 
   receiveMovie(imdbId) {
     this.fetchInfo(imdbId);
     if (this.state.favourites.find(favourite => favourite.imdbID === imdbId)) {
-      this.setState({ movieIsFav: true, renderInfo: true })
+      this.setState({ movieIsFav: true, renderInfo: true });
     } else {
-      this.setState({ movieIsFav: false, renderInfo: true })
+      this.setState({ movieIsFav: false, renderInfo: true });
     }
   }
 
   toggleFavourite(info) {
-
     if (this.state.movieIsFav === false) {
       const newFavourites = this.state.favourites.concat(info);
       this.setState({ favourites: newFavourites, movieIsFav: true });
-      localStorage.favourites = (JSON.stringify(newFavourites));
+      localStorage.favourites = JSON.stringify(newFavourites);
     } else {
-      const newFavourites = this.state.favourites.filter(favourite => info.imdbID !== favourite.imdbID)
+      const newFavourites = this.state.favourites.filter(
+        favourite => info.imdbID !== favourite.imdbID
+      );
       this.setState({ favourites: newFavourites, movieIsFav: false });
-      localStorage.favourites = (JSON.stringify(newFavourites));
+      localStorage.favourites = JSON.stringify(newFavourites);
     }
   }
 
   deleteFavourite(imdbId) {
-    const newFavourites = this.state.favourites.filter(favourite => imdbId.imdbID !== favourite.imdbID)
+    const newFavourites = this.state.favourites.filter(
+      favourite => imdbId.imdbID !== favourite.imdbID
+    );
     this.setState({ favourites: newFavourites, movieIsFav: false });
-    localStorage.favourites = (JSON.stringify(newFavourites));
+    localStorage.favourites = JSON.stringify(newFavourites);
   }
 
   clickFavouriteItem(favourite) {
-    console.log("****" + favourite.imdbID)
+    console.log("****" + favourite.imdbID);
   }
 
   receivePageNumber(pageNum) {
-    this.setState({
-      currentPage: pageNum,
-      renderInfo: false,
-    }, () => this.fetchMovies())
-
+    this.setState(
+      {
+        currentPage: pageNum,
+        renderInfo: false
+      },
+      () => this.fetchMovies()
+    );
   }
 
   fetchMovies(query) {
-    return fetch(`https://www.omdbapi.com/?s=${this.state.query}&page=${this.state.currentPage}&apiKey=f155c772`)
+    return fetch(
+      `https://www.omdbapi.com/?s=${this.state.query}&page=${
+        this.state.currentPage
+      }&apiKey=f155c772`
+    )
       .then(data => data.json())
       .then(response => {
         this.setState({
@@ -91,7 +102,7 @@ class App extends React.Component {
           totalResults: response.totalResults,
           totalPages: Math.ceil(response.totalResults / 10),
           loading: false
-        })
+        });
       })
       .catch(error => {
         console.log(error);
@@ -99,13 +110,15 @@ class App extends React.Component {
   }
 
   fetchInfo(imdbId) {
-    return fetch(`https://www.omdbapi.com/?i=${imdbId}&plot=full&apiKey=f155c772`)
+    return fetch(
+      `https://www.omdbapi.com/?i=${imdbId}&plot=full&apiKey=f155c772`
+    )
       .then(data => data.json())
       .then(response => {
         this.setState({
           info: response
-        })
-      })
+        });
+      });
   }
 
   componentDidMount() {
@@ -114,42 +127,72 @@ class App extends React.Component {
     }
   }
 
-
   render() {
     return (
-
       <main>
-
         <header className="header">
           <div className="nav-bar">
-            <div className="nav-bar__logo"></div>
-            <h1 className="nav-bar__title">Movie Search</h1>
+            <div className="nav-bar__logo">
+              <img className="nav-bar__logo__img" src="src/images/logo.png" />
+            </div>
+
             <Search className="search-top" receiveQuery={this.receiveQuery} />
             <div className="nav-dropdown">
               <div className="nav-dropdown__fav">
-                <img className="nav-dropdown-icon" src="src/images/favouritesFolder.png" />
+                <img
+                  className="nav-dropdown-icon"
+                  src="src/images/favouritesFolder.png"
+                />
               </div>
               <div className="fav_menu">
                 <h3 className="fav-menu__title">My Favourites</h3>
-                {this.state.favourites.map(favourite => <Favourites key={favourite.imdbID} id={favourite.imdbID} favourite={favourite} deleteFavourite={this.deleteFavourite} clickFavouriteItem={this.clickFavouriteItem}/>)}
+                {this.state.favourites.map(favourite => (
+                  <Favourites
+                    key={favourite.imdbID}
+                    id={favourite.imdbID}
+                    favourite={favourite}
+                    deleteFavourite={this.deleteFavourite}
+                    clickFavouriteItem={this.clickFavouriteItem}
+                  />
+                ))}
               </div>
             </div>
-
           </div>
           <Search className="search-bottom" receiveQuery={this.receiveQuery} />
         </header>
 
-        {!this.state.renderInfo ? null : <Info toggleFavourite={this.toggleFavourite} info={this.state.info} favourites={this.state.favourites} movieIsFav={this.state.movieIsFav} />}
+        {!this.state.renderInfo ? null : (
+          <Info
+            toggleFavourite={this.toggleFavourite}
+            info={this.state.info}
+            favourites={this.state.favourites}
+            movieIsFav={this.state.movieIsFav}
+          />
+        )}
         {/* {this.state.loading ? (console.log("still loading")) : <Movies receiveMovie={this.receiveMovie} moviesArray={this.state.movies} />} */}
-        {this.state.query != '' ? <div className="search-text"><p>Search Results for <span className="search-text__query">{this.state.query}</span>...</p></div> : null}
-        <Movies receiveMovie={this.receiveMovie} moviesArray={this.state.movies} />
+        {this.state.query != "" ? (
+          <div className="search-text">
+            <p>
+              Search Results for{" "}
+              <span className="search-text__query">{this.state.query}</span>...
+            </p>
+          </div>
+        ) : null}
+        <Movies
+          receiveMovie={this.receiveMovie}
+          moviesArray={this.state.movies}
+        />
         {/* {console.log("loadingStatus" + this.state.loading)} */}
-        {this.state.query != '' ? <Pagination receivePageNumber={this.receivePageNumber} currentPage={this.state.currentPage} totalResults={this.state.totalResults} totalPages={this.state.totalPages} /> : null}
-
+        {this.state.query != "" ? (
+          <Pagination
+            receivePageNumber={this.receivePageNumber}
+            currentPage={this.state.currentPage}
+            totalResults={this.state.totalResults}
+            totalPages={this.state.totalPages}
+          />
+        ) : null}
       </main>
-
-    )
+    );
   }
-
 }
 export default App;

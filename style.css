@@ -23,17 +23,31 @@ p {
 .nav-bar {
     display: flex;
     justify-content: center;
-    height: 50px;
+    height: 60px;
     align-items: center;
-    background-color: rgb(55, 59, 112);
+    background-color: #222831;
     justify-content: space-between
+}
+
+.nav-bar__logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    width: 200px;
+    margin-left: 1.25rem;
+}
+
+.nav-bar__logo__img {
+    width: 100%;
+    height: auto;
 }
 
 .search-bottom {
     display: flex;
     height: 34px;
     padding: 0.5em;
-    background-color: rgb(55, 59, 112);
+    background-color: #222831;
 }
 
 .search-top {
@@ -67,11 +81,6 @@ p {
 
 .search__btn:hover {
     background-color: rgb(159, 163, 189);
-}
-
-.nav-bar__logo {
-    width: 50px;
-    height: 100%;
 }
 
 .nav-bar__title {}
