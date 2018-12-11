@@ -4,7 +4,7 @@
 }
 
 html {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 16px;
     background-color: #222831;
     color: white;
@@ -187,15 +187,15 @@ p {
 /* Movie info - displayed when movie clicked */
 
 .background-image {
-    height: 60vw;
+    height: 55vw;
     width: 100vw;
     position: absolute;
     top: 0px;
-    right: 0px;
     z-index: -1;
 }
 
 .background-image__image {
+    opacity: 0.6;
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -247,6 +247,7 @@ p {
 }
 
 .movie-info__poster__image {
+    margin-top: 3rem;
     width: 40vw;
     border-radius: 0.4em;
     box-shadow: 1px 1px 5px 1px rgb(15, 15, 15);

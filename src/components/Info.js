@@ -39,14 +39,6 @@ class Info extends React.Component {
         this.props.movieIsFav ? favImage = "src/images/favourited.png" : favImage = "src/images/favourite.png";
 
         return (
-            // <div className="movie-info" id={this.props.info.imdbID}>
-            //     <h2 className="movie-info__title">{this.props.info.Title}</h2>
-            //     <img className="movie-info__poster" src={this.props.info.Poster} />
-            //     <img className="fav-btn" src={favImage} onClick={this.handleClickFavourite} />
-            //     {/* <button type="button" onClick={this.handleClickFavourite}>fav</button> */}
-            //     <h3>{this.props.info.Year}</h3>
-            //     <p>{this.props.info.Plot}</p>
-            // </div>
             <div className="movie-info" id={this.props.info.imdbID}>
                 <div className="background-image">
                     <img className="background-image__image" src={this.props.info.Poster} />
