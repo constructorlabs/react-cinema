@@ -129,7 +129,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <main>
+      <main className="container">
         <header className="header">
           <div className="nav-bar">
             <div className="nav-bar__logo">
