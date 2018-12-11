@@ -52,7 +52,7 @@ p {
 }
 
 .nav-bar__logo__img {
-    margin: 4%;
+    margin: 4% 0;
     width: auto;
     height: 25px;
 }
@@ -71,10 +71,11 @@ p {
 }
 
 .search__input {
+    font-size: 1em;
     flex: 1;
     background-color: white;
     border: none;
-    padding-left: 1em;
+    padding: 0.5rem;
 }
 
 .search__btn {
@@ -193,7 +194,6 @@ p {
     top: 0px;
     right: 0px;
     z-index: -1;
-
 }
 
 .background-image__image {
@@ -299,6 +299,9 @@ p {
     html {
         font-size: 18px;
     }
+    .nav-bar__spacer {
+        display: none;
+    }
     .search-top {
         display: flex;
         flex: 3;
@@ -306,6 +309,7 @@ p {
     }
     .nav-bar {
         height: 4em;
+        margin: 0 3.2%;
     }
     .search-bottom {
         display: none;
@@ -316,6 +320,9 @@ p {
     .nav-dropdown-icon {
         width: 30px;
         height: 30px;
+    }
+    .search-text {
+        margin: 3.2%;
     }
     .movie-info__poster__image {
         width: 25vw;
@@ -339,6 +346,12 @@ p {
     }
     .container {
         width: 85%;
+    }
+    .nav-bar {
+        margin: 0 2.67%;
+    }
+    .search-text {
+        margin: 2.67%;
     }
     .movie-info__poster__image {
         width: 20vw;
