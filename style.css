@@ -16,7 +16,7 @@ h1 {
 }
 
 p {
-    font-size: 0.9em;
+    font-size: 1em;
     line-height: 1.5em;
 }
 
@@ -61,14 +61,13 @@ p {
     border-radius: 3px;
     display: none;
     height: 34px;
-    padding: 0.5em;
 }
 
 .search-bottom {
     border-radius: 3px;
     display: flex;
     height: 34px;
-    padding: 0.5em;
+    margin: 0 4%;
 }
 
 .search__input {
@@ -99,11 +98,10 @@ p {
 
 .nav-dropdown-icon {
     font-size: 1.5em;
-    /* width: 30px;
-    height: 30px; */
 }
 
 .fav_menu {
+    color: rgb(37, 37, 37);
     display: none;
     position: absolute;
     right: 0;
@@ -179,12 +177,14 @@ p {
 }
 
 .info-container {
-    font-size: 0.7em;
+    font-size: 0.9em;
     line-height: 1.4em;
-    font-weight: 200;
-    padding: 5px;
+    font-weight: 300;
     height: 4.2em;
+    margin: 0.2rem 0 1rem 0;
 }
+
+/* Movie info - displayed when movie clicked */
 
 .background-image {
     height: 60vw;
@@ -253,16 +253,21 @@ p {
     box-shadow: 1px 1px 5px 1px rgb(15, 15, 15);
 }
 
+/* Pagination */
+
 .pagination {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 60px;
     background-color: #222831;
-    color: white;
-    font-size: 0.8em;
-    padding: 5px;
+}
+
+.pagination__text {
+    color: #ff5722;
+    font-size: 1em;
+    margin: 0.5rem;
+    margin-bottom: 0;
 }
 
 .pagination__buttons {
@@ -270,18 +275,18 @@ p {
     justify-content: center;
     align-items: center;
     border: none;
+    margin: 0.5rem;
 }
 
 .page-buttons {
-    padding: 5px;
+    padding: 0.5em;
     margin: auto;
     border: 0;
     border-radius: 3px;
-    background-color: #C5CAE9;
+    background-color: #eeeeee;
     cursor: pointer;
     margin: 5px;
-    height: 2em;
-    font-size: 0.95em;
+    font-size: 1em;
 }
 
 .page-buttons:hover {
