@@ -52,21 +52,20 @@ p {
 }
 
 .nav-bar__logo__img {
-    margin: 4% 0;
     width: auto;
-    height: 25px;
+    height: 1.6rem;
 }
 
 .search-top {
     border-radius: 3px;
     display: none;
-    height: 2.5rem;
+    height: 2.6rem;
 }
 
 .search-bottom {
     border-radius: 3px;
     display: flex;
-    height: 2.5rem;
+    height: 2.6rem;
     margin: 0 4% 4% 4%;
 }
 
@@ -79,7 +78,7 @@ p {
 }
 
 .search__btn {
-    width: 2.5rem;
+    width: 2.6rem;
     color: #222831;
     border: none;
     cursor: pointer;
@@ -98,7 +97,7 @@ p {
 }
 
 .nav-dropdown-icon {
-    font-size: 1.5em;
+    font-size: 1.6em;
 }
 
 .fav_menu {
@@ -179,9 +178,9 @@ p {
 
 .info-container {
     font-size: 0.9em;
-    line-height: 1.4em;
+    line-height: 1.2em;
     font-weight: 300;
-    height: 4.2em;
+    /* height: 4.2em; */
     margin: 0.2rem 0 1rem 0;
 }
 
@@ -204,7 +203,7 @@ p {
 
 .info-container__title {
     overflow: hidden;
-    max-height: calc(2.4em + 5px);
+    max-height: 2.8em;
 }
 
 .info-container__year {
@@ -302,6 +301,9 @@ p {
     .nav-bar__spacer {
         display: none;
     }
+    .nav-bar__logo__img {
+        height: 1.8rem;
+    }
     .search-top {
         display: flex;
         flex: 3;
@@ -318,8 +320,7 @@ p {
         flex: 1;
     }
     .nav-dropdown-icon {
-        width: 30px;
-        height: 30px;
+        font-size: 1.8em;
     }
     .search-text {
         margin: 3.2%;
@@ -349,6 +350,12 @@ p {
     }
     .nav-bar {
         margin: 0 2.67%;
+    }
+    .nav-bar__logo__img {
+        height: 2rem;
+    }
+    .nav-dropdown-icon {
+        font-size: 2em;
     }
     .search-text {
         margin: 2.67%;
