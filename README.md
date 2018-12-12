@@ -1,4 +1,4 @@
-# React Cinema
+# Movie Search
 
 A movie search engine which uses the [Open Movie Database API](https://www.omdbapi.com/).
 
