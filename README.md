@@ -16,13 +16,10 @@
 + Open index.html file in the browser
 
 ## Functionality and features
-<details open>
-  <summary>How it works</summary>
-    + The app first captures the search input and fetches data that matches the input from the [Open Movie Database](http://www.omdbapi.com) API. 
-    + The app then uses React and CSS to display the data returned by the API as pages which are lists of 10 links per page. 
-    + Each link has a unique ID which is used to identify the selected movie from the API.
-    + Each time a movie is selected, the title, poster image, description and other details are displayed
-</details>
++ The app first captures the search input and fetches data that matches the input from the [Open Movie Database](http://www.omdbapi.com) API. 
++ The app then uses React and CSS to display the data returned by the API as pages which are lists of 10 links per page. 
++ Each link has a unique ID which is used to identify the selected movie from the API.
++ Each time a movie is selected, the title, poster image, description and other details are displayed
 
 ## Technology used
 + React
