@@ -1,12 +1,19 @@
 {
-  "name": "react-cinema",
+  "name": "moview",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "engines": {
+    "node": "11.3.0"
+  },
   "scripts": {
+    "development": "cross-env NODE_ENV=development env-cmd .env webpack-dev-server --config ./webpack",
+    "production": "cross-env NODE_ENV=production env-cmd .env webpack --config ./webpack",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack --mode development",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "heroku-postbuild": "npm run build",
+    "start": "http-server ./dist"
   },
   "author": "",
   "license": "ISC",
@@ -17,6 +24,11 @@
     ]
   },
   "dependencies": {
+    "babel-core": "^6.26.3",
+    "classnames": "^2.2.6",
+    "dotenv": "^6.1.0",
+    "html-webpack-plugin": "^3.2.0",
+    "http-server": "^0.11.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0"
   },
@@ -24,7 +36,12 @@
     "babel-loader": "^7.1.3",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
+    "clean-webpack-plugin": "^1.0.0",
+    "cross-env": "^5.2.0",
+    "css-loader": "^1.0.1",
+    "file-loader": "^2.0.0",
+    "style-loader": "^0.23.1",
     "webpack": "4.12.0",
-    "webpack-cli": "2.0.9"
+    "webpack-cli": "^3.1.2"
   }
 }
